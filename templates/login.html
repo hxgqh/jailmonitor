@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>智能监狱管理系统</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/login.css" />
+    <link href="/static/libs/bootstrap/css/bootstrap.css" rel="stylesheet" type='text/css' />
+    <link href="/static/libs/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type='text/css' />
+</head>
+<body>
+
+<div class="login-div">
+    <div class="form-container">
+        <div class='form-container-left'>
+            <div class='logo-div'>
+                <img class='logo' src='/static/images/jinhui.png'/>
+            </div>
+
+            <span class='system-name'>
+                智能监狱管理系统
+            </span>
+        </div>
+
+        <div class='form-container-right'>
+            <div style="height:30%;width: 100%;"></div>
+        
+            <form method="post" action="" autocomplete="off">
+                {% csrf_token %}
+                <div class="login" >
+                        <span class="loginHeader">
+                            登陆智能监狱管理系统
+                        </span>
+                        {% if form.errors %}
+                             <br/><span style="color:red" class="labels error">用户名密码不匹配，请重新输入!</span>
+                        {% endif %}
+                        <div class="dataFields" >
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="labels">用户名</span></td>
+                                        <td><span >{{ form.username }}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="labels"> 密码</span></td>
+                                        <td><span >{{ form.password }}</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+{#                            <span class="labels">用户名</span>#}
+{#                            <span >{{ form.username }}</span><br/>#}
+{#                            <span class="labels"> 密码</span>#}
+{#                            <span >{{ form.password }}</span>#}
+                        </div>
+                        <p>
+                             <button type="submit" class="btn btn_signIn" >登陆</button>
+                             <input type="hidden" name="next" value="{{ next }}" class="btn" />
+                        </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

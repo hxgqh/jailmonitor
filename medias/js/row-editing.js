@@ -237,22 +237,344 @@ function hrEditor(){
     });
 }
 
+function personEditor(){
+    var model_name = 'Person'
+
+    var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
+        clicksToMoveEditor: 1,
+        autoCancel: false
+    });
+
+    // create the grid and specify what field you want
+    // to use for the editor at each column.
+    var grid = Ext.create('Ext.grid.GridPanel', {
+        store: personStore,
+        columns: [{
+            header: '号',
+            dataIndex: 'person_no',
+            width: '15%',
+            editor: {
+                allowBlank: true
+            }
+        }, {
+            header: '人员',
+            dataIndex: 'name',
+            width: '15%',
+            editor: {
+                allowBlank: true
+            }
+        }, {
+            header: '联系方式',
+            dataIndex: 'contact',
+            width: '25%',
+            editor: {
+                allowBlank: true
+            }
+        }, {
+            header: '通讯地址',
+            dataIndex: 'address',
+            width: '45%',
+            editor: {
+                allowBlank: true
+            }
+        }],
+        renderTo: 'div-editor',
+        width: '100%',
+        height: 400,
+        frame: true,
+        tbar: [{
+            text: '增加人员',
+            iconCls: 'person-add',
+            handler : function() {
+                rowEditing.cancelEdit();
+
+                // Create a model instance
+                var r = Ext.create(model_name, {
+                    person_no: '',
+                    name: '',
+                    contact: '',
+                    address: ''
+                });
+
+                personStore.insert(0, r);
+                rowEditing.startEdit(0, 0);
+            }
+        }, {
+            itemId: 'removePerson',
+            text: '删除人员',
+            iconCls: 'person-remove',
+            handler: function() {
+                var sm = grid.getSelectionModel();
+                rowEditing.cancelEdit();
+                personStore.remove(sm.getSelection());
+                if (personStore.getCount() > 0) {
+                    sm.select(0);
+                }
+            },
+            disabled: true
+        }],
+        plugins: [rowEditing],
+        listeners: {
+            'selectionchange': function(view, records) {
+                grid.down('#removePerson').setDisabled(!records.length);
+            }
+        }
+    });
+}
+
+function positionEditor(){
+    var model_name = 'Position'
+
+    var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
+        clicksToMoveEditor: 1,
+        autoCancel: false
+    });
+
+    // create the grid and specify what field you want
+    // to use for the editor at each column.
+    var grid = Ext.create('Ext.grid.GridPanel', {
+        store: positionStore,
+        columns: [{
+            header: 'IP地址',
+            dataIndex: 'ip',
+            width: '15%',
+            editor: {
+                allowBlank: true
+            }
+        }, {
+            header: '地点名称',
+            dataIndex: 'position',
+            width: '20%',
+            editor: {
+                allowBlank: true
+            }
+        }, {
+            header: '安装位置',
+            dataIndex: 'install_position',
+            width: '65%',
+            editor: {
+                allowBlank: true
+            }
+        }
+//            ,{
+//            header: '地点卡',
+//            dataIndex: 'position_card',
+//            width: '30%',
+//            editor: {
+//                allowBlank: true
+//            }
+//        }
+        ],
+        renderTo: 'div-editor',
+        width: '100%',
+        height: 400,
+        frame: true,
+        tbar: [{
+            text: '增加地点',
+            iconCls: 'position-add',
+            handler : function() {
+                rowEditing.cancelEdit();
+
+                // Create a model instance
+                var r = Ext.create(model_name, {
+                    ip: '',
+                    position: '',
+                    install_position: ''
+//                    position_card: ''
+                });
+
+                positionStore.insert(0, r);
+                rowEditing.startEdit(0, 0);
+            }
+        }, {
+            itemId: 'removePosition',
+            text: '删除地点',
+            iconCls: 'position-remove',
+            handler: function() {
+                var sm = grid.getSelectionModel();
+                rowEditing.cancelEdit();
+                positionStore.remove(sm.getSelection());
+                if (positionStore.getCount() > 0) {
+                    sm.select(0);
+                }
+            },
+            disabled: true
+        }],
+        plugins: [rowEditing],
+        listeners: {
+            'selectionchange': function(view, records) {
+                grid.down('#removePosition').setDisabled(!records.length);
+            }
+        }
+    });
+}
+
 function lineEditor(){
     // Define our data model
-    Ext.define('Line',{
+//    Ext.define('Line',{
+//        extend: 'Ext.data.Model',
+//        fields: [
+//            'name',
+//            'position',
+//            { name: 'next_time_arrival', type: 'int'},// dateFormat: 'm/d/Y' },
+//            'order'
+//        ]
+//    });
+
+    // create the Data Store
+//    var lineStore = Ext.create('Ext.data.Store', {
+//        // destroy the store if the grid is destroyed
+////        url: '/data/lineData',
+//        autoDestroy: true,
+//        autoSync : true,
+//        autoLoad: true,
+//        model: 'Line',
+//
+//        proxy: {
+//            type: 'ajax',
+//            url : '/data/lineData',
+//            reader: {
+//                type: 'json'
+//            },
+//
+//            writer: {
+//                type             : 'json',
+//                writeAllFields    : false,
+//                allowSingle         : true,
+//                encode             : true,
+//                root             : 'row'
+//            },
+//
+//            actionMethods: {
+//                read: 'GET',
+//                write: 'POST',
+//                update: 'POST',
+//                destroy: 'POST'
+//            }
+//        },
+//
+//        sorters: [{
+//            property: 'start',
+//            direction: 'ASC'
+//        }],
+//
+//        listeners: {
+//            write: function(){
+//                console.log('write')
+//            }
+//        }
+//    });
+
+    var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
+        clicksToMoveEditor: 1,
+        autoCancel: false
+    });
+
+    // create the grid and specify what field you want
+    // to use for the editor at each column.
+    var grid = Ext.create('Ext.grid.GridPanel', {
+        store: lineStore,
+        columns: [{
+            header: '线路名称',
+            dataIndex: 'name',
+            width: '25%',
+            editor: {
+                allowBlank: true
+            }
+        }, {
+            header: '地点名称',
+            dataIndex: 'position',
+            width: '45%',
+            editor: {
+                allowBlank: true
+            }
+        }, {
+            header: '下次到达时间(/min)',
+            dataIndex: 'next_time_arrival',
+            width: '15%',
+            editor: {
+                allowBlank: true
+            }
+        }, {
+            header: '顺序',
+            dataIndex: 'order',
+            width: '15%',
+            editor: {
+                allowBlank: true
+            }
+        }],
+        renderTo: 'div-editor',
+        width: '100%',
+        height: 400,
+        frame: true,
+        tbar: [{
+            text: '增加线路',
+            iconCls: 'line-add',
+            handler : function() {
+                rowEditing.cancelEdit();
+
+                // Create a model instance
+                var r = Ext.create('Line', {
+                    name: '',
+                    position: '',
+                    next_time_arrival: '',
+                    order: ''
+                });
+
+                lineStore.insert(0, r);
+                rowEditing.startEdit(0, 0);
+            }
+        }, {
+            itemId: 'removeLine',
+            text: '删除线路',
+            iconCls: 'line-remove',
+            handler: function() {
+                var sm = grid.getSelectionModel();
+                rowEditing.cancelEdit();
+                lineStore.remove(sm.getSelection());
+                if (lineStore.getCount() > 0) {
+                    sm.select(0);
+                }
+
+
+            },
+            disabled: true
+        }, {
+            itemId: 'line_splitbutton',
+            xtype: 'splitbutton',
+            store: ['线路1', '线路2']
+        }, {
+            itemId: 'position_splitbutton',
+            xtype: 'splitbutton',
+            store: ['第1张地点卡', '第2张地点卡']
+        }],
+        plugins: [rowEditing],
+        listeners: {
+            'selectionchange': function(view, records) {
+                grid.down('#removeLine').setDisabled(!records.length);
+            }
+        }
+    });
+}
+
+function multiDayScheduleEditor(){
+    var model_name = 'MultiDayScheduleModel'
+    // Define our data model
+    Ext.define(model_name,{
         extend: 'Ext.data.Model',
         fields: [
             'line_name',
-            'position_name',
-            { name: 'nextTime_arrival', type: 'int'},// dateFormat: 'm/d/Y' },
-            'order'
+            { name: 'start_time', type: 'datetime'},// dateFormat: 'm/d/Y' },
+            { name: 'end_time', type: 'datetime'}//, dateFormat: 'm/d/Y' }
         ]
     });
 
+    // Generate mock employee data
+    var data = []
+
     // create the Data Store
-    var lineStore = Ext.create('Ext.data.Store', {
+    var multiDayScheduleStore = Ext.create('Ext.data.Store', {
         // destroy the store if the grid is destroyed
-//        url: '/data/lineData',
         autoDestroy: true,
         autoSync : true,
         autoLoad: true,
@@ -260,12 +582,18 @@ function lineEditor(){
 
         proxy: {
             type: 'ajax',
-            url : '/data/lineData',
+            url : '/data/multiDayScheduleData',
             reader: {
                 type: 'json'
             },
 
-            writer: 'json',
+            writer: {
+                type             : 'json',
+                writeAllFields    : false,
+                allowSingle         : true,
+                encode             : true,
+                root             : 'row'
+            },
 
             actionMethods: {
                 read: 'GET',
@@ -295,120 +623,7 @@ function lineEditor(){
     // create the grid and specify what field you want
     // to use for the editor at each column.
     var grid = Ext.create('Ext.grid.GridPanel', {
-        store: lineStore,
-        columns: [{
-            header: '线路名称',
-            dataIndex: 'line_name',
-            width: '25%',
-            editor: {
-                allowBlank: true
-            }
-        }, {
-            header: '地点名称',
-            dataIndex: 'position_name',
-            width: '45%',
-            editor: {
-                allowBlank: true
-            }
-        }, {
-            header: '下次到达时间(/min)',
-            dataIndex: 'nextTime_arrival',
-            width: '15%',
-            editor: {
-                allowBlank: true
-            }
-        }, {
-            header: '顺序',
-            dataIndex: 'order',
-            width: '15%',
-            editor: {
-                allowBlank: true
-            }
-        }],
-        renderTo: 'div-editor',
-        width: '100%',
-        height: 400,
-        frame: true,
-        tbar: [{
-            text: 'Add Line',
-            iconCls: 'line-add',
-            handler : function() {
-                rowEditing.cancelEdit();
-
-                // Create a model instance
-                var r = Ext.create('Line', {
-                    line_name: '',
-                    position_name: '',
-                    nextTime_arrival: '',
-                    order: ''
-                });
-
-                lineStore.insert(0, r);
-                rowEditing.startEdit(0, 0);
-            }
-        }, {
-            itemId: 'removeLine',
-            text: 'Remove Line',
-            iconCls: 'line-remove',
-            handler: function() {
-                var sm = grid.getSelectionModel();
-                rowEditing.cancelEdit();
-                lineStore.remove(sm.getSelection());
-                if (lineStore.getCount() > 0) {
-                    sm.select(0);
-                }
-
-
-            },
-            disabled: true
-        }],
-        plugins: [rowEditing],
-        listeners: {
-            'selectionchange': function(view, records) {
-                grid.down('#removeLine').setDisabled(!records.length);
-            }
-        }
-    });
-}
-
-function multiDayScheduleEditor(){
-    // Define our data model
-    Ext.define('MultiDayScheduleModel',{
-        extend: 'Ext.data.Model',
-        fields: [
-            'line_name',
-            { name: 'start_time', type: 'datetime'},// dateFormat: 'm/d/Y' },
-            { name: 'end_time', type: 'datetime'}//, dateFormat: 'm/d/Y' }
-        ]
-    });
-
-    // Generate mock employee data
-    var data = []
-
-    // create the Data Store
-    var store = Ext.create('Ext.data.Store', {
-        // destroy the store if the grid is destroyed
-        autoDestroy: true,
-        model: 'MultiDayScheduleModel',
-        proxy: {
-            type: 'memory'
-        },
-        data: data,
-        sorters: [{
-            property: 'start',
-            direction: 'ASC'
-        }]
-    });
-
-    var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
-        clicksToMoveEditor: 1,
-        autoCancel: false
-    });
-
-    // create the grid and specify what field you want
-    // to use for the editor at each column.
-    var grid = Ext.create('Ext.grid.GridPanel', {
-        store: store,
+        store: multiDayScheduleStore,
         columns: [{
             header: '线路',
             dataIndex: 'line_name',
@@ -436,7 +651,7 @@ function multiDayScheduleEditor(){
         height: 400,
         frame: true,
         tbar: [{
-            text: 'Add Schedule',
+            text: '增加计划',
             iconCls: 'schedule-add',
             handler : function() {
                 rowEditing.cancelEdit();
@@ -444,24 +659,24 @@ function multiDayScheduleEditor(){
                 var now = new Date()
 
                 // Create a model instance
-                var r = Ext.create('MultiDayScheduleModel', {
+                var r = Ext.create(model_name, {
                     line_name: '',
                     start_time: Ext.Date.format(now, "n/j/Y"),
                     end_time: Ext.Date.format(now, "n/j/Y")
                 });
 
-                store.insert(0, r);
+                multiDayScheduleStore.insert(0, r);
                 rowEditing.startEdit(0, 0);
             }
         }, {
             itemId: 'removeSchedule',
-            text: 'Remove Schedule',
+            text: '删除计划',
             iconCls: 'schedule-remove',
             handler: function() {
                 var sm = grid.getSelectionModel();
                 rowEditing.cancelEdit();
-                store.remove(sm.getSelection());
-                if (store.getCount() > 0) {
+                multiDayScheduleStore.remove(sm.getSelection());
+                if (multiDayScheduleStore.getCount() > 0) {
                     sm.select(0);
                 }
             },
@@ -477,8 +692,9 @@ function multiDayScheduleEditor(){
 }
 
 function orderedScheduleEditor(){
+    var model_name = 'OrderedScheduleModel'
     // Define our data model
-    Ext.define('OrderedScheduleModel',{
+    Ext.define(model_name,{
         extend: 'Ext.data.Model',
         fields: [
             'line_name',
@@ -490,18 +706,46 @@ function orderedScheduleEditor(){
     var data = []
 
     // create the Data Store
-    var store = Ext.create('Ext.data.Store', {
+    var orderedScheduleStore = Ext.create('Ext.data.Store', {
         // destroy the store if the grid is destroyed
         autoDestroy: true,
-        model: 'OrderedScheduleModel',
+        autoSync : true,
+        autoLoad: true,
+        model: 'Line',
+
         proxy: {
-            type: 'memory'
+            type: 'ajax',
+            url : '/data/orderedScheduleData',
+            reader: {
+                type: 'json'
+            },
+
+            writer: {
+                type             : 'json',
+                writeAllFields    : false,
+                allowSingle         : true,
+                encode             : true,
+                root             : 'row'
+            },
+
+            actionMethods: {
+                read: 'GET',
+                write: 'POST',
+                update: 'POST',
+                destroy: 'POST'
+            }
         },
-        data: data,
+
         sorters: [{
             property: 'start',
             direction: 'ASC'
-        }]
+        }],
+
+        listeners: {
+            write: function(){
+                console.log('write')
+            }
+        }
     });
 
     var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
@@ -512,7 +756,7 @@ function orderedScheduleEditor(){
     // create the grid and specify what field you want
     // to use for the editor at each column.
     var grid = Ext.create('Ext.grid.GridPanel', {
-        store: store,
+        store: orderedScheduleStore,
         columns: [{
             header: '线路',
             dataIndex: 'line_name',
@@ -533,7 +777,7 @@ function orderedScheduleEditor(){
         height: 400,
         frame: true,
         tbar: [{
-            text: 'Add Schedule',
+            text: '增加计划',
             iconCls: 'schedule-add',
             handler : function() {
                 rowEditing.cancelEdit();
@@ -541,23 +785,23 @@ function orderedScheduleEditor(){
                 var now = new Date()
 
                 // Create a model instance
-                var r = Ext.create('OrderedScheduleModel', {
+                var r = Ext.create(model_name, {
                     line_name: '',
                     start_time: Ext.Date.format(now, "n/j/Y")
                 });
 
-                store.insert(0, r);
+                orderedScheduleStore.insert(0, r);
                 rowEditing.startEdit(0, 0);
             }
         }, {
             itemId: 'removeSchedule',
-            text: 'Remove Schedule',
+            text: '删除计划',
             iconCls: 'schedule-remove',
             handler: function() {
                 var sm = grid.getSelectionModel();
                 rowEditing.cancelEdit();
-                store.remove(sm.getSelection());
-                if (store.getCount() > 0) {
+                orderedScheduleStore.remove(sm.getSelection());
+                if (orderedScheduleStore.getCount() > 0) {
                     sm.select(0);
                 }
             },
@@ -573,8 +817,9 @@ function orderedScheduleEditor(){
 }
 
 function unorderedScheduleEditor(){
+    var model_name = 'UnorderedScheduleModel'
     // Define our data model
-    Ext.define('UnorderedScheduleModel',{
+    Ext.define(model_name, {
         extend: 'Ext.data.Model',
         fields: [
             'line_name',
@@ -587,18 +832,46 @@ function unorderedScheduleEditor(){
     var data = []
 
     // create the Data Store
-    var store = Ext.create('Ext.data.Store', {
+    var unorderedScheduleStore = Ext.create('Ext.data.Store', {
         // destroy the store if the grid is destroyed
         autoDestroy: true,
-        model: 'UnorderedScheduleModel',
+        autoSync : true,
+        autoLoad: true,
+        model: 'Line',
+
         proxy: {
-            type: 'memory'
+            type: 'ajax',
+            url : '/data/unorderedScheduleData',
+            reader: {
+                type: 'json'
+            },
+
+            writer: {
+                type             : 'json',
+                writeAllFields    : false,
+                allowSingle         : true,
+                encode             : true,
+                root             : 'row'
+            },
+
+            actionMethods: {
+                read: 'GET',
+                write: 'POST',
+                update: 'POST',
+                destroy: 'POST'
+            }
         },
-        data: data,
+
         sorters: [{
             property: 'start',
             direction: 'ASC'
-        }]
+        }],
+
+        listeners: {
+            write: function(){
+                console.log('write')
+            }
+        }
     });
 
     var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
@@ -609,7 +882,7 @@ function unorderedScheduleEditor(){
     // create the grid and specify what field you want
     // to use for the editor at each column.
     var grid = Ext.create('Ext.grid.GridPanel', {
-        store: store,
+        store: unorderedScheduleStore,
         columns: [{
             header: '线路',
             dataIndex: 'line_name',
@@ -637,7 +910,7 @@ function unorderedScheduleEditor(){
         height: 400,
         frame: true,
         tbar: [{
-            text: 'Add Schedule',
+            text: '增加计划',
             iconCls: 'schedule-add',
             handler : function() {
                 rowEditing.cancelEdit();
@@ -645,24 +918,24 @@ function unorderedScheduleEditor(){
                 var now = new Date()
 
                 // Create a model instance
-                var r = Ext.create('UnorderedScheduleModel', {
+                var r = Ext.create(model_name, {
                     line_name: '',
                     start_time: Ext.Date.format(now, "H:i:s"),
                     end_time: Ext.Date.format(now, "H:i:s")
                 });
 
-                store.insert(0, r);
+                unorderedScheduleStore.insert(0, r);
                 rowEditing.startEdit(0, 0);
             }
         }, {
             itemId: 'removeSchedule',
-            text: 'Remove Schedule',
+            text: '删除计划',
             iconCls: 'schedule-remove',
             handler: function() {
                 var sm = grid.getSelectionModel();
                 rowEditing.cancelEdit();
-                store.remove(sm.getSelection());
-                if (store.getCount() > 0) {
+                unorderedScheduleStore.remove(sm.getSelection());
+                if (unorderedScheduleStore.getCount() > 0) {
                     sm.select(0);
                 }
             },

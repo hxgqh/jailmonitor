@@ -32,5 +32,13 @@ Ext.onReady(function(){
     //Get data from backend
 //    Ext.get()
 
-    setTimeout('lineEditor()',1000);
+    setTimeout('personEditor()',1000);
+
+    $("#export_persons").click(function(){
+        export_persons()
+    })
+
+    $('#print_persons').click(function(){
+        $('#div-editor').jqprint();
+    })
 });

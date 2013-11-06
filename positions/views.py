@@ -22,6 +22,7 @@ from conf.confGlobal import *
 def update_one_position(row_data):
     try:
         ip = row_data.get('ip', '')
+        mac = row_data.get('mac', '')
         position = row_data.get('position', '')
         install_position = row_data.get('install_position', '')
 
@@ -34,6 +35,7 @@ def update_one_position(row_data):
         except PositionsModel.DoesNotExist:
             person = PositionsModel(
                 ip=ip,
+                mac=mac,
                 position=position,
                 install_position=install_position
             )
@@ -41,6 +43,7 @@ def update_one_position(row_data):
             pass
         else:
             old_position.ip = ip
+            old_position.mac = mac
             old_position.position = position
             old_position.install_position = position
             old_position.save()
@@ -85,11 +88,11 @@ def update_position(data):
 def get_positions_excel(request):
     excel_name = '地点信息'
 
-    data = [['IP地址', '地址名称', '安装位置']]
+    data = [['IP地址', 'MAC地址', '地址名称', '安装位置']]
 
     try:
         for position in PositionsModel.objects.all():
-            data.append([position.ip, position.position, position.install_position])
+            data.append([position.ip, position.mac, position.position, position.install_position])
             pass
         pass
     except Exception as e:
@@ -166,6 +169,10 @@ def get_position_mapping(request):
         for position in PositionsModel.objects.all():
             print "position.position:"
             print position.position
+
+            if not position.position_card:
+                continue
+
             print "position.position_card:"
             print position.position_card.name
             if position.position_card:

@@ -16,6 +16,7 @@ from persons.views import *
 from positions.views import *
 from lines.views import *
 from schedules.views import *
+from temphum.views import *
 
 
 __author__ = 'xiaoghu@cisco.com'
@@ -58,6 +59,9 @@ def data(request, type):
         if 'unorderedScheduleData' in type:
             template_data['data'] = getUnorderedScheduleData()
 
+        if 'temperatureHumidityDevice' in type:
+            template_data['data'] = getTemperatureHumidityDevice()
+
         return HttpResponse(json.dumps(template_data['data']))
 
     if request_method == 'POST':
@@ -82,13 +86,16 @@ def data(request, type):
             update_line(data)
 
         if 'multiDayScheduleData' in type:
-            update_person(data)
+            update_multiDaySchedule(data)
 
         if 'orderedScheduleData' in type:
-            update_person(data)
+            update_orderedSchedule(data)
 
         if 'unorderedScheduleData' in type:
-            update_person(data)
+            update_unorderedSchedule(data)
+
+        if 'temperatureHumidityDevice' in type:
+            update_temp_hum_devices(data)
 
         return HttpResponse('')
     pass

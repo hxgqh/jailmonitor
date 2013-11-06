@@ -3,21 +3,22 @@
 
 from django.db import models
 
-# Create your models here.
+from lines.models import *
 
 
 class MultiDayScheduleModel(models.Model):
-    line = models.CharField(verbose_name="线路", max_length=255, unique=True)
+    line = models.ForeignKey(LinesModel)
     start_time = models.DateTimeField(verbose_name="开始日期")
     end_time = models.DateTimeField(verbose_name="结束日期")
+    daily_start_time = models.DateTimeField(verbose_name="巡检开始时间")
 
 
 class OrderedScheduleModel(models.Model):
-    line = models.CharField(verbose_name="线路", max_length=255, unique=True)
-    start_time = models.DateTimeField(verbose_name="开始日期")
+    line = models.ForeignKey(LinesModel)
+    start_time = models.DateTimeField(verbose_name="开始时间")
 
 
 class UnorderedScheduleModel(models.Model):
-    line = models.CharField(verbose_name="线路", max_length=255, unique=True)
-    start_time = models.DateTimeField(verbose_name="开始日期")
-    end_time = models.DateTimeField(verbose_name="结束日期")
+    line = models.ForeignKey(LinesModel)
+    start_time = models.DateTimeField(verbose_name="开始时间")
+    end_time = models.DateTimeField(verbose_name="结束时间")

@@ -12,6 +12,7 @@ class PositionCardModel(models.Model):
 
 class PositionsModel(models.Model):
     ip = models.GenericIPAddressField(verbose_name="IP地址", unique=True)
+    mac = models.CharField(verbose_name="Mac地址", max_length=255, blank=True, null=True)
     position = models.CharField(verbose_name="地址名称", max_length=255, unique=True)
     install_position = models.CharField(verbose_name="安装位置", max_length=255)
     position_card = models.ForeignKey(PositionCardModel, blank=True, null=True)  # position_card_id

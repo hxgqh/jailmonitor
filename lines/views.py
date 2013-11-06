@@ -22,8 +22,9 @@ def update_one_line(row_data):
     try:
         name = row_data.get('name', '')
         position = row_data.get('position', '')
-        next_time_arrival = row_data.get('next_time_arrival', '')
-        order = row_data.get('order')
+        next_time_arrival = int(row_data.get('next_time_arrival', -1))
+        allow_time_error = int(row_data.get('allow_time_error'), 2)
+        order = int(row_data.get('order', -1))
 
         print row_data
 
@@ -40,6 +41,7 @@ def update_one_line(row_data):
                 name=name,
                 position=position,
                 next_time_arrival=next_time_arrival,
+                allow_time_error=allow_time_error,
                 order=order
             )
             person.save()
@@ -47,7 +49,8 @@ def update_one_line(row_data):
         else:
             old_line.name = name
             old_line.position = position
-            old_line.next_time_arrival = position
+            old_line.next_time_arrival = next_time_arrival
+            old_line.allow_time_error = allow_time_error
             old_line.order = order
             old_line.save()
             pass
@@ -90,11 +93,11 @@ def update_line(data):
 def get_lines_excel(request):
     excel_name = '线路信息'
 
-    data = [['线路名称', '地点名称', '下次到达时间(min)', '顺序']]
+    data = [['线路名称', '地点名称', '下次到达时间(min)', '允许时间误差(min)', '顺序']]
 
     try:
         for line in LinesModel.objects.all():
-            data.append([line.name, line.position, line.next_time_arrival, line.order])
+            data.append([line.name, line.position, line.next_time_arrival, line.allow_time_error, line.order])
             pass
         pass
     except Exception as e:

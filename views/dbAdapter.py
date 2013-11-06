@@ -3,6 +3,7 @@
 
 import json
 import traceback
+import datetime
 
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
@@ -13,6 +14,7 @@ from persons.models import *
 from lines.models import *
 from positions.models import *
 from schedules.models import *
+from temphum.models import *
 
 
 __author__ = 'xiaoghu@cisco.com'
@@ -96,9 +98,10 @@ def getMultiDayScheduleDataData():
     try:
         for schedule in MultiDayScheduleModel.objects.all():
             data.append({
-                'line_name': schedule.line,
-                'start_time': schedule.start_time,
-                'end_time': schedule.end_time
+                'no': schedule.id,
+                'line': schedule.line.name,
+                'start_time': schedule.start_time.strftime('%Y-%m-%d'),
+                'end_time': schedule.end_time.strftime('%Y-%m-%d')
             })
         pass
     except Exception as e:
@@ -106,6 +109,7 @@ def getMultiDayScheduleDataData():
         print traceback.format_exc()
         pass
 
+    print data
     return data
     pass
 
@@ -115,15 +119,21 @@ def getOrderedScheduleData():
 
     try:
         for schedule in OrderedScheduleModel.objects.all():
+            schedule.start_time = schedule.start_time + datetime.timedelta(0, 18*3600, 0)
+
             data.append({
-                'line_name': schedule.line,
-                'start_time': schedule.start_time
+                'no': schedule.id,
+                'line': schedule.line.name,
+                'start_time': schedule.start_time.strftime('%H:%M:%S')
             })
         pass
     except Exception as e:
         print e
         print traceback.format_exc()
         pass
+
+    print "data:"
+    print data
 
     return data
     pass
@@ -134,10 +144,33 @@ def getUnorderedScheduleData():
 
     try:
         for schedule in UnorderedScheduleModel.objects.all():
+            schedule.start_time = schedule.start_time + datetime.timedelta(0, 18*3600, 0)
+            schedule.end_time = schedule.end_time + datetime.timedelta(0, 18*3600, 0)
             data.append({
-                'line_name': schedule.line,
-                'start_time': schedule.start_time,
-                'end_time': schedule.end_time
+                'no': schedule.id,
+                'line': schedule.line.name,
+                'start_time': schedule.start_time.strftime('%H:%M:%S'),
+                'end_time': schedule.end_time.strftime('%H:%M:%S')
+            })
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+        pass
+
+    return data
+    pass
+
+
+def getTemperatureHumidityDevice():
+    data = []
+
+    try:
+        for device in TemperatureHumidityDeviceModel.objects.all():
+            data.append({
+                'ip': device.ip,
+                'position': device.position,
+                'device_no': device.device_no
             })
         pass
     except Exception as e:

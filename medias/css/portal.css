@@ -151,6 +151,7 @@ img.geograph {
 }
 
 #div-editor-map {
+    float:left;
     width: 100%;
     height: 100%;
 }
@@ -241,3 +242,7 @@ select.selectpicker {
     width: 40% !important;
 }
 
+span.result_query {
+    width: 90% !important;
+    margin: 10px;
+}

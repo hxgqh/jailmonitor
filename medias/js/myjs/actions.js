@@ -75,6 +75,46 @@ function add_position_card(e){
     )
 }
 
+function add_temp_hum_position_card(e){
+    var render_div$ = $("#div-editor-left")
+    var position_table_tbody$ = $($('#map_info_table').children().eq(1))
+
+    var p_x = e.offsetX
+    var p_y = e.offsetY
+
+    render_div$.append('<div class="position-div" style="left:'+p_x+'px;top:'+p_y+'px;"></div>')
+
+    var new_id = position_card_dict.length
+
+    console.log('new_id '+new_id)
+    console.log(position_card_dict)
+
+    position_card_dict[new_id] = {
+        name: '温湿度计' + (new_id+1),
+        x: p_x,
+        y: p_y
+    }
+
+    position_table_tbody$.append('<tr><td>' +
+        '温湿度计' + (new_id+1) +
+        '</td><td>' +
+        p_x +
+        '</td><td>' +
+        p_y +
+        '</td></tr>')
+
+    //Send position card to backend
+    $.get(
+        "/add/temphumpositioncard/",
+        {
+            name: '温湿度计' + (new_id+1),
+            x: p_x,
+            y: p_y
+        },
+        null
+    )
+}
+
 /*
 * Export Persons
 * */
@@ -155,6 +195,27 @@ function update_position_card_table(){
     )
 }
 
+function update_temp_hum_position_card_table(){
+    $.get(
+        "/get/temphumpositioncard/",
+        null,
+        function(data, status){
+            position_card_dict = []
+            var data = eval(data)
+            for(var i=0;i<data.length;i++){
+                var item = data[i]
+                var render_div$ = $("#div-editor-left")
+                var position_table_tbody$ = $($('#map_info_table').children().eq(1))
+                position_table_tbody$.append('<tr><td>'+item.name+'</td><td>'+item.x+'</td><td>'+item.y+'</td></tr>')
+                position_card_dict.push(item)
+                var p_x = item.x
+                var p_y = item.y
+                render_div$.append('<div class="position-div" style="left:'+p_x+'px;top:'+p_y+'px;"></div>')
+            }
+        }
+    )
+}
+
 
 /**
  * Update mapping table
@@ -162,6 +223,26 @@ function update_position_card_table(){
 function update_mapping_table(){
     $.get(
         "/get/position/mapping/",
+        null,
+        function(data, status){
+            var data = eval(data)
+            console.log(data)
+            var position_mapping_table_tbody$ = $($('#map_info_table').children().eq(1))
+            for(var i=0;i<data.length;i++){
+                position_mapping_table_tbody$.append(
+                    '<tr><td>' +
+                    data[i]['position'] +
+                    '</td><td>' +
+                    data[i]['position_card'] +
+                    '</td></tr>')
+            }
+        }
+    )
+}
+
+function update_temp_hum_mapping_table(){
+    $.get(
+        "/get/temphumposition/mapping/",
         null,
         function(data, status){
             var data = eval(data)
@@ -200,6 +281,23 @@ function update_mapping_position_select(){
     )
 }
 
+function update_temp_hum_mapping_position_select(){
+    $.get(
+        "/data/tempHumDevice/",
+        null,
+        function(data, status){
+            var data = eval(data)
+            console.log("position data:")
+            console.log(data)
+            var mapping_position_select$ = $('#mapping_position')
+            mapping_position_select$.empty()
+            for(var i=0;i<data.length;i++){
+                mapping_position_select$.append('<option>'+data[i]['position']+'</option>')
+            }
+        }
+    )
+}
+
 
 /*
 * Update mapping position card select
@@ -207,6 +305,23 @@ function update_mapping_position_select(){
 function update_mapping_position_card_select(){
     $.get(
         "/get/positioncard/",
+        null,
+        function(data, status){
+            var data = eval(data)
+            console.log("position card data:")
+            console.log(data)
+            var mapping_position_card_select$ = $('#mapping_position_card')
+            mapping_position_card_select$.empty()
+            for(var i=0;i<data.length;i++){
+                mapping_position_card_select$.append('<option>'+data[i]['name']+'</option>')
+            }
+        }
+    )
+}
+
+function update_temp_hum_mapping_position_card_select(){
+    $.get(
+        "/get/temphumpositioncard/",
         null,
         function(data, status){
             var data = eval(data)
@@ -243,6 +358,32 @@ function confirm_mapping(){
 
     $.get(
         '/add/position/mapping/',
+        {
+            position: mapping_position,
+            position_card: mapping_position_card
+        },
+        null
+    )
+}
+
+function confirm_temp_hum_mapping(){
+    var mapping_position$ = $('#mapping_position')
+    var mapping_position_card$ = $('#mapping_position_card')
+    var mapping_position = mapping_position$.val()
+    var mapping_position_card = mapping_position_card$.val()
+
+    console.log(mapping_position)
+    console.log(mapping_position_card)
+    var position_mapping_table_tbody$ = $($('#map_info_table').children().eq(1))
+    position_mapping_table_tbody$.append(
+        '<tr><td>' +
+        mapping_position +
+        '</td><td>' +
+        mapping_position_card +
+        '</td></tr>')
+
+    $.get(
+        '/add/temphumposition/mapping/',
         {
             position: mapping_position,
             position_card: mapping_position_card

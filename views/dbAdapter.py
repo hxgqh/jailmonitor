@@ -69,6 +69,31 @@ def getPositionData():
     pass
 
 
+def getTempHumDevice():
+    """
+    """
+    data = []
+
+    try:
+        for device in TemperatureHumidityDeviceModel.objects.all():
+            data.append({
+                'ip': device.ip,
+                'position': device.position,
+                'device_no': device.device_no
+            })
+            pass
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+        pass
+
+    # print "position data:"
+    # print json.dumps(data, indent=4)
+    return data
+    pass
+
+
 def getLineData():
     """
     """

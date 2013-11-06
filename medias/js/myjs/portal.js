@@ -215,6 +215,78 @@ function unordered_schedule_expand(){
     }
 }
 
+function show_temp_hum_map(){
+        try{
+            var divEditor = Ext.get('div-editor')
+//                                            divEditor.dom.innerHTML=""
+            divEditor.dom.innerHTML=""
+            divEditor.createChild('<div id="div-editor-map">' +
+                                '<div id="div-editor-left"></div>' +
+                                '<div id="div-editor-right">' +
+                                '<span id="change_map" class="btn">选择巡检地图</span>' +
+                                '<span id="add_position_mapping" class="btn">添加地点映射</span>' +
+                                '<span id="add_position_card" class="btn">添加地点</span>' +
+                                '<div style="width:100%;height:380px;overflow-y:auto;">' +
+                                '<div id="mapping_div" style="width:100%;display:none">' +
+                                '<select id="mapping_position" class="selectpicker"></select>' +
+                                '<select id="mapping_position_card" class="selectpicker"></select>' +
+                                '<span id="mapping_confirm" class="btn">确定</span>' +
+                                '</div>' +
+                                '<table id="map_info_table" class="table table-striped table-bordered"></table>' +
+                                '</div></div></div>')
+            divEditor.createChild('')
+            divEditor.createChild('')
+            Ext.get('div-editor-left').createChild('<img class="geograph" src="/static/images/temp_hum_geograph.png"/>')
+            $("#map_info_table").append("<thead><td>地点</td><td>x坐标</td><td>y坐标</td></thead><tbody></tbody>")
+
+            update_temp_hum_position_card_table()
+
+            $('#change_map').click(function(){
+                map_setting_expand()
+            })
+
+            $('#add_position_card').click(function(){
+                $('#add_position_card').toggleClass('btn-primary')
+
+                if($('#add_position_card').hasClass('btn-primary')){
+                    $('#div-editor-left').css('cursor', 'pointer')
+                    $('#div-editor-left').click(function(e){
+                        add_temp_hum_position_card(e)
+                    })
+                }
+                else{
+                    $('#div-editor-left').css('cursor', 'default')
+                    $('#div-editor-left').unbind('click')
+                    $('#div-editor-left').off('click')
+                }
+            })
+
+            $('#add_position_mapping').click(function(){
+                $('#add_position_mapping').toggleClass('btn-primary')
+                var map_info_table$ = $('#map_info_table')
+                if($('#add_position_mapping').hasClass('btn-primary')){
+                    map_info_table$.empty()
+                    map_info_table$.append("<thead><td>地点</td><td>地点卡</td></thead><tbody></tbody>")
+                    update_temp_hum_mapping_table()
+                    update_temp_hum_mapping_position_select()
+                    update_temp_hum_mapping_position_card_select()
+                    $('#mapping_div').show()
+                }
+                else{
+                    $('#mapping_div').hide()
+                    map_info_table$.empty()
+                    map_info_table$.append("<thead><td>地点</td><td>x坐标</td><td>y坐标</td></thead><tbody></tbody>")
+                    update_temp_hum_position_card_table()
+                }
+            })
+
+            $('#mapping_confirm').click(function(){
+                confirm_temp_hum_mapping()
+            })
+        }
+        catch(err){}
+}
+
 function map_setting_expand(){
     try{
         try{
@@ -235,12 +307,14 @@ function map_setting_expand(){
                                 '</div>' +
                                 '<table id="map_info_table" class="table table-striped table-bordered"></table>' +
                                 '</div></div></div>')
-            divEditor.createChild('')
-            divEditor.createChild('')
             Ext.get('div-editor-left').createChild('<img class="geograph" src="/static/images/geograph.png"/>')
             $("#map_info_table").append("<thead><td>地点</td><td>x坐标</td><td>y坐标</td></thead><tbody></tbody>")
 
             update_position_card_table()
+
+            $('#change_map').click(function(){
+                show_temp_hum_map()
+            })
 
             $('#add_position_card').click(function(){
                 $('#add_position_card').toggleClass('btn-primary')
@@ -280,7 +354,6 @@ function map_setting_expand(){
             $('#mapping_confirm').click(function(){
                 confirm_mapping()
             })
-
         }
         catch(err){}
     }

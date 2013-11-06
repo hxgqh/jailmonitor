@@ -132,7 +132,8 @@ INSTALLED_APPS = (
     'persons',
     'positions',
     'lines',
-    'schedules'
+    'schedules',
+    'temphum'
 )
 
 # A sample logging configuration. The only tangible logging

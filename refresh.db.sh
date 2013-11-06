@@ -7,4 +7,5 @@ python ./manage.py sqlall persons
 python ./manage.py sqlall positions
 python ./manage.py sqlall schedules
 python ./manage.py sqlall lines
+python ./manage.py sqlall temphum
 python ./manage.py syncdb

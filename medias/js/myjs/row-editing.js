@@ -202,26 +202,34 @@ function temperatureHumidityEditor(){
     // create the grid and specify what field you want
     // to use for the editor at each column.
     var grid = Ext.create('Ext.grid.GridPanel', {
-        store: positionStore,
+        store: temperatureHumidityDeviceStore,
         columns: [
             {
+                header: 'id',
+                dataIndex: 'id',
+                width: '0%',
+                hidden: true,
+                editor: {
+                    allowBlank: false
+                }
+            }, {
                 header: 'IP地址',
                 dataIndex: 'ip',
-                width: '15%',
+                width: '25%',
                 editor: {
                     allowBlank: true
                 }
             }, {
                 header: '温湿度计编号',
                 dataIndex: 'device_no',
-                width: '20%',
+                width: '25%',
                 editor: {
                     allowBlank: true
                 }
             }, {
                 header: '地点名称',
                 dataIndex: 'position',
-                width: '20%',
+                width: '50%',
                 editor: {
                     allowBlank: true
                 }
@@ -237,9 +245,10 @@ function temperatureHumidityEditor(){
             handler : function() {
                 rowEditing.cancelEdit();
 
-
+                var num = temperatureHumidityDeviceStore.getCount()
                 // Create a model instance
                 var r = Ext.create(model_name, {
+                    id: num+1,
                     ip: '',
                     device_no: '',
                     position: ''

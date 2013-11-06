@@ -113,7 +113,7 @@ def update_one_temp_hum_device(row_data):
 
         old_person = None
         try:
-            old_device = TemperatureHumidityDeviceModel.objects.get(ip=id)
+            old_device = TemperatureHumidityDeviceModel.objects.get(id=id)
         except TemperatureHumidityDeviceModel.DoesNotExist:
             device = TemperatureHumidityDeviceModel(
                 ip=ip,
@@ -159,4 +159,111 @@ def update_temp_hum_devices(data):
         pass
     else:
         pass
+    pass
+
+
+@login_required(login_url="/login")
+@csrf_exempt
+def get_temp_hum_position_card(request):
+    print "func add_position_card"
+    print request.GET
+
+    data = []
+
+    try:
+        for pc in TemperatureHumidityPositionCardModel.objects.all():
+            data.append({
+                'name': pc.name,
+                'x': pc.x,
+                'y': pc.y
+            })
+            pass
+        pass
+    except Exception as e:
+        print e
+        print traceback
+
+    return HttpResponse(json.dumps(data))
+    pass
+
+
+@login_required(login_url="/login")
+@csrf_exempt
+def add_temp_hum_position_card(request):
+    print request.GET
+
+    data = request.GET
+    name = data.get('name', '')
+    x = data.get('x', '')
+    y = data.get('y', '')
+
+    if not name:
+        return HttpResponse('')
+
+    try:
+        p_c = TemperatureHumidityPositionCardModel(
+            name=name,
+            x=x,
+            y=y
+        )
+        p_c.save()
+        pass
+    except Exception as e:
+        print e
+        print traceback
+
+    return HttpResponse('')
+    pass
+
+
+@login_required(login_url="/login")
+@csrf_exempt
+def get_temp_hum_position_mapping(request):
+    print "func get_position_mapping"
+    # data = ['地点1', '温湿度计1']
+    data = []
+
+    try:
+        for device in TemperatureHumidityDeviceModel.objects.all():
+            if not device.position:
+                continue
+
+            if device.position_card:
+                data.append({
+                    'position': device.position,
+                    'position_card': device.position_card.name
+                })
+            pass
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+
+    return HttpResponse(json.dumps(data))
+    pass
+
+
+@login_required(login_url="/login")
+@csrf_exempt
+def add_temp_hum_position_mapping(request):
+    # data = {'position':'地点1', 'position_card':'温湿度计1'}
+    data = request.GET
+    print data
+    position = data.get('position', '')
+    position_card = data.get('position_card', '')
+
+    if not position or not position_card:
+        return HttpResponse('')
+
+    try:
+        p = TemperatureHumidityDeviceModel.objects.get(position=position)
+        pc = TemperatureHumidityPositionCardModel.objects.get(name=position_card)
+        p.position_card = pc
+        p.save()
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+
+    return HttpResponse(json.dumps(data))
     pass

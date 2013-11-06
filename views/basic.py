@@ -47,6 +47,9 @@ def data(request, type):
         if 'positionData' in type:
             template_data['data'] = getPositionData()
 
+        if 'tempHumDevice' in type:
+            template_data['data'] = getTempHumDevice()
+
         if 'lineData' in type:
             template_data['data'] = getLineData()
 

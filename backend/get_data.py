@@ -8,6 +8,7 @@ import time
 import socket
 import SocketServer
 import traceback
+import datetime
 from binascii import hexlify, unhexlify
 from SocketServer import (TCPServer as TCP,
                           StreamRequestHandler as SRH,
@@ -20,6 +21,7 @@ from persons.models import *
 from positions.models import *
 from lines.models import *
 from schedules.models import *
+from temphum.models import *
 
 
 def parse_temperature(data):
@@ -73,7 +75,20 @@ def insert_temperature_and_humidity(client_ip, data):
 
     try:
         # TODO: insert temperature and humidity here
+        device = TemperatureHumidityDeviceModel.objects.get(ip=client_ip, device_no=device_no)
 
+        if not device:
+            return -1
+
+        insert_time = datetime.datetime.now()
+
+        item = TemperatureHumidityModel(
+            time=insert_time,
+            device=device,
+            temperature=temperature,
+            humidity=humidity
+        )
+        item.save()
         pass
     except Exception as e:
         print e
@@ -163,23 +178,50 @@ def get_temperature_humidity():
 
 def parse_patrol_data(data):
     """
-    @param data: a hex string like this aa3300fb000000a00f00000f17d60c0000790d00008fa61a00008d1500eda32800008d150000000000000000000000000000000000c64a086d03
+    @param data: a hex string like this aa3300fb000000a00f00000f17d60c0000790d0000 8fa61a00008d1500 eda32800008d1500 00000000000000000000000000000000c64a086d03
     @return:
     """
     patrol = 0
 
-    return patrol
+    tag_mac = ''
+    reader_mac = ''
+
+    if not data:
+        return None, None
+
+    for i in range(0, 8):
+        tag_mac += data[(56-i*2):(58-i*2)]
+        reader_mac += data[(72-i*2):(74-i*2)]
+
+    print 'tag_mac:%s, reader_mac:%s' % (tag_mac, reader_mac)
+
+    return tag_mac, reader_mac
     pass
 
 
-def insert_patrol_data(data):
+def insert_patrol_data(client_ip, data):
+    person_mac, position_mac = parse_patrol_data(data)
+
+    print "time:%s, client_ip:%s, person_mac:%s, position_mac:%s" % (str(time.time()), client_ip, person_mac, position_mac,)
 
     try:
+        person = PersonsModel.objects.get(person_no=person_mac)
+        position = PositionsModel.objects.get(ip=client_ip, mac=position_mac)
+        arrive_time = datetime.datetime.now()
+
+        if person and position:
+            item = PatrolActionHistoryModel(
+                position=position,
+                # status=models.SmallIntegerField('巡检状态', choices=STATUS, default=0),
+                arrive_time=arrive_time,
+                person=person,
+                # event=''
+            )
+            item.save()
         pass
     except Exception as e:
         print e
         print traceback.format_exc()
-        pass
     pass
 
 
@@ -196,9 +238,8 @@ class PatrolTCPHandler(SRH):
             try:
                 # self.request is the TCP socket connected to the client
                 self.data = self.request.recv(1024).strip()
-                print "{} wrote:".format(self.client_address[0])
-                print self.data
-                insert_patrol_data(self.data)
+                client_ip = self.client_address[0]
+                insert_patrol_data(client_ip, self.data)
                 pass
             except Exception as e:
                 print e

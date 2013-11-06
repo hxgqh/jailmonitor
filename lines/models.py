@@ -20,10 +20,10 @@ class LinesModel(models.Model):
     order = models.IntegerField(verbose_name="顺序")
 
 
-class LineActionHistoryModel(models.Model):
-    line = models.ForeignKey(LinesModel)
+class PatrolActionHistoryModel(models.Model):
+    # line = models.ForeignKey(LinesModel)
     position = models.ForeignKey(PositionsModel)
-    status = models.SmallIntegerField('巡检状态', choices=STATUS, default=0)
+    # status = models.IntegerField('巡检状态', default=0)
     arrive_time = models.DateTimeField('实到时间', blank=True, null=True)
     person = models.ForeignKey(PersonsModel, blank=True, null=True)
-    event = models.CharField(verbose_name="事件", max_length=255, blank=True, null=True)
+    # event = models.CharField(verbose_name="事件", max_length=255, blank=True, null=True)

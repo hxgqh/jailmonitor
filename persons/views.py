@@ -29,13 +29,14 @@ def update_one_person(row_data):
         try:
             old_person = PersonsModel.objects.get(person_no=person_no)
         except PersonsModel.DoesNotExist:
-            person = PersonsModel(
-                person_no=person_no,
-                name=name,
-                contact=contact,
-                address=address
-            )
-            person.save()
+            if person_no:
+                person = PersonsModel(
+                    person_no=person_no,
+                    name=name,
+                    contact=contact,
+                    address=address
+                )
+                person.save()
             pass
         else:
             old_person.name = name

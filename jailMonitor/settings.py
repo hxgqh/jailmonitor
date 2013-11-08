@@ -9,6 +9,7 @@ sys.path.append(base_dir)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+USE_TZ = True
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),

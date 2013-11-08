@@ -4,8 +4,10 @@
 import os
 import re
 import sys
+import math
 import tablib
 import time
+import json
 import datetime
 import traceback
 
@@ -52,7 +54,7 @@ def get_ordered_schedule_excel(request):
 
     try:
         for schedule in OrderedScheduleModel.objects.all():
-            data.append([schedule.line, str(schedule.start_time)])
+            data.append([schedule.line, schedule.start_time.strftime('%Y-%m-%d %H:%M:%S')])
             pass
         pass
     except Exception as e:
@@ -71,7 +73,11 @@ def get_unordered_schedule_excel(request):
 
     try:
         for schedule in UnorderedScheduleModel.objects.all():
-            data.append([schedule.line, str(schedule.start_time), str(schedule.end_time)])
+            data.append([
+                schedule.line,
+                schedule.start_time.strftime('%Y-%m-%d %H:%M:%S'),
+                schedule.end_time.strftime('%Y-%m-%d %H:%M:%S')
+            ])
             pass
         pass
     except Exception as e:
@@ -88,27 +94,26 @@ def update_one_multiDaySchedule(row_data):
         line = row_data.get('line', '')
         start_time = str(row_data.get('start_time', ''))
         end_time = str(row_data.get('end_time', ''))
-        daily_start_time = str(row_data.get('daily_start_time'), '08:00:00')
+        daily_start_time = str(row_data.get('daily_start_time', '08:00:00'))
 
         if not line or not start_time or not end_time:
+            print 'line:%s, start_time:%s, end_time:%s' % (line, start_time, end_time)
             return -1
 
-        print row_data
+        # print row_data
 
         try:
-            print "line:"
-            print line
+            # print "line:"
+            # print line
             line = LinesModel.objects.get(name=line.encode('utf-8'))
         except LinesModel.DoesNotExist:
             print "%s doesn't exists" % row_data.get('line', '')
             return -1
             pass
 
-        start_time = datetime.datetime.strptime(str(start_time), '%Y-%m-%d')
-        end_time = datetime.datetime.strptime(str(end_time), '%Y-%m-%d')
-        daily_start_time = datetime.datetime.strptime(str(daily_start_time), '%H:%M:%S')
-
-        print row_data
+        start_time = datetime.datetime.strptime(str(start_time), '%Y-%m-%d').date()
+        end_time = datetime.datetime.strptime(str(end_time), '%Y-%m-%d').date()
+        daily_start_time = datetime.datetime.strptime(str(daily_start_time), '%H:%M:%S').time()
 
         old_schedule = None
         try:
@@ -186,7 +191,7 @@ def update_one_orderedSchedule(row_data):
             return -1
             pass
 
-        start_time = datetime.datetime.strptime(str(start_time), '%H:%M:%S')
+        start_time = datetime.datetime.strptime(str(start_time), '%Y-%m-%d %H:%M:%S') - datetime.timedelta(0, 6*3600, 0)
 
         print row_data
 
@@ -262,8 +267,8 @@ def update_one_unorderedSchedule(row_data):
             return -1
             pass
 
-        start_time = datetime.datetime.strptime(str(start_time), '%H:%M:%S')
-        end_time = datetime.datetime.strptime(str(end_time), '%H:%M:%S')
+        start_time = datetime.datetime.strptime(str(start_time), '%Y-%m-%d %H:%M:%S') - datetime.timedelta(0, 6*3600, 0)
+        end_time = datetime.datetime.strptime(str(end_time), '%Y-%m-%d %H:%M:%S') - datetime.timedelta(0, 6*3600, 0)
 
         print row_data
 
@@ -318,4 +323,304 @@ def update_unorderedSchedule(data):
         pass
     else:
         pass
+    pass
+
+
+def create_multi_day_patrol_data(schedule):
+    data = []
+
+    if not schedule:
+        return data
+
+    try:
+        line_name = schedule.line.name
+        all_line_positions = LinesModel.objects.filter(name=line_name)
+
+        if not all_line_positions:
+            return data
+
+        days = (schedule.end_time-schedule.start_time).days
+
+        for i in range(0, days+1):
+            time_range_date = schedule.start_time + datetime.timedelta(i)
+            for item in all_line_positions:
+                ts = (int(item.order)-1)*int(item.next_time_arrival)-int(item.time_error)
+                te = (int(item.order)-1)*int(item.next_time_arrival)+int(item.time_error)
+                time_range_start_time = datetime.datetime.combine(time_range_date, schedule.daily_start_time) + \
+                                        datetime.timedelta(0, ts*60, 0)
+                time_range_end_time = datetime.datetime.combine(time_range_date, schedule.daily_start_time) + \
+                                        datetime.timedelta(0, te*60, 0)
+
+                if PatrolActionHistoryModel.objects.filter(
+                        arrive_time__range=(time_range_start_time, time_range_end_time)
+                ).count():  # 准点到达，误差为time_error
+                    arrive_time = PatrolActionHistoryModel.objects.filter(
+                        arrive_time__range=(time_range_start_time, time_range_end_time)
+                    ).order_by('arrive_time')[0].arrive_time
+                    arrive_time = arrive_time.strftime("%Y-%m-%d %H:%M:%S")
+                    data.append({
+                        'position': item.position,
+                        'status': '已到',    #
+                        'arrive_time': arrive_time,
+                        'person': item.person.name,
+                        'event': ''
+                    })
+                    pass
+                else:   # 未到达或为准点到达，误差在time_error之外
+                    data.append({
+                        'position': item.position,
+                        'status': '未到',    #
+                        'arrive_time': '',
+                        'person': '',
+                        'event': time_range_start_time.strftime("%Y-%m-%d")
+                    })
+                    pass
+                pass
+            pass
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+
+    return data
+    pass
+
+
+@login_required(login_url="/login/")
+def get_query_multi_day_schedule(request):
+    data = []
+
+    print request.GET
+
+    line = request.GET['line']
+    start_time = str(request.GET.get('start_time', ''))
+    end_time = str(request.GET.get('end_time', ''))
+    daily_start_time = str(request.GET.get('daily_start_time', ''))
+
+    if not line or not daily_start_time or not start_time or not end_time:
+        return HttpResponse(json.dumps(data))
+
+    line = LinesModel.objects.get(name=line)
+    start_time = datetime.datetime.strptime(start_time, '%Y-%m-%d').date()
+    end_time = datetime.datetime.strptime(end_time, '%Y-%m-%d').date()
+    daily_start_time = datetime.datetime.strptime(daily_start_time, '%H:%M:%S').time()
+
+    schedule = MultiDayScheduleModel.objects.get(
+        line=line,
+        start_time=start_time,
+        end_time=end_time,
+        daily_start_time=daily_start_time
+    )
+
+    if not schedule:
+        return HttpResponse(json.dumps(data))
+
+    data = create_multi_day_patrol_data(schedule)
+
+    return HttpResponse(json.dumps(data))
+    pass
+
+
+def create_ordered_patrol_data(schedule):
+    data = []
+    if not schedule:
+        return data
+
+    try:
+        line_name = schedule.line.name
+        all_line_positions = LinesModel.objects.filter(name=line_name)
+
+        if not all_line_positions:
+            return data
+
+        for item in all_line_positions:
+            ts = (int(item.order)-1)*int(item.next_time_arrival)-int(item.time_error)
+            te = (int(item.order)-1)*int(item.next_time_arrival)+int(item.time_error)
+            time_range_start_time = schedule.start_time + datetime.timedelta(0, ts*60, 0)
+            time_range_end_time = schedule.start_time + datetime.timedelta(0, te*60, 0)
+
+            if PatrolActionHistoryModel.objects.filter(
+                arrive_time__range=(time_range_start_time, time_range_end_time)
+            ).count():  # 准点到达，误差为time_error
+                arrive_time = PatrolActionHistoryModel.objects.filter(
+                    arrive_time__range=(time_range_start_time, time_range_end_time)
+                ).order_by('arrive_time')[0].arrive_time
+                arrive_time = arrive_time.strftime("%Y-%m-%d %H:%M:%S")
+                data.append({
+                    'position': item.position,
+                    'status': '已到',    #
+                    'arrive_time': arrive_time,
+                    'person': item.person.name,
+                    'event': ''
+                })
+                pass
+            else:   # 未到达或为准点到达，误差在time_error之外
+                data.append({
+                    'position': item.position,
+                    'status': '未到',    #
+                    'arrive_time': '',
+                    'person': '',
+                    'event': time_range_start_time.strftime("%Y-%m-%d")
+                })
+                pass
+            pass
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+
+    return data
+    pass
+
+
+@login_required(login_url="/login/")
+def get_query_ordered_schedule(request):
+    data = []
+
+    data = []
+
+    print request.GET
+
+    line = request.GET['line']
+    start_time = str(request.GET.get('start_time', ''))
+
+    if not line or not start_time:
+        return HttpResponse(json.dumps(data))
+
+    line = LinesModel.objects.get(name=line)
+    start_time = datetime.datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
+
+    print "line:%s, start_time:%s" % (line, start_time.strftime('%Y-%m-%d %H:%M:%S'))
+
+    try:
+        schedule = OrderedScheduleModel.objects.get(
+            line=line
+            # start_time=start_time
+        )
+        data = create_ordered_patrol_data(schedule)
+    except OrderedScheduleModel.DoesNotExist:
+        return HttpResponse(json.dumps(data))
+        pass
+    else:
+        pass
+
+    return HttpResponse(json.dumps(data))
+    pass
+
+
+def create_unordered_patrol_data(schedule):
+    data = []
+    if not schedule:
+        return data
+
+    try:
+        line_name = schedule.line.name
+        all_line_positions = LinesModel.objects.filter(name=line_name)
+
+        if not all_line_positions:
+            return data
+
+        for item in all_line_positions:
+            time_range_start_time = schedule.start_time
+            time_range_end_time = schedule.end_time
+
+            if PatrolActionHistoryModel.objects.filter(
+                arrive_time__range=(time_range_start_time, time_range_end_time)
+            ).count():  # 准点到达，误差为time_error
+                arrive_time = PatrolActionHistoryModel.objects.filter(
+                    arrive_time__range=(time_range_start_time, time_range_end_time)
+                ).order_by('arrive_time')[0].arrive_time
+                arrive_time = arrive_time.strftime("%Y-%m-%d %H:%M:%S")
+                data.append({
+                    'position': item.position,
+                    'status': '已到',    #
+                    'arrive_time': arrive_time,
+                    'person': item.person.name,
+                    'event': ''
+                })
+                pass
+            else:   # 未到达或为准点到达，误差在time_error之外
+                data.append({
+                    'position': item.position,
+                    'status': '未到',    #
+                    'arrive_time': '',
+                    'person': '',
+                    'event': time_range_start_time.strftime("%Y-%m-%d")
+                })
+                pass
+            pass
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+
+    return data
+    pass
+
+
+@login_required(login_url="/login/")
+def get_query_unordered_schedule(request):
+    data = []
+
+    data = []
+
+    print request.GET
+
+    line = request.GET['line']
+    start_time = str(request.GET.get('start_time', ''))
+    end_time = str(request.GET.get('end_time', ''))
+
+    if not line or not start_time:
+        return HttpResponse(json.dumps(data))
+
+    line = LinesModel.objects.get(name=line)
+    start_time = datetime.datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
+    end_time = datetime.datetime.strptime(end_time, '%Y-%m-%d %H:%M:%S')
+
+    try:
+        schedule = UnorderedScheduleModel.objects.get(
+            line=line,
+            start_time=start_time,
+            end_time=end_time
+        )
+        data = create_unordered_patrol_data(schedule)
+    except UnorderedScheduleModel.DoesNotExist:
+        return HttpResponse(json.dumps(data))
+        pass
+    else:
+        pass
+
+    return HttpResponse(json.dumps(data))
+    pass
+
+
+@login_required(login_url="/login/")
+def get_map_multi_day_schedule(request):
+    print 'func get_map_multi_day_schedule'
+    data = {
+        'line': [],
+        'patrol_history': []
+    }
+
+    for i in range(0,10):
+        data['line'].append({
+            'name': 'line1',
+            'order': i+1,
+            'position': 'position'+str(i+1),
+            'position_card': '第'+str(i+1)+'张地点卡',
+            'x': (i+1)*50,
+            'y': math.sin(i+1)*50+200
+        })
+
+    for i in range(0, 7):
+        data['patrol_history'].append({
+            'position': 'position'+str(i+1),
+            'time': '2013-11-07 08:'+("%02d" % (i*8, ))+':00',
+            'person': 'person'+str(i+1)
+        })
+
+
+    print json.dumps(data, indent=4)
+
+    return HttpResponse(json.dumps(data))
     pass

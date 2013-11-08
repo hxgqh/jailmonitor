@@ -70,8 +70,10 @@ function personEditor(){
                     address: ''
                 });
 
+                personStore.autoSync = false
                 personStore.insert(0, r);
                 rowEditing.startEdit(0, 0);
+                personStore.autoSync = true
             }
         }, {
             itemId: 'removePerson',
@@ -165,8 +167,10 @@ function positionEditor(){
 //                    position_card: ''
                 });
 
+                positionStore.autoSync = false
                 positionStore.insert(0, r);
                 rowEditing.startEdit(0, 0);
+                positionStore.autoSync = true
             }
         }, {
             itemId: 'removePosition',
@@ -254,8 +258,10 @@ function temperatureHumidityEditor(){
                     position: ''
                 });
 
+                temperatureHumidityDeviceStore.autoSync = false
                 temperatureHumidityDeviceStore.insert(0, r);
                 rowEditing.startEdit(0, 0);
+                temperatureHumidityDeviceStore.autoSync = true
             }
         }, {
             itemId: 'removeTempHum',
@@ -313,7 +319,7 @@ function lineEditor(){
             }
         }, {
             header: '允许时间误差(/min)',
-            dataIndex: 'allow_time_error',
+            dataIndex: 'time_error',
             width: '15%',
             editor: {
                 allowBlank: true
@@ -387,7 +393,7 @@ function multiDayScheduleEditor(){
             }
         }, {
             header: '巡检开始时间',
-            dataIndex: 'end_time',
+            dataIndex: 'daily_start_time',
             width: '30%',
             editor: {
                 allowBlank: false
@@ -423,10 +429,33 @@ function multiDayScheduleEditor(){
                         daily_start_time: Ext.Date.format(now, "H:i:s")
                     })
 
+//                    var r = Ext.create(model_name, {
+//                        no: schedule_num+1,
+//                        line: line_name,
+//                        start_time: '2013-11-07',
+//                        end_time: '2013-11-07',
+//                        daily_start_time: '08:00:00'
+//                    })
+
+                    multiDayScheduleStore.autoSync = false
                     multiDayScheduleStore.insert(0, r);
                     rowEditing.startEdit(0, 0);
+                    multiDayScheduleStore.autoSync = true
 
-                    console.log(rowEditing)
+//                    rowEditing.addEventListener('update', function(store, record){
+//                        console.log('update')
+//                        $.post(
+//                            '/data/multiDayScheduleData',
+//                            {
+//                                no: record.get("ID"),
+//                                line: record.get('line'),
+//                                start_time: record.get('start_time'),
+//                                end_time: record.get('end_time'),
+//                                daily_start_time: record.get('daily_start_time')
+//                            },
+//                            null
+//                        )
+//                    })
                 }
                 catch(err){
                     console.log(err)
@@ -450,6 +479,9 @@ function multiDayScheduleEditor(){
         listeners: {
             'selectionchange': function(view, records) {
                 grid.down('#removeSchedule').setDisabled(!records.length);
+            },
+            'write': function(store,record){
+                console.log('update write')
             }
         }
     });
@@ -513,11 +545,13 @@ function orderedScheduleEditor(){
                 var r = Ext.create(model_name, {
                     no: no+1,
                     line: line,
-                    start_time: Ext.Date.format(now, "H:i:s")
+                    start_time: Ext.Date.format(now, "Y-n-j H:i:s")
                 });
 
+                orderedScheduleStore.autoSync = false
                 orderedScheduleStore.insert(0, r);
                 rowEditing.startEdit(0, 0);
+                orderedScheduleStore.autoSync = true
             }
         }, {
             itemId: 'removeSchedule',
@@ -605,12 +639,14 @@ function unorderedScheduleEditor(){
                 var r = Ext.create(model_name, {
                     no: no+1,
                     line: line,
-                    start_time: Ext.Date.format(now, "H:i:s"),
-                    end_time: Ext.Date.format(now, "H:i:s")
+                    start_time: Ext.Date.format(now, "Y-n-j H:i:s"),
+                    end_time: Ext.Date.format(now, "Y-n-j H:i:s")
                 });
 
+                unorderedScheduleStore.autoSync = false
                 unorderedScheduleStore.insert(0, r);
                 rowEditing.startEdit(0, 0);
+                unorderedScheduleStore.autoSync = true
             }
         }, {
             itemId: 'removeSchedule',

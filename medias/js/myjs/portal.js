@@ -14,6 +14,7 @@ var lines_setting_html = '<span id="export_lines" class="btn btn-primary" style=
                                     '<tr><td>线路名</td><td><select id="add_line_name_td_select" class="selectpicker"></select></td></tr>' +
                                     '<tr><td>地点卡</td><td><select id="add_line_position_card_td_select" class="selectpicker"></select></td></tr>' +
                                     '<tr><td>下次到达时间</td><td><input id="add_line_next_time_arrival_td_input"></input></td></tr>' +
+                                    '<tr><td>时间误差</td><td><input id="add_line_time_error_td_input"></input></td></tr>' +
                                     '<td>顺序</td><td><input id="add_line_order_td_input"></input></td>' +
                                 '</tbody>' +
                             '</table>' +
@@ -307,7 +308,7 @@ function map_setting_expand(){
                                 '</div>' +
                                 '<table id="map_info_table" class="table table-striped table-bordered"></table>' +
                                 '</div></div></div>')
-            Ext.get('div-editor-left').createChild('<img class="geograph" src="/static/images/geograph.png"/>')
+            Ext.get('div-editor-left').createChild('<img id="map_img" class="geograph" src="/static/images/geograph.png"/>')
             $("#map_info_table").append("<thead><td>地点</td><td>x坐标</td><td>y坐标</td></thead><tbody></tbody>")
 
             update_position_card_table()
@@ -403,6 +404,11 @@ function query_setting_expand(){
                 })
             }
         )
+
+        $('span.result_query').removeClass('btn-primary')
+        $('span#result_query_multi_day_schedule').addClass('btn-primary')
+
+        show_result_query_multi_day_schedule()
 
         $('#result_query_multi_day_schedule').click(function(){
             show_result_query_multi_day_schedule()

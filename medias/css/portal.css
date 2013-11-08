@@ -204,6 +204,12 @@ img.geograph {
     line-height: 20px !important;
 }
 
+.table tr.error {
+    height: 20px !important;
+    line-height: 20px !important;
+    background-color: #f2dede;
+}
+
 .table tr td {
     height: 20px !important;
     line-height: 20px !important;
@@ -245,4 +251,12 @@ select.selectpicker {
 span.result_query {
     width: 90% !important;
     margin: 10px;
+}
+
+#map_animation {
+    position: absolute;
+    z-index: 50;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.0);
 }

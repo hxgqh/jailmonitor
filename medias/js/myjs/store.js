@@ -4,7 +4,7 @@ Ext.define('Line',{
         'name',
         'position',
         { name: 'next_time_arrival', type: 'int'},
-        { name: 'allow_time_error', type: 'int'},
+        { name: 'time_error', type: 'int'},
         'order'
     ]
 });
@@ -167,7 +167,8 @@ Ext.define('MultiDayScheduleModel',{
         'no',   // schedule number
         'line',
         'start_time',    // dateFormat: 'Y-d-m' },
-        'end_time'   // dateFormat: 'Y-d-m' },
+        'end_time',   // dateFormat: 'Y-d-m' },
+        'daily_start_time'
     ]
 });
 
@@ -189,7 +190,7 @@ var multiDayScheduleStore = Ext.create('Ext.data.Store', {
         writer: {
             type             : 'json',
             writeAllFields    : false,
-            allowSingle         : true,
+            allowSingle         : false,
             encode             : true,
             root             : 'row'
         },

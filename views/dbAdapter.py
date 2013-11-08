@@ -54,6 +54,7 @@ def getPositionData():
             data.append({
                 'ip': position.ip,
                 'position': position.position,
+                'mac': position.mac,
                 'install_position': position.install_position
             })
             pass
@@ -105,6 +106,7 @@ def getLineData():
                 'name': line.name,
                 'position': line.position,
                 'next_time_arrival': line.next_time_arrival,
+                'time_error': line.time_error,
                 'order': line.order
             })
         pass
@@ -117,7 +119,7 @@ def getLineData():
     pass
 
 
-def getMultiDayScheduleDataData():
+def getMultiDayScheduleData():
     data = []
 
     try:
@@ -126,7 +128,8 @@ def getMultiDayScheduleDataData():
                 'no': schedule.id,
                 'line': schedule.line.name,
                 'start_time': schedule.start_time.strftime('%Y-%m-%d'),
-                'end_time': schedule.end_time.strftime('%Y-%m-%d')
+                'end_time': schedule.end_time.strftime('%Y-%m-%d'),
+                'daily_start_time': schedule.daily_start_time.strftime("%H:%M:%S")
             })
         pass
     except Exception as e:
@@ -144,12 +147,12 @@ def getOrderedScheduleData():
 
     try:
         for schedule in OrderedScheduleModel.objects.all():
-            schedule.start_time = schedule.start_time + datetime.timedelta(0, 18*3600, 0)
+            schedule.start_time = schedule.start_time   # + datetime.timedelta(0, 18*3600, 0)
 
             data.append({
                 'no': schedule.id,
                 'line': schedule.line.name,
-                'start_time': schedule.start_time.strftime('%H:%M:%S')
+                'start_time': schedule.start_time.strftime('%Y-%m-%d %H:%M:%S')
             })
         pass
     except Exception as e:
@@ -174,8 +177,8 @@ def getUnorderedScheduleData():
             data.append({
                 'no': schedule.id,
                 'line': schedule.line.name,
-                'start_time': schedule.start_time.strftime('%H:%M:%S'),
-                'end_time': schedule.end_time.strftime('%H:%M:%S')
+                'start_time': schedule.start_time.strftime('%Y-%m-%d %H:%M:%S'),
+                'end_time': schedule.end_time.strftime('%Y-%m-%d %H:%M:%S')
             })
         pass
     except Exception as e:

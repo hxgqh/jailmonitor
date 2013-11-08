@@ -25,9 +25,19 @@ urlpatterns = patterns('',
     url(r'^get/excel/orderedschedule/$', 'schedules.views.get_ordered_schedule_excel', name="getOrderedScheduleExcel"),
     url(r'^get/excel/unorderedschedule/$', 'schedules.views.get_unordered_schedule_excel', name="getUnorderedScheduleExcel"),
 
+    # Result query
+    url(r"^get/query/multidayschedule/$", 'schedules.views.get_query_multi_day_schedule'),
+    url(r"^get/query/orderedschedule/$", 'schedules.views.get_query_ordered_schedule'),
+    url(r"^get/query/unorderedschedule/$", 'schedules.views.get_query_unordered_schedule'),
+    # url(r"^get/query/alarm/$", 'schedules.views.get_query_multi_day_schedule'),
+    # url(r"^get/query/multidayschedule/$", 'schedules.views.get_query_multi_day_schedule'),
+    # url(r"^get/query/multidayschedule/$", 'schedules.views.get_query_multi_day_schedule'),
+    # url(r"^get/query/multidayschedule/$", 'schedules.views.get_query_multi_day_schedule'),
+    url(r"^get/map/multiDayScheduleData.*$", 'schedules.views.get_map_multi_day_schedule'),
+
     #login
-    (r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
-    (r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login/'}),
+    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login/'}),
     # url(r'^jailMonitor/', include('jailMonitor.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

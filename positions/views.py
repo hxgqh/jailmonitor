@@ -21,6 +21,8 @@ from conf.confGlobal import *
 
 def update_one_position(row_data):
     try:
+        print "row_data:"+str(row_data)
+
         ip = row_data.get('ip', '')
         mac = row_data.get('mac', '')
         position = row_data.get('position', '')

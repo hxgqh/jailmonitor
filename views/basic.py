@@ -54,7 +54,7 @@ def data(request, type):
             template_data['data'] = getLineData()
 
         if 'multiDayScheduleData' in type:
-            template_data['data'] = getMultiDayScheduleDataData()
+            template_data['data'] = getMultiDayScheduleData()
 
         if 'orderedScheduleData' in type:
             template_data['data'] = getOrderedScheduleData()

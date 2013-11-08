@@ -20,7 +20,7 @@ class TemperatureHumidityDeviceModel(models.Model):
 
 
 class TemperatureHumidityModel(models.Model):
-    time = models.DateTimeField(verbose_name="时间")
+    time = models.DateTimeField(verbose_name="时间")  # , USE_TZ=False)
     device = models.ForeignKey(TemperatureHumidityDeviceModel)
     temperature = models.FloatField(verbose_name="温度")
     humidity = models.FloatField(verbose_name="湿度")

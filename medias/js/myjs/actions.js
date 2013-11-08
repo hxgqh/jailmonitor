@@ -226,7 +226,7 @@ function update_mapping_table(){
         null,
         function(data, status){
             var data = eval(data)
-            console.log(data)
+            //console.log(data)
             var position_mapping_table_tbody$ = $($('#map_info_table').children().eq(1))
             for(var i=0;i<data.length;i++){
                 position_mapping_table_tbody$.append(
@@ -246,7 +246,7 @@ function update_temp_hum_mapping_table(){
         null,
         function(data, status){
             var data = eval(data)
-            console.log(data)
+            //console.log(data)
             var position_mapping_table_tbody$ = $($('#map_info_table').children().eq(1))
             for(var i=0;i<data.length;i++){
                 position_mapping_table_tbody$.append(
@@ -271,7 +271,7 @@ function update_mapping_position_select(){
         function(data, status){
             var data = eval(data)
             console.log("position data:")
-            console.log(data)
+            //console.log(data)
             var mapping_position_select$ = $('#mapping_position')
             mapping_position_select$.empty()
             for(var i=0;i<data.length;i++){
@@ -288,7 +288,7 @@ function update_temp_hum_mapping_position_select(){
         function(data, status){
             var data = eval(data)
             console.log("position data:")
-            console.log(data)
+            //console.log(data)
             var mapping_position_select$ = $('#mapping_position')
             mapping_position_select$.empty()
             for(var i=0;i<data.length;i++){
@@ -309,7 +309,7 @@ function update_mapping_position_card_select(){
         function(data, status){
             var data = eval(data)
             console.log("position card data:")
-            console.log(data)
+            //console.log(data)
             var mapping_position_card_select$ = $('#mapping_position_card')
             mapping_position_card_select$.empty()
             for(var i=0;i<data.length;i++){
@@ -326,7 +326,7 @@ function update_temp_hum_mapping_position_card_select(){
         function(data, status){
             var data = eval(data)
             console.log("position card data:")
-            console.log(data)
+            //console.log(data)
             var mapping_position_card_select$ = $('#mapping_position_card')
             mapping_position_card_select$.empty()
             for(var i=0;i<data.length;i++){
@@ -425,7 +425,7 @@ function update_line_page_position_card_table(){
         "/data/lineData/",
         null,
         function(data, status){
-            console.log(data)
+            //console.log(data)
             data = eval(data)
             for(var i=0;i<data.length;i++){
                 line_select$.append('<option>'+data[i]['name']+'</option>')
@@ -441,6 +441,7 @@ function add_line(){
     var line_input$ = $('#add_line_input')
     var new_line_name = line_input$.val()
     var line_select$ = $('#add_line_name_td_select')
+
 
     var exists_flag = false
     $('#add_line_name_td_select option').each(function(){
@@ -464,6 +465,8 @@ function add_line_position_card(){
     var position_card = pc_select$.val()
     var next_time_arrival_input$ = $('#add_line_next_time_arrival_td_input')
     var next_time_arrival = parseInt(next_time_arrival_input$.val())
+    var time_error_input$ = $('#add_line_time_error_td_input')
+    var time_error = parseInt($('#add_line_time_error_td_input').val())
     var order_input$ = $('#add_line_order_td_input')
     var order = order_input$.val()
 
@@ -471,6 +474,7 @@ function add_line_position_card(){
         name: line,
         position: position_card,
         next_time_arrival: next_time_arrival,
+        time_error: time_error,
         order: order
     }))
 }
@@ -484,7 +488,7 @@ function update_multi_day_schedule_line_select(){
         "/data/lineData",
         null,
         function(data, status){
-            console.log(data)
+            //console.log(data)
             data = eval(data)
             var mds_line_select$ = $("#multi_day_schedule_line_select")
             for(var i=0;i<data.length;i++){
@@ -502,7 +506,7 @@ function update_ordered_schedule_line_select(){
         "/data/lineData",
         null,
         function(data, status){
-            console.log(data)
+            //console.log(data)
             data = eval(data)
             var mds_line_select$ = $("#ordered_schedule_line_select")
             for(var i=0;i<data.length;i++){
@@ -520,11 +524,67 @@ function update_unordered_schedule_line_select(){
         "/data/lineData",
         null,
         function(data, status){
-            console.log(data)
+            //console.log(data)
             data = eval(data)
             var mds_line_select$ = $("#unordered_schedule_line_select")
             for(var i=0;i<data.length;i++){
                 mds_line_select$.append('<option>'+data[i]['name']+'</option>')
+            }
+        }
+    )
+}
+
+
+function query_and_show_mds(){
+    var select$ = $("#query_result_multi_day_schedule_line_select")
+    var select_split = select$.val().split(',')
+    var select_line_name = select_split[0]
+    var start_time = select_split[1]
+    var end_time = select_split[2]
+    var daily_start_time = select_split[3]
+
+    // Show query result table here
+    $.get(
+        "/get/query/multidayschedule/",
+        {
+            line: select_line_name,
+            start_time: start_time,
+            end_time: end_time,
+            daily_start_time: daily_start_time
+        },
+        function(data, status){
+//            //console.log(data)
+            var render_table_body$ = $('#query_result_table').children().eq(1)
+            render_table_body$.empty()
+            try{
+                var data = eval(data)
+                for(var i=0;i<data.length;i++){
+                    if(data[i].status == '未到'){
+                        render_table_body$.append(
+                            '<tr class="error">' +
+                                '<td>'+data[i]['position']+'</td>' +
+                                '<td>'+data[i]['status']+'</td>' +
+                                '<td>'+data[i]['arrive_time']+'</td>' +
+                                '<td>'+data[i]['person']+'</td>' +
+                                '<td>'+data[i]['event']+'</td>' +
+                            '</tr>'
+                        )
+                    }
+                    else{   //已到
+                        render_table_body$.append(
+                            '<tr>' +
+                                '<td>'+data[i]['position']+'</td>' +
+                                '<td>'+data[i]['status']+'</td>' +
+                                '<td>'+data[i]['arrive_time']+'</td>' +
+                                '<td>'+data[i]['person']+'</td>' +
+                                '<td>'+data[i]['event']+'</td>' +
+                            '</tr>'
+                        )
+                    }
+                }
+            }
+            catch(err){
+                console.log(err)
             }
         }
     )
@@ -536,9 +596,10 @@ function update_unordered_schedule_line_select(){
 * */
 function show_result_query_multi_day_schedule(){
     var div_editor$ = $('#div-editor')
+    var select$ = $("#query_result_multi_day_schedule_line_select")
     div_editor$.empty()
     div_editor$.append('<div id="query_result"><div>' +
-        '<select id="query_result_multi_day_schedule_line_select"></select>' +
+        '<select id="query_result_multi_day_schedule_line_select" style="width:400px !important"></select>' +
         '</div>' +
             '<table class="table table-bordered table-stripped" id="query_result_table">' +
                 '<thead><th>地点</th><th>巡检状态</th><th>实到时间</th><th>人员</th><th>事件</th></thead>' +
@@ -552,20 +613,75 @@ function show_result_query_multi_day_schedule(){
         function(data, status){
             data = eval(data)
             console.log("show_result_query_multi_day_schedule")
-            console.log(data)
+            //console.log(data)
             var select$ = $("#query_result_multi_day_schedule_line_select")
             for(var i=0;i<data.length;i++){
-                select$.append("<option>"+data[i]['line']+"</option>")
+                select$.append(
+                    "<option>" +
+                        data[i].line+","+
+                        data[i].start_time+','+
+                        data[i].end_time+","+
+                        data[i].daily_start_time+
+                    "</option>"
+                )
             }
+
+            query_and_show_mds()
         }
     )
 
+    $('#query_result_multi_day_schedule_line_select').change(function(){
+        query_and_show_mds()
+    })
+}
+
+function query_and_show_os(){
+    var select$ = $("#query_result_ordered_schedule_line_select")
+    var select_split = select$.val().split(',')
+    var select_line_name = select_split[0]
+    var start_time = select_split[1]
+
     // Show query result table here
     $.get(
-        "/get/query/multidayschedule/",
-        null,
+        "/get/query/orderedschedule/",
+        {
+            line: select_line_name,
+            start_time: start_time
+        },
         function(data, status){
-
+            //console.log(data)
+            var render_table_body$ = $('#query_result_table').children().eq(1)
+            render_table_body$.empty()
+            try{
+                var data = eval(data)
+                for(var i=0;i<data.length;i++){
+                    if(data[i].status == '未到'){
+                        render_table_body$.append(
+                            '<tr class="error">' +
+                                '<td>'+data[i]['position']+'</td>' +
+                                '<td>'+data[i]['status']+'</td>' +
+                                '<td>'+data[i]['arrive_time']+'</td>' +
+                                '<td>'+data[i]['person']+'</td>' +
+                                '<td>'+data[i]['event']+'</td>' +
+                            '</tr>'
+                        )
+                    }
+                    else{   //已到
+                        render_table_body$.append(
+                            '<tr>' +
+                                '<td>'+data[i]['position']+'</td>' +
+                                '<td>'+data[i]['status']+'</td>' +
+                                '<td>'+data[i]['arrive_time']+'</td>' +
+                                '<td>'+data[i]['person']+'</td>' +
+                                '<td>'+data[i]['event']+'</td>' +
+                            '</tr>'
+                        )
+                    }
+                }
+            }
+            catch(err){
+                console.log(err)
+            }
         }
     )
 }
@@ -576,6 +692,7 @@ function show_result_query_multi_day_schedule(){
 function show_result_query_ordered_schedule(){
     var div_editor$ = $('#div-editor')
     div_editor$.empty()
+    $('#query_result_table').empty()
 
     div_editor$.append('<div id="query_result"><div>' +
         '<select id="query_result_ordered_schedule_line_select"></select>' +
@@ -587,15 +704,81 @@ function show_result_query_ordered_schedule(){
         '</div>'
     )
 
+    // Show query result table here
     $.get(
         "/data/orderedScheduleData",
         null,
         function(data, status){
             data = eval(data)
-            console.log(data)
+            //console.log(data)
             var select$ = $("#query_result_ordered_schedule_line_select")
             for(var i=0;i<data.length;i++){
-                select$.append("<option>"+data[i]['line']+"</option>")
+                select$.append(
+                    "<option>" +
+                        data[i].line+","+
+                        data[i].start_time +
+                    "</option>"
+                )
+            }
+
+            query_and_show_os()
+        }
+    )
+
+    $('#query_result_ordered_schedule_line_select').change(function(){
+        query_and_show_os()
+    })
+}
+
+
+function query_and_show_uos(){
+    var select$ = $("#query_result_unordered_schedule_line_select")
+    var select_split = select$.val().split(',')
+    var select_line_name = select_split[0]
+    var start_time = select_split[1]
+    var end_time = select_split[2]
+
+    // Show query result table here
+    $.get(
+        "/get/query/orderedschedule/",
+        {
+            line: select_line_name,
+            start_time: start_time,
+            end_time: end_time
+        },
+        function(data, status){
+            //console.log(data)
+            var render_table_body$ = $('#query_result_table').children().eq(1)
+            render_table_body$.empty()
+            try{
+                var data = eval(data)
+                for(var i=0;i<data.length;i++){
+                    if(data[i].status == '未到'){
+                        render_table_body$.append(
+                            '<tr class="error">' +
+                                '<td>'+data[i]['position']+'</td>' +
+                                '<td>'+data[i]['status']+'</td>' +
+                                '<td>'+data[i]['arrive_time']+'</td>' +
+                                '<td>'+data[i]['person']+'</td>' +
+                                '<td>'+data[i]['event']+'</td>' +
+                            '</tr>'
+                        )
+                    }
+                    else{   //已到
+                        render_table_body$.append(
+                            '<tr>' +
+                                '<td>'+data[i]['position']+'</td>' +
+                                '<td>'+data[i]['status']+'</td>' +
+                                '<td>'+data[i]['arrive_time']+'</td>' +
+                                '<td>'+data[i]['person']+'</td>' +
+                                '<td>'+data[i]['event']+'</td>' +
+                            '</tr>'
+                        )
+                    }
+                }
+            }
+            catch(err){
+                console.log(err)
             }
         }
     )
@@ -617,18 +800,31 @@ function show_result_query_unordered_schedule(){
         '</div>'
     )
 
+    // Show query result table here
     $.get(
         "/data/unorderedScheduleData",
         null,
         function(data, status){
             data = eval(data)
-            console.log(data)
+            //console.log(data)
+            var select$ = $("#query_result_unordered_schedule_line_select")
             for(var i=0;i<data.length;i++){
-                var select$ = $("#query_result_unordered_schedule_line_select")
-                select$.append("<option>"+data[i]['line']+"</option>")
+                select$.append(
+                    "<option>" +
+                        data[i].line+","+
+                        data[i].start_time+','+
+                        data[i].end_time +
+                    "</option>"
+                )
             }
+
+            query_and_show_uos()
         }
     )
+
+    $('#query_result_unordered_schedule_line_select').change(function(){
+        query_and_show_uos()
+    })
 }
 
 /*
@@ -663,19 +859,165 @@ function show_result_query_alarm(){
         })
     })
 
+    // Show query result table here
     $.get(
-        "/data/positionData",
+        "/data/unorderedScheduleData",
         null,
         function(data, status){
             data = eval(data)
-            console.log(data)
+            //console.log(data)
             var select$ = $("#query_result_unordered_schedule_line_select")
-            select$.append('<option>所有报警地点</option>')
             for(var i=0;i<data.length;i++){
-                select$.append("<option>"+data[i]['position']+"</option>")
+                select$.append(
+                    "<option>" +
+                        data[i].line+","+
+                        data[i].start_time+','+
+                        data[i].end_time +
+                    "</option>"
+                )
             }
+
+            query_and_show_uos()
         }
     )
+
+    $('#query_result_unordered_schedule_line_select').change(function(){
+        query_and_show_uos()
+    })
+}
+
+
+function query_and_show_mh(){
+    var mss$ = $('#result_query_map_schedule_select')
+    var select$ = $("#result_query_map_line_select")
+
+    var schedule = mss$.val()
+    var line_data = select$.val()
+
+    if(schedule == '多天计划'){
+        var line = line_data.split(',')[0]
+        var start_time = line_data.split(',')[1]
+        var end_time = line_data.split(',')[2]
+        var daily_start_time = line_data.split(',')[3]
+
+        $.get(
+            "/get/map/multiDayScheduleData",
+            {
+                line: line,
+                start_time: start_time,
+                end_time: end_time,
+                daily_start_time: daily_start_time
+            },
+            function(data, status){
+                /*
+                @param data: a dict is like this
+                {
+                    line: [
+                        {
+                            name:
+                            order:
+                            position:
+                            position_card:
+                            x:
+                            y:
+                        }
+                    ],
+                    patrol_history: [
+                        {
+                            position1: {
+                                time: ''
+                                person: ''
+                            }
+                        }
+                    ]
+                }
+                * */
+                data = JSON.parse(data)
+                var animate = PatrolAnimate('map_animation', data)
+//                animate.render = 'div-editor-left'
+//                animate.data = data
+                animate.draw()
+            }
+        )
+    }
+    else if(schedule == "有顺序计划"){
+        var line = line_data.split(',')[0]
+        var start_time = line_data.split(',')[1]
+    }
+    else{   //无顺序计划
+        var line = line_data.split(',')[0]
+        var start_time = line_data.split(',')[1]
+        var end_time = line_data.split(',')[2]
+    }
+}
+
+
+function show_mh(){
+    var mss$ = $('#result_query_map_schedule_select')
+    var select$ = $("#result_query_map_line_select")
+    select$.empty()
+    if(mss$.val() == '多天计划'){
+        $.get(
+            "/data/multiDayScheduleData",
+            null,
+            function(data, status){
+                data = eval(data)
+                var select$ = $("#result_query_map_line_select")
+                for(var i=0;i<data.length;i++){
+                    select$.append(
+                        "<option>" +
+                            data[i].line+","+
+                            data[i].start_time+','+
+                            data[i].end_time +','+
+                            data[i].daily_start_time +
+                        "</option>"
+                    )
+                }
+
+                query_and_show_mh()
+            }
+        )
+    }
+    else if(mss$.val() == "有顺序计划"){
+        $.get(
+            "/data/orderedScheduleData",
+            null,
+            function(data, status){
+                data = eval(data)
+                var select$ = $("#result_query_map_line_select")
+                for(var i=0;i<data.length;i++){
+                    select$.append(
+                        "<option>" +
+                            data[i].line+","+
+                            data[i].start_time+
+                        "</option>"
+                    )
+                }
+                query_and_show_mh()
+            }
+        )
+
+    }
+    else{
+        $.get(
+            "/data/unorderedScheduleData",
+            null,
+            function(data, status){
+                data = eval(data)
+                var select$ = $("#result_query_map_line_select")
+                for(var i=0;i<data.length;i++){
+                    select$.append(
+                        "<option>" +
+                            data[i].line+","+
+                            data[i].start_time+','+
+                            data[i].end_time +
+                        "</option>"
+                    )
+                }
+                query_and_show_mh()
+            }
+        )
+    }
 }
 
 /*
@@ -718,7 +1060,17 @@ function show_result_query_map_history(){
                 })
             })
 
-            Ext.get('div-editor-left').createChild('<img class="geograph" src="/static/images/geograph.png"/>')
+            Ext.get('div-editor-left').createChild(
+                '<div id="map_container" style="background-image: url(/static/images/geograph.png)">' +
+////                    '<img id="map_img" class="geograph" src="/static/images/geograph.png"/>' +
+                '</div>' +
+                '<div id="map_animation"></div>'
+            )
+
+            $('#div-editor-left').width(parseInt(parseFloat($('#div-editor-map').width())*0.59))
+            $('#map_container').width($('#div-editor-left').width())
+            $('#map_container').height($('#div-editor-left').height() - 30)
+
             $("#map_info_table").append(
                 "<tbody>" +
                     "<tr>" +
@@ -737,6 +1089,16 @@ function show_result_query_map_history(){
                         "<td>状态：</td><td><input /></td>" +
                     "</tr>" +
                 "</tbody>")
+
+            show_mh()
+
+            $('#result_query_map_schedule_select').change(function(){
+                show_mh()
+            })
+
+            $('#result_query_map_line_select').change(function(){
+                query_and_show_mh()
+            })
         }
         catch(err){
             console.log(err)
@@ -817,6 +1179,7 @@ function show_result_query_temperature_humidity(){
                 '<div id="div-editor-map">' +
                     '<div id="div-editor-left"></div>' +
                     '<div id="div-editor-right">' +
+                        '温湿度计选择<select id="temp_hum_device_select"></select>' +
                         '<div style="width:100%;height:100%;overflow-y:auto;">' +
                             '<table id="map_info_table" class="table table-striped table-bordered"></table>' +
                         '</div>' +
@@ -832,6 +1195,17 @@ function show_result_query_temperature_humidity(){
             })
 
             show_temperature_humidity('div-editor-left')
+
+            $.get(
+                "/data/temperatureHumidityDevice",
+                null,
+                function(data, status){
+                    var data = eval(data)
+                    for(var i=0;i<data.length;i++){
+                        $('#temp_hum_device_select').append('<option>'+data[i].position+'</option>')
+                    }
+                }
+            )
 
             $("#map_info_table").append(
                 '<thead>' +

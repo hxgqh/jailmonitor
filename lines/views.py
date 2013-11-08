@@ -20,10 +20,12 @@ from conf.confGlobal import *
 
 def update_one_line(row_data):
     try:
+        print row_data
+
         name = row_data.get('name', '')
         position = row_data.get('position', '')
         next_time_arrival = int(row_data.get('next_time_arrival', -1))
-        allow_time_error = int(row_data.get('allow_time_error'), 2)
+        time_error = int(row_data.get('time_error', 2))
         order = int(row_data.get('order', -1))
 
         print row_data
@@ -41,7 +43,7 @@ def update_one_line(row_data):
                 name=name,
                 position=position,
                 next_time_arrival=next_time_arrival,
-                allow_time_error=allow_time_error,
+                time_error=time_error,
                 order=order
             )
             person.save()
@@ -50,7 +52,7 @@ def update_one_line(row_data):
             old_line.name = name
             old_line.position = position
             old_line.next_time_arrival = next_time_arrival
-            old_line.allow_time_error = allow_time_error
+            old_line.time_error = time_error
             old_line.order = order
             old_line.save()
             pass
@@ -97,7 +99,7 @@ def get_lines_excel(request):
 
     try:
         for line in LinesModel.objects.all():
-            data.append([line.name, line.position, line.next_time_arrival, line.allow_time_error, line.order])
+            data.append([line.name, line.position, line.next_time_arrival, line.time_error, line.order])
             pass
         pass
     except Exception as e:

@@ -734,6 +734,7 @@ function show_result_query_ordered_schedule(){
 function query_and_show_uos(){
     var select$ = $("#query_result_unordered_schedule_line_select")
     var select_split = select$.val().split(',')
+    console.log(select_split)
     var select_line_name = select_split[0]
     var start_time = select_split[1]
     var end_time = select_split[2]
@@ -934,9 +935,20 @@ function query_and_show_mh(){
                 * */
                 data = JSON.parse(data)
                 var animate = PatrolAnimate('map_animation', data)
-//                animate.render = 'div-editor-left'
-//                animate.data = data
                 animate.draw()
+
+                $('#result_query_map_start_btn').click(function(){
+                    animate.start()
+                })
+
+                $('#result_query_map_pause_btn').click(function(){
+                    animate.pause()
+                })
+
+                $('#result_query_map_continue_btn').click(function(){
+                    console.log('continue')
+                    animate.resume()
+                })
             }
         )
     }
@@ -1200,6 +1212,7 @@ function show_result_query_temperature_humidity(){
                 "/data/temperatureHumidityDevice",
                 null,
                 function(data, status){
+                    $('#temp_hum_device_select').empty()
                     var data = eval(data)
                     for(var i=0;i<data.length;i++){
                         $('#temp_hum_device_select').append('<option>'+data[i].position+'</option>')
@@ -1226,13 +1239,67 @@ function show_result_query_temperature_humidity(){
     }
 }
 
+function show_realtime_temperature_humidity(element){
+    $.get(
+        "/get/temphumpositioncard",
+        null,
+        function(data, status){
+            var data = eval(data)
+            for(var i=0;i<data.length;i++){
+                console.log(data)
+            }
+        }
+    )
+}
 
-/* Show Temperaure and Humidity
+
+function show_result_realtime_query_temperature_humidity(){
+    var div_editor$ = $('#div-editor')
+    div_editor$.empty()
+
+    try{
+        try{
+            var divEditor = Ext.get('div-editor')
+            divEditor.dom.innerHTML=""
+            divEditor.createChild(
+                '<div id="div-editor-map">' +
+                    '<img id="map_img" src="/static/images/temp_hum_geograph.png"/>' +
+                '</div>'
+            )
+
+            // auto-fit map_img to parent's width and height
+            var img$ = $('#map_img')
+            var save_img_width = img$.width()
+            var save_img_height = img$.height()
+            var width_height_rate = parseFloat(save_img_width)/parseFloat(save_img_height)
+            img$.width($(img$.parent()).width())
+            if(parseInt(img$.width()/width_height_rate) > img$.height()){
+                img$.height($(img$.parent()).height())
+            }
+            else{
+                img$.height(parseInt(img$.width()/width_height_rate))
+            }
+
+            show_realtime_temperature_humidity('div-editor-left')
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+
+/*
+* @param data: a dict like this
+*              {
+*                   'temperature': [[], [], []],
+*                   'humidity': [[], [], []]
+*              }
 * */
-function show_temperature_humidity(div_id){
-    var parentWidth = $('#'+div_id).width()
-    var parentHeight = $('#'+div_id).height()
-
+function draw_temp_hum_chart(div_id, data){
     var chart;
     chart = $('#'+div_id).highcharts({
         chart: {
@@ -1241,10 +1308,10 @@ function show_temperature_humidity(div_id){
         title: {
             text: '温湿度查询'
         },
-        xAxis: [{
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        }],
+//        xAxis: [{
+//            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+//                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+//        }],
         yAxis: [{ // Primary yAxis
             labels: {
                 format: '{value}°C',
@@ -1285,25 +1352,63 @@ function show_temperature_humidity(div_id){
             floating: true,
             backgroundColor: '#FFFFFF'
         },
-        series: [{
-            name: '湿度',
-            color: '#4572A7',
-            type: 'spline',
-            yAxis: 1,
-            data: [4.99, 7.15, 10.64, 12.92, 14.40, 17.60, 13.56, 14.85, 21.64, 19.41, 9.56, 5.44],
-            tooltip: {
-                valuePrefix: '% '
-            }
-
-        }, {
-            name: '温度',
-            color: '#89A54E',
-            type: 'spline',
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
-            tooltip: {
-                valueSuffix: '°C'
-            }
-        }]
+        series: [
+//            {
+//                name: '湿度',
+//                color: '#4572A7',
+//                type: 'spline',
+//                yAxis: 1,
+//                data: [4.99, 7.15, 10.64, 12.92, 14.40, 17.60, 13.56, 14.85, 21.64, 19.41, 9.56, 5.44],
+//                tooltip: {
+//                    valuePrefix: '% '
+//                }
+//            },
+//            {
+//                name: '温度',
+//                color: '#89A54E',
+//                type: 'spline',
+//                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+//                tooltip: {
+//                    valueSuffix: '°C'
+//                }
+//            }
+        ]
     });
+
+    chart.series.push({
+        name: '湿度',
+        color: '#4572A7',
+        type: 'spline',
+        yAxis: 1,
+        data: data['temperature'],
+        tooltip: {
+            valuePrefix: '% '
+        }
+    })
+
+    chart.series.push({
+        name: '温度',
+        color: '#89A54E',
+        type: 'spline',
+        data: data['humidity'],
+        tooltip: {
+            valueSuffix: '°C'
+        }
+    })
+
     return chart
 }
+
+/* Show Temperaure and Humidity
+* */
+function show_temperature_humidity(div_id){
+    var parentWidth = $('#'+div_id).width()
+    var parentHeight = $('#'+div_id).height()
+
+    //@TODO: get temperature data and show
+//    $.get(
+//        "",
+//
+//    )
+}
+

@@ -151,7 +151,7 @@ class TemperatureHumidityTCPHandler(SRH):
 #     #         # self.request.sendall(self.data.upper())
 
 
-def get_temperature_humidity():
+def get_temperature_humidity(host='0.0.0.0', port=8888):
     """
     cmd = '01040000000271CB'
 
@@ -166,8 +166,7 @@ def get_temperature_humidity():
     01040200de3968
     end
     """
-    HOST, PORT = "localhost", 8888
-    ADDR = (HOST, PORT)
+    ADDR = (host, port)
     tcpServ = TemperatureHumidityServer(ADDR, TemperatureHumidityTCPHandler)
     tcpServ.serve_forever()
 
@@ -181,6 +180,8 @@ def parse_patrol_data(data):
     @param data: a hex string like this aa3300fb000000a00f00000f17d60c0000790d0000 8fa61a00008d1500 eda32800008d1500 00000000000000000000000000000000c64a086d03
     @return:
     """
+    print "func parse_patrol_data:" + data
+
     patrol = 0
 
     tag_mac = ''
@@ -200,13 +201,37 @@ def parse_patrol_data(data):
 
 
 def insert_patrol_data(client_ip, data):
-    person_mac, position_mac = parse_patrol_data(data)
+    """
+    @param data: raw internet data
+    """
+    person_mac, position_mac = parse_patrol_data(hexlify(data))
 
-    print "time:%s, client_ip:%s, person_mac:%s, position_mac:%s" % (str(time.time()), client_ip, person_mac, position_mac,)
+    print "time:%s, client_ip:%s, person_mac:%s, position_mac:%s" % (
+        str(time.time()),
+        client_ip,
+        person_mac,
+        position_mac,
+    )
 
+    position = None
+    person = None
     try:
-        person = PersonsModel.objects.get(person_no=person_mac)
-        position = PositionsModel.objects.get(ip=client_ip, mac=position_mac)
+        try:
+            person = PersonsModel.objects.get(person_no=person_mac)
+            pass
+        except PersonsModel.DoesNotExist:
+            pass
+        else:
+            pass
+
+        try:
+            position = PositionsModel.objects.get(ip=client_ip, mac=position_mac)
+            pass
+        except PositionsModel.DoesNotExist:
+            pass
+        else:
+            pass
+
         arrive_time = datetime.datetime.now()
 
         if person and position:
@@ -239,6 +264,10 @@ class PatrolTCPHandler(SRH):
                 # self.request is the TCP socket connected to the client
                 self.data = self.request.recv(1024).strip()
                 client_ip = self.client_address[0]
+
+                # self.data = hexlify(self.data)
+
+                # print "data:"+self.data
                 insert_patrol_data(client_ip, self.data)
                 pass
             except Exception as e:
@@ -268,7 +297,7 @@ class PatrolTCPHandler(SRH):
 #             # self.request.sendall(self.data.upper())
 
 
-def get_patrol_data():
+def get_patrol_data(host='0.0.0.0', port=8889):
     """
     aa3300fb000000a00f00000f17d60c0000790d00008fa61a00008d1500eda32800008d150000000000000000000000000000000000c64a086d03
     got connected from ('192.168.1.51', 34387)
@@ -278,8 +307,7 @@ def get_patrol_data():
     got connected from ('192.168.1.51', 35155)
     aa3300fe000000a00f00000f18d60c00007c0d00008fa61a00008d1500eda32800008d150000000000000000000000000000000000c95408a204
     """
-    HOST, PORT = "localhost", 8889
-    ADDR = (HOST, PORT)
+    ADDR = (host, port)
     tcpServ = PatrolServer(ADDR, PatrolTCPHandler)
     tcpServ.serve_forever()
     pass

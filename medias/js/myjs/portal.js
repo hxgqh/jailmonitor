@@ -51,7 +51,8 @@ var query_setting_html = '<span id="export_unorderedSchedule" class="btn btn-pri
                                 '<span id="result_query_alarm" class="btn result_query">报警信息查询</span>' +
                                 '<span id="result_query_map_history" class="btn result_query">巡检地图历史轨迹查询</span>' +
                                 '<span id="result_query_patrol_device_status" class="btn result_query">巡检设备状态查询</span>' +
-                                '<span id="result_query_temperature_humidity" class="btn result_query">温湿度查询</span>' +
+                                '<span id="result_query_realtime_temperature_humidity" class="btn result_query">实时温湿度查询</span>' +
+                                '<span id="result_query_temperature_humidity" class="btn result_query">历史温湿度查询</span>' +
                             '</div>'
 
 
@@ -431,6 +432,10 @@ function query_setting_expand(){
 
         $('#result_query_temperature_humidity').click(function(){
             show_result_query_temperature_humidity()
+        })
+
+        $('#result_query_realtime_temperature_humidity').click(function(){
+            show_result_realtime_query_temperature_humidity()
         })
     }
     catch(err){

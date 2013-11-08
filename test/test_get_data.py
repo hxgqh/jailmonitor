@@ -29,7 +29,7 @@ class tGetData(object):
     def test_send_patrol_data():
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.connect(('localhost', 8889))
-        data = 'aa3300fb000000a00f00000f17d60c0000790d00008fa61a00008d1500eda32800008d150000000000000000000000000000000000c64a086d03'
+        data = 'aa3300c6000000a00f00000f13d60c0000b50000008fa61a00008d1500eda32800008d150000000000000000000000000000000000bd3708f6fe'
 
         while True:
             print "send " + data
@@ -49,7 +49,7 @@ class tGetData(object):
 
 if __name__ == '__main__':
     print 'start'
-    # tGetData.test_parse_patrol_data()
+    tGetData.test_parse_patrol_data()
     # tGetData.test_send_temperature_humidity_data()
-    tGetData.test_send_patrol_data()
+    # tGetData.test_send_patrol_data()
     print 'end'

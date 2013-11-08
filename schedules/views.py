@@ -599,9 +599,10 @@ def get_map_multi_day_schedule(request):
     print 'func get_map_multi_day_schedule'
     data = {
         'line': [],
-        'patrol_history': []
+        'patrol_history': {}
     }
 
+    # Test data here
     for i in range(0,10):
         data['line'].append({
             'name': 'line1',
@@ -613,12 +614,13 @@ def get_map_multi_day_schedule(request):
         })
 
     for i in range(0, 7):
-        data['patrol_history'].append({
+        data['patrol_history']['position'+str(i+1)] = ({
             'position': 'position'+str(i+1),
             'time': '2013-11-07 08:'+("%02d" % (i*8, ))+':00',
             'person': 'person'+str(i+1)
         })
 
+    # @TODO: add real data here
 
     print json.dumps(data, indent=4)
 

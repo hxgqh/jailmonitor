@@ -17,7 +17,7 @@ from django.core.cache import cache
 
 class PersonsModel(models.Model):
     person_no = models.CharField(verbose_name="号", max_length=255, unique=True)
-    name = models.CharField(verbose_name="人员", max_length=30)
-    contact = models.CharField(verbose_name="联系方式", max_length=255)
-    address = models.CharField(verbose_name="通讯地址", max_length=255)
+    name = models.CharField(verbose_name="人员", max_length=30, blank=True, null=True)
+    contact = models.CharField(verbose_name="联系方式", max_length=255, blank=True, null=True)
+    address = models.CharField(verbose_name="通讯地址", max_length=255, blank=True, null=True)
 

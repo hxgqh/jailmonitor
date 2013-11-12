@@ -1,8 +1,8 @@
 var persons_setting_html = '<span id="export_persons" class="btn btn-primary" style="float:left;">导出表格</span>' +
-                                '<span id="print_persons" class="btn btn-primary" style="float:right">打印</span>'
+                            '<span id="print_persons" class="btn btn-primary" style="float:right">打印</span>'
 
 var positions_setting_html = '<span id="export_positions" class="btn btn-primary" style="float:left;">导出表格</span>' +
-                                '<span id="print_positions" class="btn btn-primary" style="float:right">打印</span>'
+                            '<span id="print_positions" class="btn btn-primary" style="float:right">打印</span>'
 
 var lines_setting_html = '<span id="export_lines" class="btn btn-primary" style="float:left;">导出表格</span>' +
                         '<span id="print_lines" class="btn btn-primary" style="float:right">打印</span>' +
@@ -222,24 +222,28 @@ function show_temp_hum_map(){
             var divEditor = Ext.get('div-editor')
 //                                            divEditor.dom.innerHTML=""
             divEditor.dom.innerHTML=""
-            divEditor.createChild('<div id="div-editor-map">' +
-                                '<div id="div-editor-left"></div>' +
-                                '<div id="div-editor-right">' +
-                                '<span id="change_map" class="btn">选择巡检地图</span>' +
-                                '<span id="add_position_mapping" class="btn">添加地点映射</span>' +
-                                '<span id="add_position_card" class="btn">添加地点</span>' +
-                                '<div style="width:100%;height:380px;overflow-y:auto;">' +
-                                '<div id="mapping_div" style="width:100%;display:none">' +
-                                '<select id="mapping_position" class="selectpicker"></select>' +
-                                '<select id="mapping_position_card" class="selectpicker"></select>' +
-                                '<span id="mapping_confirm" class="btn">确定</span>' +
+            divEditor.createChild('<div id="div-editor-left">' +
+                                    '<div id="div-editor-map"></div>' +
                                 '</div>' +
-                                '<table id="map_info_table" class="table table-striped table-bordered"></table>' +
-                                '</div></div></div>')
+                                '<div id="div-editor-right">' +
+                                    '<span id="change_map" class="btn">选择巡检地图</span>' +
+                                    '<span id="add_position_mapping" class="btn">添加地点映射</span>' +
+                                    '<span id="add_position_card" class="btn">添加地点</span>' +
+                                    '<div style="width:100%;height:380px;overflow-y:auto;">' +
+                                        '<div id="mapping_div" style="width:100%;display:none">' +
+                                            '<select id="mapping_position" class="selectpicker"></select>' +
+                                            '<select id="mapping_position_card" class="selectpicker"></select>' +
+                                            '<span id="mapping_confirm" class="btn">确定</span>' +
+                                        '</div>' +
+                                        '<table id="map_info_table" class="table table-striped table-bordered"></table>' +
+                                    '</div>' +
+                                '</div>')
             divEditor.createChild('')
             divEditor.createChild('')
-            Ext.get('div-editor-left').createChild('<img class="geograph" src="/static/images/temp_hum_geograph.png"/>')
+            Ext.get('div-editor-map').createChild('<img id="map_img" class="geograph" src="/static/images/temp_hum_geograph.png"/>')
             $("#map_info_table").append("<thead><td>地点</td><td>x坐标</td><td>y坐标</td></thead><tbody></tbody>")
+
+            auto_fit_map_img('map_img')
 
             update_temp_hum_position_card_table()
 
@@ -295,22 +299,26 @@ function map_setting_expand(){
             var divEditor = Ext.get('div-editor')
 //                                            divEditor.dom.innerHTML=""
             divEditor.dom.innerHTML=""
-            divEditor.createChild('<div id="div-editor-map">' +
-                                '<div id="div-editor-left"></div>' +
-                                '<div id="div-editor-right">' +
-                                '<span id="change_map" class="btn">选择温湿度地图</span>' +
-                                '<span id="add_position_mapping" class="btn">添加地点映射</span>' +
-                                '<span id="add_position_card" class="btn">添加地点</span>' +
-                                '<div style="width:100%;height:380px;overflow-y:auto;">' +
-                                '<div id="mapping_div" style="width:100%;display:none">' +
-                                '<select id="mapping_position" class="selectpicker"></select>' +
-                                '<select id="mapping_position_card" class="selectpicker"></select>' +
-                                '<span id="mapping_confirm" class="btn">确定</span>' +
+            divEditor.createChild('<div id="div-editor-left">' +
+                                    '<div id="div-editor-map"></div>' +
                                 '</div>' +
-                                '<table id="map_info_table" class="table table-striped table-bordered"></table>' +
-                                '</div></div></div>')
-            Ext.get('div-editor-left').createChild('<img id="map_img" class="geograph" src="/static/images/geograph.png"/>')
+                                '<div id="div-editor-right">' +
+                                    '<span id="change_map" class="btn">选择温湿度地图</span>' +
+                                    '<span id="add_position_mapping" class="btn">添加地点映射</span>' +
+                                    '<span id="add_position_card" class="btn">添加地点</span>' +
+                                    '<div style="width:100%;height:380px;overflow-y:auto;">' +
+                                    '<div id="mapping_div" style="width:100%;display:none">' +
+                                        '<select id="mapping_position" class="selectpicker"></select>' +
+                                        '<select id="mapping_position_card" class="selectpicker"></select>' +
+                                    '<span id="mapping_confirm" class="btn">确定</span>' +
+                                    '</div>' +
+                                    '<table id="map_info_table" class="table table-striped table-bordered"></table>' +
+                                '</div>'
+                )
+            Ext.get('div-editor-map').createChild('<img id="map_img" class="geograph" src="/static/images/geograph.png"/>')
             $("#map_info_table").append("<thead><td>地点</td><td>x坐标</td><td>y坐标</td></thead><tbody></tbody>")
+
+            auto_fit_map_img('map_img')
 
             update_position_card_table()
 

@@ -32,6 +32,55 @@ Array.prototype.max = function() {
  */
 var position_card_dict = new Array()
 
+
+function position_card_mouse_up(element, event){
+    var parent$ = $('#div-editor-map')
+    var name = $(element).attr('data')
+    var map_width = parent$.width()
+    var map_height = parent$.height()
+    var x = $(element).css('left')
+    x = x.replace(/px/,'')
+    x = parseInt(x)
+    var y = $(element).css('top')
+    y = y.replace(/px/,'')
+    y = parseInt(y)
+
+    var data = {
+        name: name,
+        x: x,
+        y: y,
+        map_width: map_width,
+        map_height: map_height
+    }
+
+    console.log(data)
+    update_position_card(data)
+}
+
+function temp_hum_position_card_mouse_up(element, event){
+    var parent$ = $('#div-editor-map')
+    var name = $(element).attr('data')
+    var map_width = parent$.width()
+    var map_height = parent$.height()
+    var x = $(element).css('left')
+    x = x.replace(/px/,'')
+    x = parseInt(x)
+    var y = $(element).css('top')
+    y = y.replace(/px/,'')
+    y = parseInt(y)
+
+    var data = {
+        name: name,
+        x: x,
+        y: y,
+        map_width: map_width,
+        map_height: map_height
+    }
+
+    console.log(data)
+    update_temp_hum_position_card(data)
+}
+
 /**
  * @param e: click event
  */
@@ -42,12 +91,17 @@ function add_position_card(e){
     var p_x = e.offsetX
     var p_y = e.offsetY
 
-    render_div$.append('<div class="position-div" style="left:'+p_x+'px;top:'+p_y+'px;"></div>')
-
     var new_id = position_card_dict.length
+    var position_card = '第' + (new_id+1) + '张地点卡'
 
     console.log('new_id '+new_id)
     console.log(position_card_dict)
+
+    render_div$.append('<div class="position-div" style="left:'+p_x+'px;top:'+p_y+'px;" data="'+position_card+'"></div>')
+
+    var map_img$ = $('#map_img')
+    var map_width = map_img$.width()
+    var map_height = map_img$.height()
 
     position_card_dict[new_id] = {
         name: '第' + (new_id+1) + '张地点卡',
@@ -69,11 +123,60 @@ function add_position_card(e){
         {
             name: '第' + (new_id+1) + '张地点卡',
             x: p_x,
-            y: p_y
+            y: p_y,
+            map_width: map_width,
+            map_height: map_height
         },
         null
     )
 }
+
+function update_position_card(data){
+    $.get(
+        '/update/positioncard/',
+        data,
+        function(data, status){
+            $.get(
+                "/get/positioncard/",
+                null,
+                function(data, status){
+                    var position_table_tbody$ = $($('#map_info_table').children().eq(1))
+                    position_table_tbody$.empty()
+                    var data = eval(data)
+                    for(var i=0;i<data.length;i++){
+                        var item = data[i]
+                        var render_div$ = $("#div-editor-left")
+                        position_table_tbody$.append('<tr><td>'+item.name+'</td><td>'+item.x+'</td><td>'+item.y+'</td></tr>')
+                    }
+                }
+            )
+        }
+    )
+}
+
+function update_temp_hum_position_card(data){
+    $.get(
+        '/update/temphumpositioncard/',
+        data,
+        function(data, status){
+            $.get(
+                "/get/temphumpositioncard/",
+                null,
+                function(data, status){
+                    var position_table_tbody$ = $($('#map_info_table').children().eq(1))
+                    position_table_tbody$.empty()
+                    var data = eval(data)
+                    for(var i=0;i<data.length;i++){
+                        var item = data[i]
+                        var render_div$ = $("#div-editor-left")
+                        position_table_tbody$.append('<tr><td>'+item.name+'</td><td>'+item.x+'</td><td>'+item.y+'</td></tr>')
+                    }
+                }
+            )
+        }
+    )
+}
+
 
 function add_temp_hum_position_card(e){
     var render_div$ = $("#div-editor-left")
@@ -83,6 +186,9 @@ function add_temp_hum_position_card(e){
     var p_y = e.offsetY
 
     render_div$.append('<div class="position-div" style="left:'+p_x+'px;top:'+p_y+'px;"></div>')
+    var map_img$ = $('#map_img')
+    var map_width = map_img$.width()
+    var map_height = map_img$.height()
 
     var new_id = position_card_dict.length
 
@@ -109,9 +215,34 @@ function add_temp_hum_position_card(e){
         {
             name: '温湿度计' + (new_id+1),
             x: p_x,
-            y: p_y
+            y: p_y,
+            map_width: map_width,
+            map_height: map_height
         },
         null
+    )
+}
+
+function update_temp_hum_position_card(data){
+    $.get(
+        '/update/temphumpositioncard/',
+        data,
+        function(data, status){
+            $.get(
+                "/get/temphumpositioncard/",
+                null,
+                function(data, status){
+                    var position_table_tbody$ = $($('#map_info_table').children().eq(1))
+                    position_table_tbody$.empty()
+                    var data = eval(data)
+                    for(var i=0;i<data.length;i++){
+                        var item = data[i]
+                        var render_div$ = $("#div-editor-left")
+                        position_table_tbody$.append('<tr><td>'+item.name+'</td><td>'+item.x+'</td><td>'+item.y+'</td></tr>')
+                    }
+                }
+            )
+        }
     )
 }
 
@@ -189,8 +320,15 @@ function update_position_card_table(){
                 position_card_dict.push(item)
                 var p_x = item.x
                 var p_y = item.y
-                render_div$.append('<div class="position-div" style="left:'+p_x+'px;top:'+p_y+'px;"></div>')
+                var name = item.name
+                render_div$.append('<div class="position-div" style="left:'+p_x+'px;top:'+p_y+'px;" data="'+name+'"></div>')
             }
+
+            $('.position-div').draggable()
+            $('.position-div').mouseup(function(e){
+                console.log('mouse up')
+                position_card_mouse_up(this, e)
+            })
         }
     )
 }
@@ -210,7 +348,13 @@ function update_temp_hum_position_card_table(){
                 position_card_dict.push(item)
                 var p_x = item.x
                 var p_y = item.y
-                render_div$.append('<div class="position-div" style="left:'+p_x+'px;top:'+p_y+'px;"></div>')
+                render_div$.append('<div class="position-div" style="left:'+p_x+'px;top:'+p_y+'px;" data="'+item.name+'"></div>')
+
+                $('.position-div').draggable()
+                $('.position-div').mouseup(function(e){
+                    console.log('mouse up')
+                    temp_hum_position_card_mouse_up(this, e)
+                })
             }
         }
     )
@@ -537,6 +681,9 @@ function update_unordered_schedule_line_select(){
 
 function query_and_show_mds(){
     var select$ = $("#query_result_multi_day_schedule_line_select")
+    if(! select$.val()){
+        return 0
+    }
     var select_split = select$.val().split(',')
     var select_line_name = select_split[0]
     var start_time = select_split[1]
@@ -1239,14 +1386,101 @@ function show_result_query_temperature_humidity(){
     }
 }
 
-function show_realtime_temperature_humidity(element){
+function show_realtime_temperature_humidity(div_id){
     $.get(
-        "/get/temphumpositioncard",
+        "/get/temphumpositioncard/",
         null,
         function(data, status){
+            var render$ = $('#'+div_id)
+            var render_width = render$.width()
+            var render_height = render$.height()
+
+            console.log("render_width: "+render_width+"render_height: "+render_height)
+
             var data = eval(data)
             for(var i=0;i<data.length;i++){
                 console.log(data)
+                var map_width = data[i]['map_width']
+                var map_height = data[i]['map_height']
+                var p_x = data[i]['x']
+                var p_y = data[i]['y']
+                console.log(map_width, map_height, p_x, p_y)
+                var p_x = parseInt((parseFloat(p_x*render_width))/parseFloat(map_width))
+                var p_y = parseInt(parseFloat(p_y*render_height)/parseFloat(map_height))
+                console.log('p_x:'+p_x+'; p_y:'+p_y)
+                render$.append(
+                    '<div class="position-div" style="left:'+p_x+'px;top:'+p_y+'px;" name='+data[i]['name']+'>' +
+                    '</div>'
+                )
+            }
+
+            render$.append(
+                '<div id="position_temp_hum_div">' +
+                    '<span id="position_temp_hum_div_name" style=""></span><br/>' +
+                    '<span id="position_temp_hum_div_temp" style=""></span><br/>' +
+                    '<span id="position_temp_hum_div_hum" style=""></span><br/>' +
+                '</div>'
+            )
+
+            $('.position-div').mouseover(function(e){
+                console.log($(this).attr('name'))
+                var name = $(this).attr('name')
+                console.log(e)
+                var position_div$ = $(this)
+                $.get(
+                    "/get/recent/temphum/",
+                    {
+                        name: name
+                    },
+                    function(data, status){
+                        //@TODO: Show recent temperature and humidity here
+                        data = JSON.parse(data)
+                        var position = data['position']
+                        var temperature = data['temperature']
+                        var humidity = data['humidity']
+                        console.log(position_div$)
+
+                        $('#position_temp_hum_div_name').html('温湿度计位置：'+position)
+                        $('#position_temp_hum_div_temp').html('温度：'+temperature)
+                        $('#position_temp_hum_div_hum').html('湿度：'+humidity)
+                        $('#position_temp_hum_div').css('left', position_div$[0].offsetLeft+10)
+                        $('#position_temp_hum_div').css('top', position_div$[0].offsetTop+10)
+                        $('#position_temp_hum_div').show(500)
+                    }
+                )
+            })
+
+            render$.mouseover(function(e){
+                $('#position_temp_hum_div').hide(250)
+            })
+        }
+    )
+}
+
+
+function auto_fit_map_img(img_id){
+    console.log('func auto_fit_map_img')
+    var parent_width = $('#div-editor-map').width()
+    var parent_height = $('#div-editor-map').height()
+    // auto-fit map_img to parent's width and height
+    var img$ = $('#'+img_id)
+
+    img$.on('load', function(){
+            var save_img_width = $(this)[0].naturalWidth
+            var save_img_height = $(this)[0].naturalHeight
+            console.log($(this))
+            var width_height_rate = parseFloat(save_img_width)/parseFloat(save_img_height)
+            console.log('width_height_rate:'+width_height_rate)
+
+            $(this).height(parent_width)
+            var target_width = parseInt($(this).height()*width_height_rate)
+
+            if(target_width > parent_width){
+                $(this).width(parent_width)
+                $(this).height(parseInt($(this).width()/width_height_rate))
+            }
+            else{
+                $(this).width(target_width)
             }
         }
     )
@@ -1266,21 +1500,8 @@ function show_result_realtime_query_temperature_humidity(){
                     '<img id="map_img" src="/static/images/temp_hum_geograph.png"/>' +
                 '</div>'
             )
-
-            // auto-fit map_img to parent's width and height
-            var img$ = $('#map_img')
-            var save_img_width = img$.width()
-            var save_img_height = img$.height()
-            var width_height_rate = parseFloat(save_img_width)/parseFloat(save_img_height)
-            img$.width($(img$.parent()).width())
-            if(parseInt(img$.width()/width_height_rate) > img$.height()){
-                img$.height($(img$.parent()).height())
-            }
-            else{
-                img$.height(parseInt(img$.width()/width_height_rate))
-            }
-
-            show_realtime_temperature_humidity('div-editor-left')
+            auto_fit_map_img('map_img')
+            show_realtime_temperature_humidity('div-editor-map')
         }
         catch(err){
             console.log(err)

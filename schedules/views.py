@@ -622,7 +622,7 @@ def get_map_multi_day_schedule(request):
 
     # @TODO: add real data here
 
-    print json.dumps(data, indent=4)
+    # print json.dumps(data, indent=4)
 
     return HttpResponse(json.dumps(data))
     pass

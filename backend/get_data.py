@@ -75,20 +75,22 @@ def insert_temperature_and_humidity(client_ip, data):
 
     try:
         # TODO: insert temperature and humidity here
-        device = TemperatureHumidityDeviceModel.objects.get(ip=client_ip, device_no=device_no)
-
-        if not device:
+        try:
+            device = TemperatureHumidityDeviceModel.objects.get(ip=client_ip, device_no=device_no)
+            insert_time = datetime.datetime.now()
+            item = TemperatureHumidityModel(
+                time=insert_time,
+                device=device,
+                temperature=temperature,
+                humidity=humidity
+            )
+            item.save()
+            pass
+        except TemperatureHumidityDeviceModel.DoesNotExist:
             return -1
-
-        insert_time = datetime.datetime.now()
-
-        item = TemperatureHumidityModel(
-            time=insert_time,
-            device=device,
-            temperature=temperature,
-            humidity=humidity
-        )
-        item.save()
+            pass
+        else:
+            pass
         pass
     except Exception as e:
         print e
@@ -220,6 +222,14 @@ def insert_patrol_data(client_ip, data):
             person = PersonsModel.objects.get(person_no=person_mac)
             pass
         except PersonsModel.DoesNotExist:
+            if person_mac:
+                item = PersonsModel(
+                    person_no=person_mac,
+                    name='',
+                    contact='',
+                    address=''
+                )
+                item.save()
             pass
         else:
             pass
@@ -228,6 +238,14 @@ def insert_patrol_data(client_ip, data):
             position = PositionsModel.objects.get(ip=client_ip, mac=position_mac)
             pass
         except PositionsModel.DoesNotExist:
+            if position_mac:
+                item = PositionsModel(
+                    ip=client_ip,
+                    mac=position_mac,
+                    position='',
+                    install_position=''
+                )
+                item.save()
             pass
         else:
             pass

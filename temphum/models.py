@@ -10,6 +10,8 @@ class TemperatureHumidityPositionCardModel(models.Model):
     name = models.CharField(verbose_name="地点名称", max_length=100, unique=True)
     x = models.IntegerField(verbose_name="X轴坐标")
     y = models.IntegerField(verbose_name="y轴坐标")
+    map_width = models.IntegerField(verbose_name="地图宽度")
+    map_height = models.IntegerField(verbose_name="地图高度")
 
 
 class TemperatureHumidityDeviceModel(models.Model):

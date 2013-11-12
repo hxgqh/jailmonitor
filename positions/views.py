@@ -113,8 +113,10 @@ def add_position_card(request):
 
     data = request.GET
     name = data.get('name', '')
-    x = data.get('x', '')
-    y = data.get('y', '')
+    x = data.get('x', -1)
+    y = data.get('y', -1)
+    map_width = data.get('map_width', -1)
+    map_height = data.get('map_height', -1)
 
     if not name:
         return HttpResponse('')
@@ -123,13 +125,47 @@ def add_position_card(request):
         p_c = PositionCardModel(
             name=name,
             x=x,
-            y=y
+            y=y,
+            map_width=map_width,
+            map_height=map_height
         )
         p_c.save()
         pass
     except Exception as e:
         print e
         print traceback
+
+    return HttpResponse('')
+    pass
+
+
+@login_required(login_url="/login")
+@csrf_exempt
+def update_position_card(request):
+    print "func update_position_card"
+    print request.GET
+
+    data = request.GET
+    name = data.get('name', '')
+    x = data.get('x', -1)
+    y = data.get('y', -1)
+    map_width = data.get('map_width', -1)
+    map_height = data.get('map_height', -1)
+
+    if not name:
+        return HttpResponse('')
+
+    try:
+        p_c = PositionCardModel.objects.get(name=name)
+        p_c.x = x
+        p_c.y = y
+        p_c.map_height = map_height
+        p_c.map_width = map_width
+        p_c.save()
+    except PositionCardModel.DoesNotExist:
+        pass
+    else:
+        pass
 
     return HttpResponse('')
     pass
@@ -148,7 +184,9 @@ def get_position_card(request):
             data.append({
                 'name': pc.name,
                 'x': pc.x,
-                'y': pc.y
+                'y': pc.y,
+                'map_width:': pc.map_width,
+                'map_height': pc.map_height
             })
             pass
         pass

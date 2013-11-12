@@ -154,18 +154,20 @@ img.geograph {
     float:left;
     width: 100%;
     height: 100%;
+    text-align: center;
+
 }
 
 #div-editor-left {
     float:left;
-    width: 59%;
+    width: 75%;
     height: 100%;
     background-color: #f0f0f0;
 }
 
 #div-editor-right {
     float:right;
-    width:37%;
+    width:25%;
     height: 405px;
     background-color: #dddddd;
 }
@@ -192,6 +194,9 @@ img.geograph {
 
     background-color: red;
     border: 2px solid #fff;
+
+    cursor: pointer;
+    /*@TODO: Add position background*/
 }
 
 .table{
@@ -259,4 +264,40 @@ span.result_query {
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.0);
+}
+
+#div-editor {
+    width: 100%;
+    height: 100%;
+}
+
+#table-editor {
+    height: 750px !important;
+}
+
+#table-editor-body {
+    height: 100% !important;
+}
+
+#position_temp_hum_div {
+    border: 2px solid rgba(180,180,180,0.8);
+    background-color: rgba(255,255,255,0.8);
+    /*width: 400px;*/
+    height: 150px;
+    font-size: 25px;
+
+    position: absolute;
+    z-index: 150;
+
+    padding: 5px;
+    text-align: left;
+
+    display: none;
+}
+
+#position_temp_hum_div > span {
+    float: left;
+    width: 100% !important;
+    height: 40px !important;
+    margin: 5px !important;
 }

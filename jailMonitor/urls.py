@@ -9,7 +9,9 @@ urlpatterns = patterns('',
     url(r'^data/(.*)$', 'views.basic.data', name='data'),
 
     url(r'^add/positioncard/$', 'positions.views.add_position_card'),
+    url(r'^update/positioncard/$', 'positions.views.update_position_card'),
     url(r'^add/temphumpositioncard/$', 'temphum.views.add_temp_hum_position_card'),
+    url(r'^update/temphumpositioncard/', 'temphum.views.update_temp_hum_position_card'),
     url(r'^get/positioncard/$', 'positions.views.get_position_card'),
     url(r'^get/temphumpositioncard/$', 'temphum.views.get_temp_hum_position_card'),
     url(r'^get/position/mapping/$', 'positions.views.get_position_mapping'),
@@ -24,6 +26,8 @@ urlpatterns = patterns('',
     url(r'^get/excel/multidayschedule/$', 'schedules.views.get_multi_day_schedule_excel', name="getMultiDayScheduleExcel"),
     url(r'^get/excel/orderedschedule/$', 'schedules.views.get_ordered_schedule_excel', name="getOrderedScheduleExcel"),
     url(r'^get/excel/unorderedschedule/$', 'schedules.views.get_unordered_schedule_excel', name="getUnorderedScheduleExcel"),
+
+    url(r"^get/recent/temphum/", 'temphum.views.get_recent_temphum'),
 
     # Result query
     url(r"^get/query/multidayschedule/$", 'schedules.views.get_query_multi_day_schedule'),

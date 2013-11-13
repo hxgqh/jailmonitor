@@ -106,7 +106,7 @@ def getLineData():
                 'name': line.name,
                 'position': line.position,
                 'next_time_arrival': line.next_time_arrival,
-                'time_error': line.time_error,
+                # 'time_error': line.time_error,
                 'order': line.order
             })
         pass

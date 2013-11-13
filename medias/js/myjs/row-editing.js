@@ -410,7 +410,7 @@ function multiDayScheduleEditor(){
                 try{
                     rowEditing.cancelEdit();
 
-                    var line_name = $('#multi_day_schedule_line_select').val()
+                    var line_name = $('#schedule_line_select').val()
                     console.log(line_name)
 
                     if(! line_name){
@@ -539,7 +539,7 @@ function orderedScheduleEditor(){
 
                 var no = orderedScheduleStore.getCount()
 
-                var line = $("#ordered_schedule_line_select").val()
+                var line = $("#schedule_line_select").val()
 
                 // Create a model instance
                 var r = Ext.create(model_name, {
@@ -633,7 +633,7 @@ function unorderedScheduleEditor(){
 
                 var now = new Date()
                 var no = unorderedScheduleStore.getCount()
-                var line = $("#unordered_schedule_line_select").val()
+                var line = $("#schedule_line_select").val()
 
                 // Create a model instance
                 var r = Ext.create(model_name, {

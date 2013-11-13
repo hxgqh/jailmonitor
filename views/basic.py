@@ -5,6 +5,8 @@ import datetime
 import re
 import traceback
 
+from PIL import Image
+
 from sys import stdout
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
@@ -18,6 +20,9 @@ from lines.views import *
 from schedules.views import *
 from temphum.views import *
 
+from jailMonitor.settings import *
+from positions.models import *
+from temphum.models import *
 
 __author__ = 'xiaoghu@cisco.com'
 
@@ -101,4 +106,39 @@ def data(request, type):
             update_temp_hum_devices(data)
 
         return HttpResponse('')
+    pass
+
+
+@login_required(login_url="/login")
+@csrf_exempt
+def upload_map(request):
+    # print request
+    print request.POST
+    print request.FILES
+
+    file_data = request.FILES['Filedata']
+
+    print "file_data len:"+str(len(file_data))
+
+    upload_file_name = request.POST['Filename']
+    img_format = upload_file_name.split('.')[-1]
+
+    file_name = 'temp_hum_geograph.png'
+    # file_name = 'temp_hum_geograph.' + img_format
+    if 'patrol' in request.POST['map']:
+        # file_name = 'geograph.' + img_format
+        file_name = 'geograph.png'
+
+    try:
+        file_path = os.path.join(base_dir, '../medias/images/')
+        fp = open(file_path+file_name, 'wb+')
+        for chunk in file_data.chunks():
+            fp.write(chunk)
+            fp.close()
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+
+    return HttpResponse(file_name)
     pass

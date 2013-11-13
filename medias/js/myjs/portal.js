@@ -14,12 +14,25 @@ var lines_setting_html = '<span id="export_lines" class="btn btn-primary" style=
                                     '<tr><td>线路名</td><td><select id="add_line_name_td_select" class="selectpicker"></select></td></tr>' +
                                     '<tr><td>地点卡</td><td><select id="add_line_position_card_td_select" class="selectpicker"></select></td></tr>' +
                                     '<tr><td>下次到达时间</td><td><input id="add_line_next_time_arrival_td_input"></input></td></tr>' +
-                                    '<tr><td>时间误差</td><td><input id="add_line_time_error_td_input"></input></td></tr>' +
+//                                    '<tr><td>时间误差</td><td><input id="add_line_time_error_td_input"></input></td></tr>' +
                                     '<td>顺序</td><td><input id="add_line_order_td_input"></input></td>' +
                                 '</tbody>' +
                             '</table>' +
                             '<span id="add_line_position_card_btn" class="btn btn-primary" style="float:right">增加线路地点卡</span>' +
                         '</div>'
+
+var schedule_setting_html = '<span id="export_multiDaySchedule" class="btn btn-primary" style="float:left;">导出表格</span>' +
+                            '<span id="print_multiDaySchedule" class="btn btn-primary" style="float:right">打印</span><br/>' +
+                            '<div style="width:100%;float:left"><br/>' +
+                                '<select id="schedule_type_select" class="selectpicker" style="width:80% !important;">' +
+                                    '<option>多天计划设置</option>' +
+                                    '<option>有顺序计划设置</option>' +
+                                    '<option>无顺序计划设置</option>' +
+                                '</select>' +
+                            '</div>' +
+                            '<div style="width:100%;float:left"><br/>' +
+                                '<select id="schedule_line_select" class="selectpicker" style="width:80% !important;"></select>' +
+                            '</div>'
 
 var multi_day_schedule_setting_html = '<span id="export_multiDaySchedule" class="btn btn-primary" style="float:left;">导出表格</span>' +
                                     '<span id="print_multiDaySchedule" class="btn btn-primary" style="float:right">打印</span><br/>' +
@@ -45,9 +58,9 @@ var temp_hum_setting_html = '<span id="export_positions" class="btn btn-primary"
 var query_setting_html = '<span id="export_unorderedSchedule" class="btn btn-primary" style="float:left;">导出表格</span>' +
                             '<span id="print_unorderedSchedule" class="btn btn-primary" style="float:right">打印</span>' +
                             '<div style="width:100%;height:100%;overflow-y:auto;float:left"><br/>' +
-                                '<span id="result_query_multi_day_schedule" class="btn result_query">多天计划查询</span>' +
-                                '<span id="result_query_ordered_schedule" class="btn result_query">有顺序计划查询</span>' +
-                                '<span id="result_query_unordered_schedule" class="btn result_query">无顺序计划查询</span>' +
+                                '<span id="result_query_schedule" class="btn result_query">计划查询</span>' +
+//                                '<span id="result_query_ordered_schedule" class="btn result_query">有顺序计划查询</span>' +
+//                                '<span id="result_query_unordered_schedule" class="btn result_query">无顺序计划查询</span>' +
                                 '<span id="result_query_alarm" class="btn result_query">报警信息查询</span>' +
                                 '<span id="result_query_map_history" class="btn result_query">巡检地图历史轨迹查询</span>' +
                                 '<span id="result_query_patrol_device_status" class="btn result_query">巡检设备状态查询</span>' +
@@ -143,11 +156,38 @@ function lines_setting_expand(){
             }
 }
 
+function schedule_setting_expand(){
+    try{
+        multi_day_schedule_setting_expand()
+
+        $('#schedule_type_select').change(function(){
+            var schedule_type = $(this).val()
+            console.log(schedule_type)
+            $('#schedule_line_select').empty()
+            if(schedule_type == '多天计划设置'){
+                multi_day_schedule_setting_expand()
+            }
+            else if(schedule_type == '有顺序计划设置'){
+                ordered_schedule_expand()
+            }
+            else{
+                unordered_schedule_expand()
+            }
+        })
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
 function multi_day_schedule_setting_expand(){
     try{
         try{
+            var editor = Ext.getCmp('table-editor')
+            editor.setTitle('多天计划设置')
             var divEditor = Ext.get('div-editor')
             divEditor.dom.innerHTML=""
+            $('#div-editor').empty()
         }
         catch(err){}
 
@@ -170,9 +210,12 @@ function multi_day_schedule_setting_expand(){
 function ordered_schedule_expand(){
     try{
         try{
+            var editor = Ext.getCmp('table-editor')
+            editor.setTitle('有顺序计划设置')
             var divEditor = Ext.get('div-editor')
 //                                            divEditor.dom.innerHTML=""
             divEditor.dom.innerHTML=""
+            $('#div-editor').empty()
         }
         catch(err){}
 
@@ -196,8 +239,11 @@ function ordered_schedule_expand(){
 function unordered_schedule_expand(){
     try{
         try{
+            var editor = Ext.getCmp('table-editor')
+            editor.setTitle('无顺序计划设置')
             var divEditor = Ext.get('div-editor')
             divEditor.dom.innerHTML=""
+            $('#div-editor').empty()
         }
         catch(err){}
 
@@ -227,8 +273,9 @@ function show_temp_hum_map(){
                                 '</div>' +
                                 '<div id="div-editor-right">' +
                                     '<span id="change_map" class="btn">选择巡检地图</span>' +
+                                    '<span style="float:right;" id="upload_map" class="btn">上传地图</span><br/>' +
                                     '<span id="add_position_mapping" class="btn">添加地点映射</span>' +
-                                    '<span id="add_position_card" class="btn">添加地点</span>' +
+                                    '<span id="add_position_card" class="btn" style="float:left">添加地点</span>' +
                                     '<div style="width:100%;height:380px;overflow-y:auto;">' +
                                         '<div id="mapping_div" style="width:100%;display:none">' +
                                             '<select id="mapping_position" class="selectpicker"></select>' +
@@ -289,6 +336,10 @@ function show_temp_hum_map(){
             $('#mapping_confirm').click(function(){
                 confirm_temp_hum_mapping()
             })
+
+            $('#upload_map').click(function(){
+                upload_map()
+            })
         }
         catch(err){}
 }
@@ -304,8 +355,9 @@ function map_setting_expand(){
                                 '</div>' +
                                 '<div id="div-editor-right">' +
                                     '<span id="change_map" class="btn">选择温湿度地图</span>' +
+                                    '<span style="float:right;" id="upload_map" class="btn">上传地图</span><br/>' +
                                     '<span id="add_position_mapping" class="btn">添加地点映射</span>' +
-                                    '<span id="add_position_card" class="btn">添加地点</span>' +
+                                    '<span id="add_position_card" class="btn" style="float:left">添加地点</span>' +
                                     '<div style="width:100%;height:380px;overflow-y:auto;">' +
                                     '<div id="mapping_div" style="width:100%;display:none">' +
                                         '<select id="mapping_position" class="selectpicker"></select>' +
@@ -364,6 +416,10 @@ function map_setting_expand(){
             $('#mapping_confirm').click(function(){
                 confirm_mapping()
             })
+
+            $('#upload_map').click(function(){
+                upload_map()
+            })
         }
         catch(err){}
     }
@@ -417,17 +473,19 @@ function query_setting_expand(){
         $('span.result_query').removeClass('btn-primary')
         $('span#result_query_multi_day_schedule').addClass('btn-primary')
 
-        show_result_query_multi_day_schedule()
+//        show_result_query_multi_day_schedule()
+        show_result_query_schedule()
 
-        $('#result_query_multi_day_schedule').click(function(){
-            show_result_query_multi_day_schedule()
+        $('#result_query_schedule').click(function(){
+//            show_result_query_multi_day_schedule()
+            show_result_query_schedule()
         })
-        $('#result_query_ordered_schedule').click(function(){
-            show_result_query_ordered_schedule()
-        })
-        $('#result_query_unordered_schedule').click(function(){
-            show_result_query_unordered_schedule()
-        })
+//        $('#result_query_ordered_schedule').click(function(){
+//            show_result_query_ordered_schedule()
+//        })
+//        $('#result_query_unordered_schedule').click(function(){
+//            show_result_query_unordered_schedule()
+//        })
         $('#result_query_alarm').click(function(){
             show_result_query_alarm()
         })
@@ -568,50 +626,45 @@ Ext.define('Ext.app.Portal', {
                             }
                         },
                         {
-                            title:'多天计划设置',
-                            html: multi_day_schedule_setting_html,
+                            title:'计划设置',
+                            html: schedule_setting_html,
                             border: false,
                             autoScroll: true,
                             iconCls: 'nav',
 
                             listeners: {
                                 expand: function(){
-                                    var editor = Ext.getCmp('table-editor')
-                                    editor.setTitle('多天计划设置')
-                                    multi_day_schedule_setting_expand()
+//                                    multi_day_schedule_setting_expand()
+                                    schedule_setting_expand()
                                 }
                             }
                         },
-                        {
-                            title:'有顺序计划设置',
-                            html: ordered_schedule_setting_html,
-                            border: false,
-                            autoScroll: true,
-                            iconCls: 'nav',
-
-                            listeners: {
-                                expand: function(){
-                                    var editor = Ext.getCmp('table-editor')
-                                    editor.setTitle('有顺序计划设置')
-                                    ordered_schedule_expand()
-                                }
-                            }
-                        },
-                        {
-                            title:'无顺序计划设置',
-                            html: unordered_schedule_setting_html,
-                            border: false,
-                            autoScroll: true,
-                            iconCls: 'nav',
-
-                            listeners: {
-                                expand: function(){
-                                    var editor = Ext.getCmp('table-editor')
-                                    editor.setTitle('无顺序计划设置')
-                                    unordered_schedule_expand()
-                                }
-                            }
-                        },
+//                        {
+//                            title:'有顺序计划设置',
+//                            html: ordered_schedule_setting_html,
+//                            border: false,
+//                            autoScroll: true,
+//                            iconCls: 'nav',
+//
+//                            listeners: {
+//                                expand: function(){
+//                                    ordered_schedule_expand()
+//                                }
+//                            }
+//                        },
+//                        {
+//                            title:'无顺序计划设置',
+//                            html: unordered_schedule_setting_html,
+//                            border: false,
+//                            autoScroll: true,
+//                            iconCls: 'nav',
+//
+//                            listeners: {
+//                                expand: function(){
+//                                    unordered_schedule_expand()
+//                                }
+//                            }
+//                        },
                         {
                             title:'地图设置',
                             html: '',

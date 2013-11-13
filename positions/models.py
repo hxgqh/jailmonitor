@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
+from jailMonitor.settings import *
 from django.db import models
 
 
@@ -20,3 +21,5 @@ class PositionsModel(models.Model):
     position_card = models.ForeignKey(PositionCardModel, blank=True, null=True)  # position_card_id
 
 
+class PatrolMapModel(models.Model):
+    image = models.ImageField(upload_to='images/', blank=True, null=True)

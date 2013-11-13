@@ -4,7 +4,7 @@ Ext.define('Line',{
         'name',
         'position',
         { name: 'next_time_arrival', type: 'int'},
-        { name: 'time_error', type: 'int'},
+//        { name: 'time_error', type: 'int'},
         'order'
     ]
 });

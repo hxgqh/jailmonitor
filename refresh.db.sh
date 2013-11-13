@@ -1,5 +1,5 @@
 #!/bin/bash
-mysql -u root -p<< eof
+mysql -h192.168.1.4 -u root -p<< eof
 drop database jailmonitor;
 CREATE DATABASE jailmonitor DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 eof

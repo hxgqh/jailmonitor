@@ -3,34 +3,32 @@
   <component name="ChangeListManager">
     <list default="true" id="9e50273a-5501-4f64-8cc4-f4b467f973ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/actions.js" afterPath="$PROJECT_DIR$/medias/js/myjs/actions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/get_data.py" afterPath="$PROJECT_DIR$/backend/get_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/basic.py" afterPath="$PROJECT_DIR$/views/basic.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/dbAdapter.py" afterPath="$PROJECT_DIR$/views/dbAdapter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/persons/models.py" afterPath="$PROJECT_DIR$/persons/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lines/models.py" afterPath="$PROJECT_DIR$/lines/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/positions/models.py" afterPath="$PROJECT_DIR$/positions/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temphum/models.py" afterPath="$PROJECT_DIR$/temphum/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/patrol_daemon.py" afterPath="$PROJECT_DIR$/backend/patrol_daemon.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/css/portal.css" afterPath="$PROJECT_DIR$/medias/css/portal.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/portal.js" afterPath="$PROJECT_DIR$/medias/js/myjs/portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/temp_hum_daemon.py" afterPath="$PROJECT_DIR$/backend/temp_hum_daemon.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/test_get_data.py" afterPath="$PROJECT_DIR$/test/test_get_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/refresh.db.sh" afterPath="$PROJECT_DIR$/refresh.db.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/row-editing.js" afterPath="$PROJECT_DIR$/medias/js/myjs/row-editing.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jailMonitor/settings.py" afterPath="$PROJECT_DIR$/jailMonitor/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/store.js" afterPath="$PROJECT_DIR$/medias/js/myjs/store.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jailMonitor/urls.py" afterPath="$PROJECT_DIR$/jailMonitor/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/positions/views.py" afterPath="$PROJECT_DIR$/positions/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schedules/views.py" afterPath="$PROJECT_DIR$/schedules/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temphum/views.py" afterPath="$PROJECT_DIR$/temphum/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lines/views.py" afterPath="$PROJECT_DIR$/lines/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jailMonitor.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384237143442" ignored="false" />
-    <file path="/urls.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384247642413" ignored="false" />
-    <file path="/basic.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383707900291" ignored="false" />
-    <file path="/settings.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383906221929" ignored="false" />
-    <file path="/index.html" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384244817067" ignored="false" />
+    <file path="/Dummy.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384346805898" ignored="false" />
+    <file path="/urls.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384249482856" ignored="false" />
+    <file path="/basic.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384251523978" ignored="false" />
+    <file path="/settings.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384348306677" ignored="false" />
+    <file path="/index.html" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384248257128" ignored="false" />
     <file path="/login.html" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1381015185473" ignored="false" />
     <file path="/a.dummy" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383997899744" ignored="false" />
     <file path="/RowEdit.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1380668677252" ignored="false" />
-    <file path="/portal.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384243590989" ignored="false" />
-    <file path="/portal.css" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384243271487" ignored="false" />
+    <file path="/portal.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384350118234" ignored="false" />
+    <file path="/portal.css" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384352362064" ignored="false" />
     <file path="/row-editing.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384049529311" ignored="false" />
     <file path="/login.css" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1380939649006" ignored="false" />
     <file path="/index.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383289838921" ignored="false" />
@@ -46,7 +44,7 @@
     <file path="/data_structure_convert_discuss.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1381807256236" ignored="false" />
     <file path="$USER_HOME$/work/projects/igpBackend/igpBackend/files/structure_topology.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1382889117062" ignored="false" />
     <file path="/structure_topology.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1382889104209" ignored="false" />
-    <file path="/models.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384061024383" ignored="false" />
+    <file path="/models.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384250565958" ignored="false" />
     <file path="$PROJECT_DIR$/../../hunBoHui/analyze/wedding/bootstrap/wedding.html" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1382317180557" ignored="false" />
     <file path="$PROJECT_DIR$/../../hunBoHui/analyze/20131021/wedding/bootstrap/wedding.html" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1382321338525" ignored="false" />
     <file path="/wedding.html" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1382321338525" ignored="false" />
@@ -119,7 +117,7 @@
     <file path="/test_get_data.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384052651951" ignored="false" />
     <file path="/test_SocketServer.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383640073074" ignored="false" />
     <file path="/portal.defines.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383702093960" ignored="false" />
-    <file path="/actions.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384247586588" ignored="false" />
+    <file path="/actions.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384352496587" ignored="false" />
     <file path="/patrol_daemon.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383897457843" ignored="false" />
     <file path="/test_patrol.data.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383711465554" ignored="false" />
     <file path="/animate.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383881924978" ignored="false" />
@@ -148,56 +146,61 @@
       <file leaf-file-name="portal.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/medias/js/myjs/portal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="323" column="0" selection-start="14673" selection-end="14673" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="actions.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medias/js/myjs/actions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="158" column="8" selection-start="3724" selection-end="3754" vertical-scroll-proportion="-4.25">
-              <folding>
-                <element signature="n#!!block;n#add_position_card#0" expanded="false" />
-                <element signature="n#!!block;n#add_temp_hum_position_card#0" expanded="false" />
-                <element signature="n#!!block;n#update_temp_hum_position_card#1" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jailMonitor/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="67" selection-start="508" selection-end="508" vertical-scroll-proportion="0.0">
+            <state line="476" column="23" selection-start="20163" selection-end="20163" vertical-scroll-proportion="-11.384615">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/positions/views.py">
+        <entry file="file://$PROJECT_DIR$/schedules/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="145" column="4" selection-start="3433" selection-end="3992" vertical-scroll-proportion="0.0">
+            <state line="432" column="34" selection-start="12757" selection-end="12757" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/temphum/views.py">
+      <file leaf-file-name="store.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/medias/js/myjs/store.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="242" column="17" selection-start="6027" selection-end="6027" vertical-scroll-proportion="0.63726884">
+            <state line="44" column="24" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lines/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="68" selection-start="960" selection-end="960" vertical-scroll-proportion="5.625">
+            <state line="45" column="39" selection-start="1139" selection-end="1149" vertical-scroll-proportion="-12.923077">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dbAdapter.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/dbAdapter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="110" column="14" selection-start="2388" selection-end="2388" vertical-scroll-proportion="-9.461538">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="actions.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/medias/js/myjs/actions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="832" column="71" selection-start="23669" selection-end="23669" vertical-scroll-proportion="0.6385542">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="row-editing.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/medias/js/myjs/row-editing.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="414" column="0" selection-start="11428" selection-end="11428" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -206,25 +209,7 @@
       <file leaf-file-name="portal.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/medias/css/portal.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="199" column="1" selection-start="3395" selection-end="3395" vertical-scroll-proportion="-12.538462">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/positions/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="48" selection-start="242" selection-end="242" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/temphum/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="35" selection-start="901" selection-end="901" vertical-scroll-proportion="0.0">
+            <state line="292" column="21" selection-start="4915" selection-end="4915" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -248,22 +233,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/schedules/views.py" />
-        <option value="$PROJECT_DIR$/medias/js/myjs/row-editing.js" />
-        <option value="$PROJECT_DIR$/persons/models.py" />
-        <option value="$PROJECT_DIR$/backend/patrol_daemon.py" />
-        <option value="$PROJECT_DIR$/backend/temp_hum_daemon.py" />
-        <option value="$PROJECT_DIR$/positions/models.py" />
-        <option value="$PROJECT_DIR$/temphum/models.py" />
-        <option value="$PROJECT_DIR$/test/test_get_data.py" />
         <option value="$PROJECT_DIR$/backend/get_data.py" />
-        <option value="$PROJECT_DIR$/medias/css/portal.css" />
-        <option value="$PROJECT_DIR$/medias/js/myjs/portal.js" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/positions/views.py" />
-        <option value="$PROJECT_DIR$/medias/js/myjs/actions.js" />
-        <option value="$PROJECT_DIR$/jailMonitor/urls.py" />
         <option value="$PROJECT_DIR$/temphum/views.py" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/jailMonitor/urls.py" />
+        <option value="$PROJECT_DIR$/positions/models.py" />
+        <option value="$PROJECT_DIR$/views/basic.py" />
+        <option value="$PROJECT_DIR$/jailMonitor/settings.py" />
+        <option value="$PROJECT_DIR$/lines/models.py" />
+        <option value="$PROJECT_DIR$/lines/views.py" />
+        <option value="$PROJECT_DIR$/medias/js/myjs/row-editing.js" />
+        <option value="$PROJECT_DIR$/medias/js/myjs/store.js" />
+        <option value="$PROJECT_DIR$/views/dbAdapter.py" />
+        <option value="$PROJECT_DIR$/medias/js/myjs/portal.js" />
+        <option value="$PROJECT_DIR$/medias/css/portal.css" />
+        <option value="$PROJECT_DIR$/medias/js/myjs/actions.js" />
       </list>
     </option>
   </component>
@@ -298,7 +283,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -327,7 +311,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="medias" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -341,7 +325,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="medias" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -355,7 +343,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
+              <option name="myItemId" value="medias" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="myjs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -369,7 +365,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="temphum" />
+              <option name="myItemId" value="medias" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -383,25 +383,26 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
+              <option name="myItemId" value="lines" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="options.lastSelected" value="File.Encoding" />
     <property name="recentsLimit" value="5" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="options.lastSelected" value="File.Encoding" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../finished/masterspix" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PublishConfig">
     <servers>
@@ -526,7 +527,7 @@
       <recent name="$PROJECT_DIR$/views" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_get_data">
+  <component name="RunManager" selected="Django server.jailMonitor">
     <configuration default="false" name="get_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -771,13 +772,13 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.06097561" sideWeight="0.60079575" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14992826" sideWeight="0.60079575" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18938307" sideWeight="0.60079575" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19225252" sideWeight="0.60079575" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.39920425" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="-192" y="-1043" width="825" height="971" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.39920425" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="-125" y="-989" width="854" height="874" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -851,116 +852,114 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/schedules/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="618" column="44" selection-start="18576" selection-end="18576" vertical-scroll-proportion="-8.615385">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/persons/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="8" selection-start="614" selection-end="618" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/patrol_daemon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="19" selection-start="178" selection-end="178" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medias/js/myjs/row-editing.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="275" column="17" selection-start="7845" selection-end="7845" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/get_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="13" selection-start="2288" selection-end="2288" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/temp_hum_daemon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="23" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_get_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="12" selection-start="1305" selection-end="1305" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="68" selection-start="960" selection-end="960" vertical-scroll-proportion="5.625">
+        <state line="11" column="90" selection-start="575" selection-end="575" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medias/css/portal.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="199" column="1" selection-start="3395" selection-end="3395" vertical-scroll-proportion="-12.538462">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/positions/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="48" selection-start="242" selection-end="242" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/temphum/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="35" selection-start="901" selection-end="901" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medias/js/myjs/portal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="323" column="0" selection-start="14673" selection-end="14673" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medias/js/myjs/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="158" column="8" selection-start="3724" selection-end="3754" vertical-scroll-proportion="-4.25">
-          <folding>
-            <element signature="n#!!block;n#add_position_card#0" expanded="false" />
-            <element signature="n#!!block;n#add_temp_hum_position_card#0" expanded="false" />
-            <element signature="n#!!block;n#update_temp_hum_position_card#1" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jailMonitor/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="67" selection-start="508" selection-end="508" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/positions/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="4" selection-start="3433" selection-end="3992" vertical-scroll-proportion="0.0">
+        <state line="41" column="36" selection-start="2798" selection-end="2798" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/temphum/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="242" column="17" selection-start="6027" selection-end="6027" vertical-scroll-proportion="0.63726884">
+        <state line="332" column="50" selection-start="8377" selection-end="8377" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/positions/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="17" selection-start="3795" selection-end="3795" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/positions/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="887" selection-end="887" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/basic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="118" column="41" selection-start="3036" selection-end="3036" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jailMonitor/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="46" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lines/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="29" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medias/js/myjs/row-editing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="414" column="0" selection-start="11428" selection-end="11428" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/dbAdapter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="14" selection-start="2388" selection-end="2388" vertical-scroll-proportion="-9.461538">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schedules/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="432" column="34" selection-start="12757" selection-end="12757" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medias/js/myjs/portal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="476" column="23" selection-start="20163" selection-end="20163" vertical-scroll-proportion="-11.384615">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lines/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="39" selection-start="1139" selection-end="1149" vertical-scroll-proportion="-12.923077">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medias/js/myjs/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="24" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medias/css/portal.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="292" column="21" selection-start="4915" selection-end="4915" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medias/js/myjs/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="832" column="71" selection-start="23669" selection-end="23669" vertical-scroll-proportion="0.6385542">
           <folding />
         </state>
       </provider>

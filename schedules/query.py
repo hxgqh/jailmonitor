@@ -6,6 +6,7 @@ __author__ = 'xiaoghu@cisco.com'
 import json
 import datetime
 import traceback
+import copy
 
 from persons.models import *
 from positions.models import *
@@ -124,19 +125,65 @@ class Query(object):
         return schedules
         pass
 
-    def is_exists(self, right_arrive_time):
-        ts = right_arrive_time - self.time_error
-        te = right_arrive_time + self.time_error
-        if self.cursor.filter(**self.filter_dict).filter(arrive_time__gte=ts, arrive_time__lt=te).count() > 0:
-            return True
-        else:
+    def is_exists(self, right_arrive_time, position, **kwargs):
+        tmp_filter_dict = copy.deepcopy(self.filter_dict)
+        if 'status' in tmp_filter_dict:
+            tmp_filter_dict.pop('status')
+        self.cursor = PatrolActionHistoryModel.objects.filter(**tmp_filter_dict)
+
+        if not self.cursor:
             return False
+
+        if not kwargs:
+            ts = right_arrive_time - self.time_error
+            te = right_arrive_time + self.time_error
+            if self.cursor.filter(arrive_time__gte=ts, arrive_time__lt=te, position=position).count() > 0:
+                return True
+            else:
+                return False
+            pass
+        else:
+            ts = kwargs.get('start_time', None)
+            te = kwargs.get('end_time', None)
+            if ts and te:
+                if self.cursor.filter(arrive_time__gte=ts, arrive_time__lt=te, position=position).count() > 0:
+                    return True
+                else:
+                    return False
+                pass
+            else:
+                return False
+                pass
+            pass
         pass
 
-    def get_arrive_time(self, right_arrive_time):
-        ts = right_arrive_time - self.time_error
-        te = right_arrive_time + self.time_error
-        return self.cursor.filter(**self.filter_dict).filter(arrive_time__gte=ts, arrive_time__lt=te)[0]
+    def get_first_arrive_data(self, right_arrive_time, position, **kwargs):
+        tmp_filter_dict = copy.deepcopy(self.filter_dict)
+        if 'status' in tmp_filter_dict:
+            tmp_filter_dict.pop('status')
+        self.cursor = PatrolActionHistoryModel.objects.filter(**tmp_filter_dict)
+
+        if not kwargs:
+            ts = right_arrive_time - self.time_error
+            te = right_arrive_time + self.time_error
+            return self.cursor.filter(**self.filter_dict).filter(
+                arrive_time__gte=ts,
+                arrive_time__lt=te,
+                position=position
+            )[0]
+        else:
+            ts = kwargs.get('start_time', None)
+            te = kwargs.get('end_time', None)
+
+            if not (ts and te):
+                return None
+
+            return self.cursor.filter(**self.filter_dict).filter(
+                arrive_time__gte=ts,
+                arrive_time__lt=te,
+                position=position
+            )[0]
+            pass
         pass
 
     def query_multi_day_schedule(self):
@@ -149,19 +196,23 @@ class Query(object):
         # Check all schedule data
         for schedule in schedules:
             # Check schedule's every day
-            day_num = (schedule.end_time - schedule.start_time).days
+            day_num = (schedule.end_time - schedule.start_time).days+1
+            print 'day_num:'+str(day_num)
             for i in range(day_num):
                 # Check all positions in one day
                 date = schedule.start_time + datetime.timedelta(i, 0, 0)
                 right_arrive_time = datetime.datetime.strptime(
-                    date.strftime('%Y-%m-%d') + ' ' + schedule.daily_start_time.stftime('%H:%M:%S'),
+                    date.strftime('%Y-%m-%d') + ' ' + schedule.daily_start_time.strftime('%H:%M:%S'),
                     '%Y-%m-%d %H:%M:%S'
                 )
+
+                if right_arrive_time < self.start_time or right_arrive_time > self.end_time:
+                    continue
 
                 count = 0
                 time_mount = 0
                 for line_position in LinePositionsModel.objects.filter(line=schedule.line).order_by('order'):
-                    position = line_position.position
+                    position = line_position.position.position
                     order = int(line_position.order)
                     next_time_arrival = int(line_position.next_time_arrival)
                     time_mount = 0 if not count == 0 else (time_mount + next_time_arrival)
@@ -169,10 +220,29 @@ class Query(object):
                     right_arrive_time = right_arrive_time if count == 0 \
                         else right_arrive_time+datetime.timedelta(0, time_mount*60, 0)
 
-                    if self.is_exists(right_arrive_time):
-                        first_arrive_data = self.get_arrive_time(right_arrive_time)
+                    count += 1
+                    print count
+
+                    # 地点过滤
+                    if 'position' in self.filter_dict:
+                        if not line_position.position == self.filter_dict['position']:
+                            continue
+                        pass
+
+                    if self.is_exists(right_arrive_time, line_position.position):
+                        first_arrive_data = self.get_first_arrive_data(
+                            right_arrive_time,
+                            line_position.position
+                        )
                         first_arrive_time = first_arrive_data.arrive_time.strftime('%Y-%m-%d %H:%M:%S')
                         person = first_arrive_data.person.name
+
+                        # 人员过滤
+                        if 'person' in self.filter_dict:
+                            if not first_arrive_data.person == self.filter_dict['person']:
+                                continue
+                            pass
+
                         data.append(
                             {
                                 'position': position,
@@ -183,7 +253,20 @@ class Query(object):
                             }
                         )
                         pass
+                    else:
+                        if '未到' in self.filter_dict.get('status', '未到'):
+                            data.append(
+                                {
+                                    'position': position,
+                                    'status': right_arrive_time.strftime('%Y-%m-%d %H:%M:%S')+'未到',
+                                    'arrive_time': '',
+                                    'person': '',
+                                    'event': ''
+                                }
+                            )
+                        pass
                     pass
+
                 pass
             pass
 
@@ -195,11 +278,80 @@ class Query(object):
         data = []
 
         # filter schedules
-        schedules = self.get_all_schedules()
+        schedules = self.get_all_schedules('ordered')
 
-        line, start_time = self.schedule_line.split(',')
+        # Check all schedule data
+        for schedule in schedules:
+            # Check schedule's every day
+            day_num = (self.end_time - self.start_time).days+1
+            print 'day_num:'+str(day_num)
+            for i in range(day_num):
+                # Check all positions in one day
+                date = self.start_time + datetime.timedelta(i, 0, 0)
+                right_arrive_time = datetime.datetime.strptime(
+                    date.strftime('%Y-%m-%d') + ' ' + schedule.start_time.strftime('%H:%M:%S'),
+                    '%Y-%m-%d %H:%M:%S'
+                )
 
+                count = 0
+                time_mount = 0
+                for line_position in LinePositionsModel.objects.filter(line=schedule.line).order_by('order'):
+                    position = line_position.position.position
+                    order = int(line_position.order)
+                    next_time_arrival = int(line_position.next_time_arrival)
+                    time_mount = 0 if count == 0 else (time_mount + next_time_arrival)
 
+                    right_arrive_time = right_arrive_time if count == 0 \
+                        else right_arrive_time+datetime.timedelta(0, time_mount*60, 0)
+
+                    count += 1
+
+                    # 地点过滤
+                    if 'position' in self.filter_dict:
+                        if not line_position.position == self.filter_dict['position']:
+                            continue
+                        pass
+
+                    if self.is_exists(right_arrive_time, line_position.position):
+                        first_arrive_data = self.get_first_arrive_data(
+                            right_arrive_time,
+                            line_position.position
+                        )
+                        first_arrive_time = first_arrive_data.arrive_time.strftime('%Y-%m-%d %H:%M:%S')
+                        person = first_arrive_data.person.name
+
+                        # 人员过滤
+                        if 'person' in self.filter_dict:
+                            if not first_arrive_data.person == self.filter_dict['person']:
+                                continue
+                            pass
+
+                        data.append(
+                            {
+                                'position': position,
+                                'status': '已到',
+                                'arrive_time': first_arrive_time,
+                                'person': person,
+                                'event': ''
+                            }
+                        )
+                        pass
+                    else:
+                        if '未到' in self.filter_dict.get('status', '未到'):
+                            data.append(
+                                {
+                                    'position': position,
+                                    'status': right_arrive_time.strftime('%Y-%m-%d %H:%M:%S')+'未到',
+                                    'arrive_time': '',
+                                    'person': '',
+                                    'event': ''
+                                }
+                            )
+                        pass
+                    pass
+
+                pass
+            pass
 
         return data
         pass
@@ -208,13 +360,81 @@ class Query(object):
         print 'func query_unordered_schedule'
         data = []
 
-        line, start_time, end_time = self.schedule_line.split(',')
+        # filter schedules
+        schedules = self.get_all_schedules('unordered')
 
-        lines = []
-        if self.schedule_line == '所有':
+        # Check all schedule data
+        for schedule in schedules:
+            # Check schedule's every day
+            day_num = (self.end_time - self.start_time).days+1
+            print 'day_num:'+str(day_num)
+            for i in range(day_num):
+                # Check all positions in one day
+                date = self.start_time + datetime.timedelta(i, 0, 0)
+
+                start_time = datetime.datetime.strptime(
+                    date.strftime('%Y-%m-%d') + ' ' + schedule.start_time.strftime('%H:%M:%S'),
+                    '%Y-%m-%d %H:%M:%S'
+                )
+
+                end_time = datetime.datetime.strptime(
+                    date.strftime('%Y-%m-%d') + ' ' + schedule.end_time.strftime('%H:%M:%S'),
+                    '%Y-%m-%d %H:%M:%S'
+                )
+
+                for line_position in LinePositionsModel.objects.filter(line=schedule.line):
+                    # 地点过滤
+                    if 'position' in self.filter_dict:
+                        if not line_position.position == self.filter_dict['position']:
+                            continue
+                        pass
+
+                    if self.is_exists(None, line_position.position, start_time=start_time, end_time=end_time):
+                        first_arrive_data = self.get_first_arrive_data(
+                            None,
+                            line_position.position,
+                            start_time=start_time,
+                            end_time=end_time
+                        )
+                        first_arrive_time = first_arrive_data.arrive_time.strftime('%Y-%m-%d %H:%M:%S')
+                        person = first_arrive_data.person.name
+
+                        # 人员过滤
+                        if 'person' in self.filter_dict:
+                            if not first_arrive_data.person == self.filter_dict['person']:
+                                continue
+                            pass
+
+                        data.append(
+                            {
+                                'position': line_position.position.position,
+                                'status': '已到',
+                                'arrive_time': first_arrive_time,
+                                'person': person,
+                                'event': ''
+                            }
+                        )
+                        pass
+                    else:
+                        if '未到' in self.filter_dict.get('status', '未到'):
+                            status = start_time.strftime('%Y-%m-%d %H:%M:%S') \
+                                     + '至' \
+                                     + end_time.strftime('%Y-%m-%d %H:%M:%S') \
+                                     + '未到'
+
+                            data.append(
+                                {
+                                    'position': line_position.position.position,
+                                    'status': status,
+                                    'arrive_time': '',
+                                    'person': '',
+                                    'event': ''
+                                }
+                            )
+                        pass
+
+                pass
             pass
-        else:
-            lines.append(self.schedule_line)
 
         return data
         pass
@@ -276,6 +496,10 @@ class Query(object):
                 return data
                 pass
             pass
+
+        # TODO: 增加事件类型过滤
+        if not self.status == '所有':
+            self.filter_dict['status'] = self.status
 
         if self.schedule_type == '多天计划查询':
             data = self.query_multi_day_schedule()

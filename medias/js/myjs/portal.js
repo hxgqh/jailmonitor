@@ -477,15 +477,9 @@ function query_setting_expand(){
         show_result_query_schedule()
 
         $('#result_query_schedule').click(function(){
-//            show_result_query_multi_day_schedule()
             show_result_query_schedule()
         })
-//        $('#result_query_ordered_schedule').click(function(){
-//            show_result_query_ordered_schedule()
-//        })
-//        $('#result_query_unordered_schedule').click(function(){
-//            show_result_query_unordered_schedule()
-//        })
+
         $('#result_query_alarm').click(function(){
             show_result_query_alarm()
         })

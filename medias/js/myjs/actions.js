@@ -836,16 +836,35 @@ function query(){
         },
         function(data, status){
             data = eval(data)
-            var query_result_table_tbody$ = $('#query_result_table').children().eq[1]
-            query_result_table_tbody$.append(
-                '<tr>' +
-                    '<td></td>' +
-                    '<td></td>' +
-                    '<td></td>' +
-                    '<td></td>' +
-                    '<td></td>' +
-                '</tr>'
-            )
+            console.log(data)
+            var query_result_table_tbody$ = $($('#query_result_table').children().eq(1))
+            query_result_table_tbody$.empty()
+            console.log(query_result_table_tbody$)
+            for(var i=0;i<data.length;i++){
+                if(data[i]['status'].indexOf('未到') >= 0){
+                    query_result_table_tbody$.append(
+                        '<tr class="error">' +
+                            '<td>'+data[i]['position']+'</td>' +
+                            '<td>'+data[i]['status']+'</td>' +
+                            '<td>'+data[i]['arrive_time']+'</td>' +
+                            '<td>'+data[i]['person']+'</td>' +
+                            '<td>'+data[i]['event']+'</td>' +
+                        '</tr>'
+                    )
+                }
+                else{
+                    query_result_table_tbody$.append(
+                        '<tr>' +
+                            '<td>'+data[i]['position']+'</td>' +
+                            '<td>'+data[i]['status']+'</td>' +
+                            '<td>'+data[i]['arrive_time']+'</td>' +
+                            '<td>'+data[i]['person']+'</td>' +
+                            '<td>'+data[i]['event']+'</td>' +
+                        '</tr>'
+                    )
+                }
+
+            }
         }
     )
 }
@@ -875,7 +894,7 @@ function init_query_options(){
     }
     else if(schedule_type == '有顺序计划查询'){
         $.get(
-            "/data/multiDayScheduleData",
+            "/data/orderedScheduleData",
             null,
             function(data, status){
                 data = eval(data)
@@ -894,7 +913,7 @@ function init_query_options(){
     }
     else{
         $.get(
-            "/data/multiDayScheduleData",
+            "/data/unorderedScheduleData",
             null,
             function(data, status){
                 data = eval(data)

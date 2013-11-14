@@ -175,7 +175,7 @@ def getOrderedScheduleData():
             data.append({
                 'no': schedule.id,
                 'line': schedule.line.name,
-                'start_time': schedule.start_time.strftime('%Y-%m-%d %H:%M:%S')
+                'start_time': schedule.start_time.strftime('%H:%M:%S')
             })
         pass
     except Exception as e:
@@ -195,13 +195,13 @@ def getUnorderedScheduleData():
 
     try:
         for schedule in UnorderedScheduleModel.objects.all():
-            schedule.start_time = schedule.start_time + datetime.timedelta(0, 18*3600, 0)
-            schedule.end_time = schedule.end_time + datetime.timedelta(0, 18*3600, 0)
+            schedule.start_time = schedule.start_time
+            schedule.end_time = schedule.end_time
             data.append({
                 'no': schedule.id,
                 'line': schedule.line.name,
-                'start_time': schedule.start_time.strftime('%Y-%m-%d %H:%M:%S'),
-                'end_time': schedule.end_time.strftime('%Y-%m-%d %H:%M:%S')
+                'start_time': schedule.start_time.strftime('%H:%M:%S'),
+                'end_time': schedule.end_time.strftime('%H:%M:%S')
             })
         pass
     except Exception as e:

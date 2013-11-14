@@ -810,6 +810,170 @@ function query_and_show_mds(){
 //    })
 //}
 
+function query(){
+    var schedule_type = $('#query_result_schedule_type_select').val()
+    var schedule_line = $('#query_result_schedule_line_select').val()
+    var start_time = $('#query_result_schedule_start_time_input').val()
+    var end_time = $('#query_result_schedule_end_time_input').val()
+    var time_error = $('#query_result_schedule_time_error_input').val()
+    var position = $('#query_result_schedule_position_input').val()
+    var person = $('#query_result_schedule_person_input').val()
+    var status = $('#query_result_schedule_status_input').val()
+
+    $.get(
+        "/query/",
+        {
+            schedule_type: schedule_type,
+            schedule_line: schedule_line,
+            start_time: start_time,
+            end_time: end_time,
+            time_error: time_error,
+            position: position,
+            person: person,
+            status: status
+        },
+        function(data, status){
+            data = eval(data)
+            var query_result_table_tbody$ = $('#query_result_table').children().eq[1]
+            query_result_table_tbody$.append(
+                '<tr>' +
+                    '<td></td>' +
+                    '<td></td>' +
+                    '<td></td>' +
+                    '<td></td>' +
+                    '<td></td>' +
+                '</tr>'
+            )
+        }
+    )
+}
+
+function init_query_options(){
+    var schedule_type = $('#query_result_schedule_type_select').val()
+    if(schedule_type == '多天计划查询'){
+        $.get(
+            "/data/multiDayScheduleData",
+            null,
+            function(data, status){
+                data = eval(data)
+                $('#query_result_schedule_line_select').empty()
+                $('#query_result_schedule_line_select').append('<option>所有</option>')
+                for(var i=0;i<data.length;i++){
+                    $('#query_result_schedule_line_select').append(
+                        '<option>' +
+                            data[i].line + ',' +
+                            data[i].start_time + ',' +
+                            data[i].end_time + ',' +
+                            data[i].daily_start_time +
+                        '</option>'
+                    )
+                }
+            }
+        )
+    }
+    else if(schedule_type == '有顺序计划查询'){
+        $.get(
+            "/data/multiDayScheduleData",
+            null,
+            function(data, status){
+                data = eval(data)
+                $('#query_result_schedule_line_select').empty()
+                $('#query_result_schedule_line_select').append('<option>所有</option>')
+                for(var i=0;i<data.length;i++){
+                    $('#query_result_schedule_line_select').append(
+                        '<option>' +
+                            data[i].line + ',' +
+                            data[i].start_time +
+                        '</option>'
+                    )
+                }
+            }
+        )
+    }
+    else{
+        $.get(
+            "/data/multiDayScheduleData",
+            null,
+            function(data, status){
+                data = eval(data)
+                $('#query_result_schedule_line_select').empty()
+                $('#query_result_schedule_line_select').append('<option>所有</option>')
+                for(var i=0;i<data.length;i++){
+                    $('#query_result_schedule_line_select').append(
+                        '<option>' +
+                            data[i].line + ',' +
+                            data[i].start_time + ',' +
+                            data[i].end_time +
+                        '</option>'
+                    )
+                }
+            }
+        )
+    }
+
+    $('#query_result_schedule_start_time_input').each(function(){
+        $(this).blur(function(){
+            if($(this).val() == ''){
+                $(this).val('2013-11-02 01:01:01')
+            }
+        })
+
+        $(this).focus(function(){
+            if($(this).val() == '2013-11-02 01:01:01'){
+                $(this).val('')
+            }
+        })
+    })
+
+    $('#query_result_schedule_end_time_input').each(function(){
+        $(this).blur(function(){
+            if($(this).val() == ''){
+                $(this).val('2013-11-02 01:01:01')
+            }
+        })
+
+        $(this).focus(function(){
+            if($(this).val() == '2013-11-02 01:01:01'){
+                $(this).val('')
+            }
+        })
+    })
+
+    $.get(
+        "/data/positionData",
+        null,
+        function(data, status){
+            data = eval(data)
+            $('#query_result_schedule_position_input').empty()
+            $('#query_result_schedule_position_input').append('<option>所有</option>')
+            for(var i=0;i<data.length;i++){
+                $('#query_result_schedule_position_input').append(
+                    '<option>' +
+                        data[i].position +
+                    '</option>'
+                )
+            }
+        }
+    )
+
+    $.get(
+        "/data/personData",
+        null,
+        function(data, status){
+            data = eval(data)
+            $('#query_result_schedule_person_input').empty()
+            $('#query_result_schedule_person_input').append('<option>所有</option>')
+            for(var i=0;i<data.length;i++){
+                $('#query_result_schedule_person_input').append(
+                    '<option>' +
+                        data[i].name +
+                    '</option>'
+                )
+            }
+        }
+    )
+}
+
 function show_result_query_schedule(){
     var div_editor$ = $('#div-editor')
     div_editor$.empty()
@@ -821,19 +985,23 @@ function show_result_query_schedule(){
                         '<option>无顺序计划查询</option>' +
                     '</select>' +
                 '<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线路：</span>' +
-                    '<select id="query_result_multi_day_schedule_line_select" style="width:400px !important"></select>' +
+                    '<select id="query_result_schedule_line_select" style="width:400px !important"></select>' +
                 '<br/><br/><span>开始时间：</span>' +
-                    '<input/>' +
+                    '<input id="query_result_schedule_start_time_input" value="2013-11-02 01:01:01"/>' +
                 '<span>&nbsp;&nbsp;&nbsp;&nbsp;结束时间：</span>' +
-                    '<input/>' +
+                    '<input id="query_result_schedule_end_time_input" value="2013-11-02 01:01:01"/>' +
                 '<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间误差（分钟数）：</span>' +
-                    '<input/>' +
+                    '<input id="query_result_schedule_time_error_input" value="8"/>' +
                 '<br/><br/><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地点：</span>' +
-                    '<select></select>' +
+                    '<select id="query_result_schedule_position_input"></select>' +
                 '<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人员：</span>' +
-                    '<select></select>' +
+                    '<select  id="query_result_schedule_person_input"></select>' +
                 '<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态：</span>' +
-                    '<select></select>' +
+                    '<select id="query_result_schedule_status_input">' +
+                        '<option>所有</option>' +
+                        '<option>未到</option>' +
+                        '<option>已到</option>' +
+                    '</select>' +
                 '<span id="query" class="btn btn-primary" style="float:right;margin-right:10px;">查询</span>' +
             '<div>' +
         '</div>' +
@@ -841,7 +1009,18 @@ function show_result_query_schedule(){
                 '<thead><th>地点</th><th>巡检状态</th><th>实到时间</th><th>人员</th><th>事件</th></thead>' +
                 '<tbody></tbody>' +
             '</table>' +
-        '</div>')
+        '</div>'
+    )
+
+    init_query_options()
+
+    $('#query_result_schedule_type_select').change(function(){
+        init_query_options()
+    })
+
+    $('#query').click(function(){
+        query()
+    })
 
 //    $.get(
 //        "/data/multiDayScheduleData",

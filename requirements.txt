@@ -2,3 +2,6 @@ crc16
 ipaddr
 django-excel-response
 xlwt
+networkx
+netaddr
+python-mysqldb

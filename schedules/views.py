@@ -21,6 +21,8 @@ from django.views.decorators.csrf import csrf_exempt
 from schedules.models import *
 from conf.confGlobal import *
 
+from query import *
+
 
 @login_required(login_url="/login/")
 def get_multi_day_schedule_excel(request):
@@ -625,4 +627,32 @@ def get_map_multi_day_schedule(request):
     # print json.dumps(data, indent=4)
 
     return HttpResponse(json.dumps(data))
+    pass
+
+
+@login_required(login_url="/login/")
+def query(request):
+    """
+        self.schedule_type = kwargs.get('schedule_type', None)
+        self.schedule_line = kwargs.get('schedule_line', None)
+        self.start_time = kwargs.get('start_time', None)
+        self.end_time = kwargs.get('end_time', None)
+        self.time_error = kwargs.get('time_error', None)
+        self.position = kwargs.get('position', None)
+        self.person = kwargs.get('person', None)
+        self.status = kwargs.get('status', None)
+    """
+    print "views query"
+    template_data = []
+
+    try:
+        query = Query(**request.GET)
+        template_data = query.query()
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+        pass
+
+    return HttpResponse(json.dumps(template_data))
     pass

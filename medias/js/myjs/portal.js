@@ -61,7 +61,7 @@ var query_setting_html = '<span id="export_unorderedSchedule" class="btn btn-pri
                                 '<span id="result_query_schedule" class="btn result_query">计划查询</span>' +
 //                                '<span id="result_query_ordered_schedule" class="btn result_query">有顺序计划查询</span>' +
 //                                '<span id="result_query_unordered_schedule" class="btn result_query">无顺序计划查询</span>' +
-                                '<span id="result_query_alarm" class="btn result_query">报警信息查询</span>' +
+//                                '<span id="result_query_alarm" class="btn result_query">报警信息查询</span>' +
                                 '<span id="result_query_map_history" class="btn result_query">巡检地图历史轨迹查询</span>' +
                                 '<span id="result_query_patrol_device_status" class="btn result_query">巡检设备状态查询</span>' +
                                 '<span id="result_query_realtime_temperature_humidity" class="btn result_query">实时温湿度查询</span>' +

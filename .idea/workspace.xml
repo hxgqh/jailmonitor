@@ -2,25 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e50273a-5501-4f64-8cc4-f4b467f973ba" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/schedules/calc_patrol_line.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/points_lines.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/schedules/query.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/test_calc_patrol_line.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/test_create_point_line.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/test_networkx.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/actions.js" afterPath="$PROJECT_DIR$/medias/js/myjs/actions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/basic.py" afterPath="$PROJECT_DIR$/views/basic.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/dbAdapter.py" afterPath="$PROJECT_DIR$/views/dbAdapter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lines/models.py" afterPath="$PROJECT_DIR$/lines/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/positions/models.py" afterPath="$PROJECT_DIR$/positions/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/portal.js" afterPath="$PROJECT_DIR$/medias/js/myjs/portal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/refresh.db.sh" afterPath="$PROJECT_DIR$/refresh.db.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/row-editing.js" afterPath="$PROJECT_DIR$/medias/js/myjs/row-editing.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jailMonitor/settings.py" afterPath="$PROJECT_DIR$/jailMonitor/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/store.js" afterPath="$PROJECT_DIR$/medias/js/myjs/store.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jailMonitor/urls.py" afterPath="$PROJECT_DIR$/jailMonitor/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lines/views.py" afterPath="$PROJECT_DIR$/lines/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schedules/views.py" afterPath="$PROJECT_DIR$/schedules/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jailMonitor.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384346805898" ignored="false" />
-    <file path="/urls.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384249482856" ignored="false" />
+    <file path="/Dummy.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384409683410" ignored="false" />
+    <file path="/urls.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384355811524" ignored="false" />
     <file path="/basic.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384251523978" ignored="false" />
     <file path="/settings.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384348306677" ignored="false" />
     <file path="/index.html" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384248257128" ignored="false" />
@@ -38,13 +38,13 @@
     <file path="$USER_HOME$/work/projects/igpBackend/igpBackend/communicator/server.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1381305913335" ignored="false" />
     <file path="/temperature.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1381567576966" ignored="false" />
     <file path="/utils.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1381661445916" ignored="false" />
-    <file path="/requirements.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383289404846" ignored="false" />
+    <file path="/requirements.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384421975567" ignored="false" />
     <file path="/get_data.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384238051174" ignored="false" />
     <file path="$USER_HOME$/work/projects/igpBackend/igpBackend/files/data_structure_convert_discuss.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1382406651544" ignored="false" />
     <file path="/data_structure_convert_discuss.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1381807256236" ignored="false" />
     <file path="$USER_HOME$/work/projects/igpBackend/igpBackend/files/structure_topology.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1382889117062" ignored="false" />
     <file path="/structure_topology.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1382889104209" ignored="false" />
-    <file path="/models.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384250565958" ignored="false" />
+    <file path="/models.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384390099931" ignored="false" />
     <file path="$PROJECT_DIR$/../../hunBoHui/analyze/wedding/bootstrap/wedding.html" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1382317180557" ignored="false" />
     <file path="$PROJECT_DIR$/../../hunBoHui/analyze/20131021/wedding/bootstrap/wedding.html" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1382321338525" ignored="false" />
     <file path="/wedding.html" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1382321338525" ignored="false" />
@@ -110,20 +110,28 @@
     <file path="$PROJECT_DIR$/../../济宁市人才信息管理系统/createSelectOption/pcc.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383229686313" ignored="false" />
     <file path="/pcc.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383229622948" ignored="false" />
     <file path="/major.json" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383230493012" ignored="false" />
-    <file path="/views.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384247666476" ignored="false" />
+    <file path="/views.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384357612988" ignored="false" />
     <file path="/confGlobal.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383288386847" ignored="false" />
     <file path="/test_daemon.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383459638719" ignored="false" />
     <file path="/store.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383736751043" ignored="false" />
     <file path="/test_get_data.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384052651951" ignored="false" />
     <file path="/test_SocketServer.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383640073074" ignored="false" />
     <file path="/portal.defines.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383702093960" ignored="false" />
-    <file path="/actions.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384352496587" ignored="false" />
+    <file path="/actions.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384355761853" ignored="false" />
     <file path="/patrol_daemon.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383897457843" ignored="false" />
     <file path="/test_patrol.data.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383711465554" ignored="false" />
     <file path="/animate.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383881924978" ignored="false" />
     <file path="/test.patrol.animate.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383865597960" ignored="false" />
     <file path="/patrol.animate.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383878858975" ignored="false" />
     <file path="/temp_hum_daemon.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383897282409" ignored="false" />
+    <file path="/query.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384420001608" ignored="false" />
+    <file path="/patrol_line.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384416949046" ignored="false" />
+    <file path="/test_networkx.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384409900953" ignored="false" />
+    <file path="/points_lines.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384410848047" ignored="false" />
+    <file path="/test_create_point_line.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384414073660" ignored="false" />
+    <file path="/calc_patrol_line.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384416465982" ignored="false" />
+    <file path="/test_calc_patrol_line.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384417001469" ignored="false" />
+    <file path="/refresh.db.sh" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384421706107" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,11 +151,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="portal.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medias/js/myjs/portal.js">
+      <file leaf-file-name="query.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/schedules/query.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="476" column="23" selection-start="20163" selection-end="20163" vertical-scroll-proportion="-11.384615">
-              <folding />
+            <state line="166" column="36" selection-start="6400" selection-end="6400" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#80#91#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -155,61 +165,43 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/schedules/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="432" column="34" selection-start="12757" selection-end="12757" vertical-scroll-proportion="0.0">
+            <state line="630" column="0" selection-start="18792" selection-end="18792" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="store.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medias/js/myjs/store.js">
+      <file leaf-file-name="requirements.txt" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="24" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.0">
+            <state line="6" column="14" selection-start="71" selection-end="71" vertical-scroll-proportion="0.12396694">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lines/views.py">
+      <file leaf-file-name="refresh.db.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/refresh.db.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="39" selection-start="1139" selection-end="1149" vertical-scroll-proportion="-12.923077">
+            <state line="0" column="11" selection-start="11" selection-end="11" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dbAdapter.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/dbAdapter.py">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/schedules/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="14" selection-start="2388" selection-end="2388" vertical-scroll-proportion="-9.461538">
+            <state line="9" column="8" selection-start="152" selection-end="156" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="actions.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/medias/js/myjs/actions.js">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lines/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="832" column="71" selection-start="23669" selection-end="23669" vertical-scroll-proportion="0.6385542">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="row-editing.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medias/js/myjs/row-editing.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="414" column="0" selection-start="11428" selection-end="11428" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="portal.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medias/css/portal.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="292" column="21" selection-start="4915" selection-end="4915" vertical-scroll-proportion="0.0">
+            <state line="15" column="21" selection-start="403" selection-end="420" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -233,22 +225,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/backend/get_data.py" />
-        <option value="$PROJECT_DIR$/positions/views.py" />
-        <option value="$PROJECT_DIR$/temphum/views.py" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/jailMonitor/urls.py" />
-        <option value="$PROJECT_DIR$/positions/models.py" />
-        <option value="$PROJECT_DIR$/views/basic.py" />
-        <option value="$PROJECT_DIR$/jailMonitor/settings.py" />
-        <option value="$PROJECT_DIR$/lines/models.py" />
-        <option value="$PROJECT_DIR$/lines/views.py" />
-        <option value="$PROJECT_DIR$/medias/js/myjs/row-editing.js" />
-        <option value="$PROJECT_DIR$/medias/js/myjs/store.js" />
         <option value="$PROJECT_DIR$/views/dbAdapter.py" />
-        <option value="$PROJECT_DIR$/medias/js/myjs/portal.js" />
         <option value="$PROJECT_DIR$/medias/css/portal.css" />
         <option value="$PROJECT_DIR$/medias/js/myjs/actions.js" />
+        <option value="$PROJECT_DIR$/jailMonitor/urls.py" />
+        <option value="$PROJECT_DIR$/schedules/views.py" />
+        <option value="$PROJECT_DIR$/medias/js/myjs/portal.js" />
+        <option value="$PROJECT_DIR$/lines/models.py" />
+        <option value="$PROJECT_DIR$/schedules/patrol_line.py" />
+        <option value="$PROJECT_DIR$/data/points_lines.txt" />
+        <option value="$PROJECT_DIR$/test/test_create_point_line.py" />
+        <option value="$PROJECT_DIR$/test/test_networkx.py" />
+        <option value="$PROJECT_DIR$/test/test_calc_patrol_line.py" />
+        <option value="$PROJECT_DIR$/schedules/calc_patrol_line.py" />
+        <option value="$PROJECT_DIR$/schedules/query.py" />
+        <option value="$PROJECT_DIR$/refresh.db.sh" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
       </list>
     </option>
   </component>
@@ -283,6 +275,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -311,7 +304,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="medias" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -325,11 +318,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="medias" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="schedules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -343,66 +332,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="medias" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myjs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="medias" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lines" />
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="File.Encoding" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../finished/masterspix" />
+    <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../finished/masterspix" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PublishConfig">
     <servers>
@@ -528,25 +476,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Django server.jailMonitor">
-    <configuration default="false" name="get_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="jailMonitor" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/get_data.py" />
-      <option name="PARAMETERS" value="" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
     <configuration default="false" name="test_get_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -566,7 +495,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="test_SocketServer" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="test_networkx" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -579,47 +508,72 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="jailMonitor" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/test_SocketServer.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/test_networkx.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="temp_hum_daemon" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="test_create_point_line" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="jailMonitor" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/temp_hum_daemon.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/test_create_point_line.py" />
       <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="patrol_daemon" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="calc_patrol_line" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/schedules" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="jailMonitor" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/patrol_daemon.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/schedules/calc_patrol_line.py" />
       <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="test_calc_patrol_line" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="jailMonitor" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/test_calc_patrol_line.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
@@ -740,19 +694,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Django server.jailMonitor" />
-      <item index="1" class="java.lang.String" itemvalue="Python.get_data" />
-      <item index="2" class="java.lang.String" itemvalue="Python.test_get_data" />
-      <item index="3" class="java.lang.String" itemvalue="Python.test_SocketServer" />
-      <item index="4" class="java.lang.String" itemvalue="Python.temp_hum_daemon" />
-      <item index="5" class="java.lang.String" itemvalue="Python.patrol_daemon" />
+      <item index="1" class="java.lang.String" itemvalue="Python.test_get_data" />
+      <item index="2" class="java.lang.String" itemvalue="Python.test_networkx" />
+      <item index="3" class="java.lang.String" itemvalue="Python.test_create_point_line" />
+      <item index="4" class="java.lang.String" itemvalue="Python.calc_patrol_line" />
+      <item index="5" class="java.lang.String" itemvalue="Python.test_calc_patrol_line" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.test_get_data" />
-        <item index="1" class="java.lang.String" itemvalue="Python.temp_hum_daemon" />
-        <item index="2" class="java.lang.String" itemvalue="Python.patrol_daemon" />
-        <item index="3" class="java.lang.String" itemvalue="Python.get_data" />
-        <item index="4" class="java.lang.String" itemvalue="Python.test_SocketServer" />
+        <item index="0" class="java.lang.String" itemvalue="Python.test_calc_patrol_line" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test_create_point_line" />
+        <item index="2" class="java.lang.String" itemvalue="Python.calc_patrol_line" />
+        <item index="3" class="java.lang.String" itemvalue="Python.test_networkx" />
+        <item index="4" class="java.lang.String" itemvalue="Python.test_get_data" />
       </list>
     </recent_temporary>
   </component>
@@ -772,13 +726,13 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14992826" sideWeight="0.60079575" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.05882353" sideWeight="0.78912467" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19225252" sideWeight="0.60079575" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19512194" sideWeight="0.78912467" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21087533" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.39920425" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="-125" y="-989" width="854" height="874" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.39920425" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="-174" y="-1014" width="907" height="874" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -848,34 +802,45 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/test/test_create_point_line.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/schedules/calc_patrol_line.py</url>
+          <line>78</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/test/test_calc_patrol_line.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/schedules/calc_patrol_line.py</url>
+          <line>76</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="18" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
+    <entry file="file://$PROJECT_DIR$/lines/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="90" selection-start="575" selection-end="575" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="14" column="11" selection-start="347" selection-end="347" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jailMonitor/urls.py">
+    <entry file="file://$PROJECT_DIR$/medias/js/myjs/store.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="36" selection-start="2798" selection-end="2798" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="27" column="38" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temphum/views.py">
+    <entry file="file://$PROJECT_DIR$/persons/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="332" column="50" selection-start="8377" selection-end="8377" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/positions/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="17" selection-start="3795" selection-end="3795" vertical-scroll-proportion="0.0">
+        <state line="17" column="6" selection-start="502" selection-end="502" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -887,79 +852,96 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/basic.py">
+    <entry file="file:///Library/Python/2.7/site-packages/networkx/classes/graph.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="41" selection-start="3036" selection-end="3036" vertical-scroll-proportion="0.0">
+        <state line="704" column="24" selection-start="20605" selection-end="20605" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jailMonitor/settings.py">
+    <entry file="file://$PROJECT_DIR$/data/points_lines.txt">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="46" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0">
+        <state line="35" column="19" selection-start="428" selection-end="428" vertical-scroll-proportion="-12.777778">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_networkx.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="123" column="24" selection-start="3618" selection-end="3618" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_create_point_line.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="30" selection-start="1403" selection-end="1403" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#80#91#0" expanded="true" />
+            <marker date="1384414606000" expanded="true" signature="-1:-1" placeholder="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schedules/calc_patrol_line.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="0" selection-start="2121" selection-end="2121" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#80#89#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_calc_patrol_line.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="18" selection-start="443" selection-end="443" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schedules/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="8" selection-start="152" selection-end="156" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lines/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="29" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0">
+        <state line="15" column="21" selection-start="403" selection-end="420" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medias/js/myjs/row-editing.js">
+    <entry file="file://$PROJECT_DIR$/schedules/query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="414" column="0" selection-start="11428" selection-end="11428" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/dbAdapter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="14" selection-start="2388" selection-end="2388" vertical-scroll-proportion="-9.461538">
-          <folding />
+        <state line="166" column="36" selection-start="6400" selection-end="6400" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#80#91#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/schedules/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="432" column="34" selection-start="12757" selection-end="12757" vertical-scroll-proportion="0.0">
+        <state line="630" column="0" selection-start="18792" selection-end="18792" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medias/js/myjs/portal.js">
+    <entry file="file://$PROJECT_DIR$/refresh.db.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="476" column="23" selection-start="20163" selection-end="20163" vertical-scroll-proportion="-11.384615">
+        <state line="0" column="11" selection-start="11" selection-end="11" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lines/views.py">
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="39" selection-start="1139" selection-end="1149" vertical-scroll-proportion="-12.923077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medias/js/myjs/store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="24" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medias/css/portal.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="292" column="21" selection-start="4915" selection-end="4915" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medias/js/myjs/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="832" column="71" selection-start="23669" selection-end="23669" vertical-scroll-proportion="0.6385542">
+        <state line="6" column="14" selection-start="71" selection-end="71" vertical-scroll-proportion="0.12396694">
           <folding />
         </state>
       </provider>

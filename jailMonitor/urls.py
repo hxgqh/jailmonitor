@@ -30,9 +30,10 @@ urlpatterns = patterns('',
     url(r"^get/recent/temphum/", 'temphum.views.get_recent_temphum'),
 
     # Result query
-    url(r"^get/query/multidayschedule/$", 'schedules.views.get_query_multi_day_schedule'),
-    url(r"^get/query/orderedschedule/$", 'schedules.views.get_query_ordered_schedule'),
-    url(r"^get/query/unorderedschedule/$", 'schedules.views.get_query_unordered_schedule'),
+    url(r'^query/$', 'schedules.views.query'),
+    # url(r"^get/query/multidayschedule/$", 'schedules.views.get_query_multi_day_schedule'),
+    # url(r"^get/query/orderedschedule/$", 'schedules.views.get_query_ordered_schedule'),
+    # url(r"^get/query/unorderedschedule/$", 'schedules.views.get_query_unordered_schedule'),
     # url(r"^get/query/alarm/$", 'schedules.views.get_query_multi_day_schedule'),
     # url(r"^get/query/multidayschedule/$", 'schedules.views.get_query_multi_day_schedule'),
     # url(r"^get/query/multidayschedule/$", 'schedules.views.get_query_multi_day_schedule'),

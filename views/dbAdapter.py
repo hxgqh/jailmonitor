@@ -95,6 +95,33 @@ def getTempHumDevice():
     pass
 
 
+def getLinePositionData():
+    """
+    line = models.ForeignKey(LinesModel)
+    position = models.ForeignKey(PositionsModel)
+    next_time_arrival = models.IntegerField(verbose_name="下次到达时间(min)")
+    order = models.IntegerField(verbose_name="顺序")
+    """
+    data = []
+
+    try:
+        for line_position in LinePositionsModel.objects.all():
+            data.append({
+                'line': line_position.line.name,
+                'position': line_position.position.position,
+                'next_time_arrival': line_position.next_time_arrival,
+                'order': line_position.order
+            })
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+        pass
+
+    return data
+    pass
+
+
 def getLineData():
     """
     """
@@ -103,11 +130,7 @@ def getLineData():
     try:
         for line in LinesModel.objects.all():
             data.append({
-                'name': line.name,
-                'position': line.position,
-                'next_time_arrival': line.next_time_arrival,
-                # 'time_error': line.time_error,
-                'order': line.order
+                'name': line.name
             })
         pass
     except Exception as e:

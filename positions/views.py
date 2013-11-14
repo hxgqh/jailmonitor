@@ -174,7 +174,6 @@ def update_position_card(request):
 @login_required(login_url="/login")
 @csrf_exempt
 def get_position_card(request):
-    print "func add_position_card"
     print request.GET
 
     data = []

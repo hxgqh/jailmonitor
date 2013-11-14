@@ -55,6 +55,9 @@ def data(request, type):
         if 'tempHumDevice' in type:
             template_data['data'] = getTempHumDevice()
 
+        if 'linePositionData' in type:
+            template_data['data'] = getLinePositionData()
+
         if 'lineData' in type:
             template_data['data'] = getLineData()
 
@@ -90,8 +93,8 @@ def data(request, type):
         if 'positionData' in type:
             update_position(data)
 
-        if 'lineData' in type:
-            update_line(data)
+        if 'linePositionData' in type:
+            update_line_position(data)
 
         if 'multiDayScheduleData' in type:
             update_multiDaySchedule(data)

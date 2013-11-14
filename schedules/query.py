@@ -133,12 +133,18 @@ class Query(object):
             return False
         pass
 
+    def get_arrive_time(self, right_arrive_time):
+        ts = right_arrive_time - self.time_error
+        te = right_arrive_time + self.time_error
+        return self.cursor.filter(**self.filter_dict).filter(arrive_time__gte=ts, arrive_time__lt=te)[0]
+        pass
+
     def query_multi_day_schedule(self):
         print 'func query_multi_day_schedule'
         data = []
 
         # filter schedules
-        schedules = self.get_all_schedules()
+        schedules = self.get_all_schedules('multi_day')
 
         # Check all schedule data
         for schedule in schedules:
@@ -164,12 +170,21 @@ class Query(object):
                         else right_arrive_time+datetime.timedelta(0, time_mount*60, 0)
 
                     if self.is_exists(right_arrive_time):
-                        data.append()
+                        first_arrive_data = self.get_arrive_time(right_arrive_time)
+                        first_arrive_time = first_arrive_data.arrive_time.strftime('%Y-%m-%d %H:%M:%S')
+                        person = first_arrive_data.person.name
+                        data.append(
+                            {
+                                'position': position,
+                                'status': '已到',
+                                'arrive_time': first_arrive_time,
+                                'person': person,
+                                'event': ''
+                            }
+                        )
                         pass
                     pass
                 pass
-
-
             pass
 
         return data
@@ -179,13 +194,12 @@ class Query(object):
         print 'func query_ordered_schedule'
         data = []
 
+        # filter schedules
+        schedules = self.get_all_schedules()
+
         line, start_time = self.schedule_line.split(',')
 
-        lines = []
-        if self.schedule_line == '所有':
-            pass
-        else:
-            lines.append(self.schedule_line)
+
 
         return data
         pass

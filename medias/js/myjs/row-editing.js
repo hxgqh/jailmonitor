@@ -298,7 +298,7 @@ function lineEditor(){
         store: lineStore,
         columns: [{
             header: '线路名称',
-            dataIndex: 'name',
+            dataIndex: 'line',
             width: '20%',
             editor: {
                 allowBlank: true
@@ -545,7 +545,7 @@ function orderedScheduleEditor(){
                 var r = Ext.create(model_name, {
                     no: no+1,
                     line: line,
-                    start_time: Ext.Date.format(now, "Y-n-j H:i:s")
+                    start_time: Ext.Date.format(now, "H:i:s")
                 });
 
                 orderedScheduleStore.autoSync = false
@@ -639,8 +639,8 @@ function unorderedScheduleEditor(){
                 var r = Ext.create(model_name, {
                     no: no+1,
                     line: line,
-                    start_time: Ext.Date.format(now, "Y-n-j H:i:s"),
-                    end_time: Ext.Date.format(now, "Y-n-j H:i:s")
+                    start_time: Ext.Date.format(now, "H:i:s"),
+                    end_time: Ext.Date.format(now, "H:i:s")
                 });
 
                 unorderedScheduleStore.autoSync = false

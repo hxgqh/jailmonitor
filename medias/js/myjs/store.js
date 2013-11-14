@@ -1,7 +1,7 @@
 Ext.define('Line',{
     extend: 'Ext.data.Model',
     fields: [
-        'name',
+        'line',
         'position',
         { name: 'next_time_arrival', type: 'int'},
 //        { name: 'time_error', type: 'int'},
@@ -19,7 +19,7 @@ var lineStore = Ext.create('Ext.data.Store', {
 
     proxy: {
         type: 'ajax',
-        url : '/data/lineData',
+        url : '/data/linePositionData',
         reader: {
             type: 'json'
         },

@@ -578,17 +578,17 @@ function add_position_card_to_line(position_card){
 * update_line_page_position_card_table
 * */
 function update_line_page_position_card_table(){
-    var pc_select$ = $("#add_line_position_card_td_select")
+    var p_select$ = $("#add_line_position_td_select")
     var line_select$ = $('#add_line_name_td_select')
     line_select$.empty()
-    pc_select$.empty()
+    p_select$.empty()
     $.get(
-        "/get/positioncard/",
+        "/data/positionData/",
         null,
         function(data, status){
             data = eval(data)
             for(var i=0;i<data.length;i++){
-                pc_select$.append('<option>'+data[i]['name']+'</option>')
+                p_select$.append('<option>'+data[i]['position']+'</option>')
             }
         }
     )
@@ -633,8 +633,8 @@ function add_line(){
 function add_line_position_card(){
     var line_select$ = $('#add_line_name_td_select')
     var line = line_select$.val()
-    var pc_select$ = $("#add_line_position_card_td_select")
-    var position_card = pc_select$.val()
+    var p_select$ = $("#add_line_position_td_select")
+    var position = p_select$.val()
     var next_time_arrival_input$ = $('#add_line_next_time_arrival_td_input')
     var next_time_arrival = parseInt(next_time_arrival_input$.val())
 //    var time_error_input$ = $('#add_line_time_error_td_input')
@@ -642,9 +642,11 @@ function add_line_position_card(){
     var order_input$ = $('#add_line_order_td_input')
     var order = order_input$.val()
 
+    console.log(line)
+
     lineStore.add(new Line({
-        name: line,
-        position: position_card,
+        line: line,
+        position: position,
         next_time_arrival: next_time_arrival,
 //        time_error: time_error,
         order: order

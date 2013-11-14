@@ -12,7 +12,7 @@ var lines_setting_html = '<span id="export_lines" class="btn btn-primary" style=
                                 '<thead></thread>' +
                                 '<tbody>' +
                                     '<tr><td>线路名</td><td><select id="add_line_name_td_select" class="selectpicker"></select></td></tr>' +
-                                    '<tr><td>地点卡</td><td><select id="add_line_position_card_td_select" class="selectpicker"></select></td></tr>' +
+                                    '<tr><td>地点</td><td><select id="add_line_position_td_select" class="selectpicker"></select></td></tr>' +
                                     '<tr><td>下次到达时间</td><td><input id="add_line_next_time_arrival_td_input"></input></td></tr>' +
 //                                    '<tr><td>时间误差</td><td><input id="add_line_time_error_td_input"></input></td></tr>' +
                                     '<td>顺序</td><td><input id="add_line_order_td_input"></input></td>' +

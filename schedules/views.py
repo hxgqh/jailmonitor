@@ -56,7 +56,7 @@ def get_ordered_schedule_excel(request):
 
     try:
         for schedule in OrderedScheduleModel.objects.all():
-            data.append([schedule.line, schedule.start_time.strftime('%Y-%m-%d %H:%M:%S')])
+            data.append([schedule.line, schedule.start_time.strftime('%H:%M:%S')])
             pass
         pass
     except Exception as e:
@@ -77,8 +77,8 @@ def get_unordered_schedule_excel(request):
         for schedule in UnorderedScheduleModel.objects.all():
             data.append([
                 schedule.line,
-                schedule.start_time.strftime('%Y-%m-%d %H:%M:%S'),
-                schedule.end_time.strftime('%Y-%m-%d %H:%M:%S')
+                schedule.start_time.strftime('%H:%M:%S'),
+                schedule.end_time.strftime('%H:%M:%S')
             ])
             pass
         pass
@@ -193,7 +193,7 @@ def update_one_orderedSchedule(row_data):
             return -1
             pass
 
-        start_time = datetime.datetime.strptime(str(start_time), '%Y-%m-%d %H:%M:%S') - datetime.timedelta(0, 6*3600, 0)
+        start_time = datetime.datetime.strptime(str(start_time), '%H:%M:%S').time()
 
         print row_data
 
@@ -269,8 +269,8 @@ def update_one_unorderedSchedule(row_data):
             return -1
             pass
 
-        start_time = datetime.datetime.strptime(str(start_time), '%Y-%m-%d %H:%M:%S') - datetime.timedelta(0, 6*3600, 0)
-        end_time = datetime.datetime.strptime(str(end_time), '%Y-%m-%d %H:%M:%S') - datetime.timedelta(0, 6*3600, 0)
+        start_time = datetime.datetime.strptime(str(start_time), '%H:%M:%S').time()
+        end_time = datetime.datetime.strptime(str(end_time), '%H:%M:%S').time()
 
         print row_data
 
@@ -490,14 +490,14 @@ def get_query_ordered_schedule(request):
         return HttpResponse(json.dumps(data))
 
     line = LinesModel.objects.get(name=line)
-    start_time = datetime.datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
+    start_time = datetime.datetime.strptime(start_time, '%H:%M:%S').time()
 
-    print "line:%s, start_time:%s" % (line, start_time.strftime('%Y-%m-%d %H:%M:%S'))
+    print "line:%s, start_time:%s" % (line, start_time.strftime('%H:%M:%S'))
 
     try:
         schedule = OrderedScheduleModel.objects.get(
-            line=line
-            # start_time=start_time
+            line=line,
+            start_time=start_time
         )
         data = create_ordered_patrol_data(schedule)
     except OrderedScheduleModel.DoesNotExist:
@@ -576,8 +576,8 @@ def get_query_unordered_schedule(request):
         return HttpResponse(json.dumps(data))
 
     line = LinesModel.objects.get(name=line)
-    start_time = datetime.datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
-    end_time = datetime.datetime.strptime(end_time, '%Y-%m-%d %H:%M:%S')
+    start_time = datetime.datetime.strptime(start_time, '%H:%M:%S').time()
+    end_time = datetime.datetime.strptime(end_time, '%H:%M:%S').time()
 
     try:
         schedule = UnorderedScheduleModel.objects.get(
@@ -653,6 +653,8 @@ def query(request):
         print e
         print traceback.format_exc()
         pass
+
+    print json.dumps(template_data, indent=4)
 
     return HttpResponse(json.dumps(template_data))
     pass

@@ -15,10 +15,10 @@ class MultiDayScheduleModel(models.Model):
 
 class OrderedScheduleModel(models.Model):
     line = models.ForeignKey(LinesModel)
-    start_time = models.DateTimeField(verbose_name="开始时间")  # , USE_TZ=False)
+    start_time = models.TimeField(verbose_name="开始时间")  # , USE_TZ=False)
 
 
 class UnorderedScheduleModel(models.Model):
     line = models.ForeignKey(LinesModel)
-    start_time = models.DateTimeField(verbose_name="开始时间")   # , USE_TZ=False)
-    end_time = models.DateTimeField(verbose_name="结束时间")    # , USE_TZ=False)
+    start_time = models.TimeField(verbose_name="开始时间")   # , USE_TZ=False)
+    end_time = models.TimeField(verbose_name="结束时间")    # , USE_TZ=False)

@@ -18,43 +18,64 @@ from lines.models import *
 from conf.confGlobal import *
 
 
-def update_one_line(row_data):
+def update_one_line_position(row_data):
+    """
+    line = models.ForeignKey(LinesModel)
+    position = models.ForeignKey(PositionsModel)
+    next_time_arrival = models.IntegerField(verbose_name="下次到达时间(min)")
+    order = models.IntegerField(verbose_name="顺序")
+    """
+    print 'func update_one_line_position'
     try:
         print row_data
 
-        name = row_data.get('name', '')
+        line = row_data.get('line', '')
         position = row_data.get('position', '')
         next_time_arrival = int(row_data.get('next_time_arrival', -1))
         # time_error = int(row_data.get('time_error', 2))
         order = int(row_data.get('order', -1))
 
-        print row_data
-
-        if not name:
+        if not line:
             return -1
 
         print row_data
 
-        old_line = None
+        old_line_position = None
         try:
-            old_line = LinesModel.objects.get(name=name)
+            line = LinesModel.objects.get(name=line)
+            pass
         except LinesModel.DoesNotExist:
-            person = LinesModel(
-                name=name,
+            line = LinesModel(name=line)
+            line.save()
+            pass
+
+        try:
+            position = PositionsModel.objects.get(position=position)
+            pass
+        except PositionsModel.DoesNotExist:
+            print "position not exist!"
+            return -1
+            pass
+
+        print position
+
+        try:
+            old_line_position = LinePositionsModel.objects.get(line=line, position=position)
+        except LinePositionsModel.DoesNotExist:
+            person = LinePositionsModel(
+                line=line,
                 position=position,
                 next_time_arrival=next_time_arrival,
-                # time_error=time_error,
                 order=order
             )
             person.save()
             pass
         else:
-            old_line.name = name
-            old_line.position = position
-            old_line.next_time_arrival = next_time_arrival
-            # old_line.time_error = time_error
-            old_line.order = order
-            old_line.save()
+            old_line_position.line = line
+            old_line_position.position = position
+            old_line_position.next_time_arrival = next_time_arrival
+            old_line_position.order = order
+            old_line_position.save()
             pass
         pass
     except Exception as e:
@@ -63,14 +84,14 @@ def update_one_line(row_data):
     pass
 
 
-def update_line(data):
+def update_line_position(data):
     """
     @param data: data could be single row(a dict) or multiple rows(a list of dict).
     """
-    print "func update_line"
+    print "func update_line_position"
     if isinstance(data, dict):
         try:
-            update_one_line(data)
+            update_one_line_position(data)
             pass
         except Exception as e:
             print e
@@ -79,7 +100,7 @@ def update_line(data):
     elif isinstance(data, list):
         for row_data in data:
             try:
-                update_one_line(row_data)
+                update_one_line_position(row_data)
                 pass
             except Exception as e:
                 print e

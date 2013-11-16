@@ -78,7 +78,7 @@ class PatrolLineCalc(object):
 
         # print str(path)
 
-        return str(path)
+        return path
         pass
 
     def parse_point_line_file(self):
@@ -155,6 +155,24 @@ class PatrolLineCalc(object):
         """
         x, y = p
         return math.fabs(a*x+b*y+c)/math.sqrt(a*a+b*b)
+        pass
+
+    def get_path(self):
+        """
+        @return: a list like this: [(x1, y1), (x2, y2), (x3, y3), ...]
+        """
+        path = [self.start_point]
+
+        sp = self.choose_shortest_path()
+
+        for p_id in sp:
+            x = self.point_dict[p_id][0]
+            y = self.point_dict[p_id][1]
+            path.append((x, y))
+            pass
+
+        path.append(self.end_point)
+        return path
         pass
 
     def choose_nearest_line(self, point):

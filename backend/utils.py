@@ -5,6 +5,12 @@ __author__ = 'xiaoghu@cisco.com'
 
 import crc16
 from binascii import *
+import datetime
+
+
+def combine_date_and_time(t_date, t_time):
+    return datetime.datetime.strptime(t_date.strftime('%Y-%m-%d')+' '+t_time.strftime('%H:%M:%S'), '%Y-%m-%d %H:%M:%S')
+    pass
 
 
 def my_crc16(x):

@@ -1,25 +1,48 @@
-var query_map_history_html = '<select id="result_query_map_schedule_select" class="selectpicker" style="width:100px !important;margin:0px">' +
-                    '<option>多天计划</option>' +
-                    '<option>有顺序计划</option>' +
-                    '<option>无顺序计划</option>' +
-                '</select>' +
-                '<select id="result_query_map_person_select" class="selectpicker" style="width:100px !important;;margin:0px"></select>' +
-                '<input id="result_query_map_start_date_input" style="width:100px !important;" value="2013-11-02"/>' +
-                '<input id="result_query_map_end_date_input" style="width:100px !important;" value="2013-11-02"/>' +
-                '<input id="result_query_map_start_time_input" style="width:100px !important;" value="08:00:00"/>' +
-                '<input id="result_query_map_end_time_input" style="width:100px !important;" value="20:00:00"/>' +
-//                '<select id="result_query_map_line_select" class="selectpicker" style="width:300px !important"></select>' +
-                '<span id="result_query_map_start_btn" class="btn">开始演示</span>' +
-                '<span id="result_query_map_pause_btn" class="btn">暂停演示</span>' +
-                '<span id="result_query_map_continue_btn" class="btn">继续演示</span>' +
-                '<span id="result_query_map_prev_btn" class="btn">前一条</span>' +
-                '<span id="result_query_map_next_btn" class="btn">后一条</span>' +
-                '<div id="div-editor-left">' +
-                '</div>' +
-                '<div id="div-editor-right">' +
-                    '<span style="float:right;" id="upload_path_file_btn" class="btn">上传路径文件</span><br/>' +
-                    '<table id="map_info_table" class="table table-striped table-bordered"></table>' +
-                '</div>'
+var query_map_history_html =
+//                            '<select id="result_query_map_schedule_select" class="selectpicker" style="width:100px !important;margin:0px">' +
+//                                '<option>多天计划</option>' +
+//                                '<option>有顺序计划</option>' +
+//                                '<option>无顺序计划</option>' +
+//                            '</select>' +
+                            '<select id="result_query_map_person_select" class="selectpicker" style="width:100px !important;;margin:0px"></select>' +
+                            '<input id="result_query_map_start_date_input" style="width:100px !important;" value="2013-11-02"/>' +
+                            '<input id="result_query_map_end_date_input" style="width:100px !important;" value="2013-11-02"/>' +
+                            '<input id="result_query_map_start_time_input" style="width:100px !important;" value="08:00:00"/>' +
+                            '<input id="result_query_map_end_time_input" style="width:100px !important;" value="20:00:00"/>' +
+            //                '<select id="result_query_map_line_select" class="selectpicker" style="width:300px !important"></select>' +
+                            '<span id="result_query_map_start_btn" class="btn">开始演示</span>' +
+                            '<span id="result_query_map_pause_btn" class="btn">暂停演示</span>' +
+                            '<span id="result_query_map_continue_btn" class="btn">继续演示</span>' +
+                            '<span id="result_query_map_prev_btn" class="btn">前一条</span>' +
+                            '<span id="result_query_map_next_btn" class="btn">后一条</span>' +
+                            '<div id="div-editor-left">' +
+                                '<div id="div-editor-map">' + // style="background-image: url(/static/images/geograph.png)">' +
+                                    '<img id="map_img" class="geograph" src="/static/images/geograph.png"/>' +
+                                '</div>' +
+                                '<div id="map_animation"></div>' +
+                            '</div>' +
+                            '<div id="div-editor-right">' +
+                                '<span style="float:right;" id="upload_path_file_btn" class="btn">上传路径文件</span><br/>' +
+                                '<table id="map_info_table" class="table table-striped table-bordered">' +
+                                    "<tbody>" +
+                                        "<tr>" +
+                                            "<td>姓名：</td><td><input id='patrol_history_point_person'/></td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                            "<td>地点：</td><td><input id='patrol_history_point_position'/></td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                            "<td>时间：</td><td><input id='patrol_history_point_arrive_time'/></td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                            "<td>地点编号：</td><td><input id='patrol_history_point_position_card'/></td>" +
+                                        "</tr>" +
+//                                        "<tr>" +
+//                                            "<td>状态：</td><td><input id='status'/></td>" +
+//                                        "</tr>" +
+                                    "</tbody>"
+                                '</table>' +
+                            '</div>'
 
 
 /**
@@ -1406,24 +1429,35 @@ function query_and_show_mh(){
     }
 }
 
-function patrol_start(){
-    var mss$ = $('#result_query_map_schedule_select')
-    var schedule = mss$.val()
-    var schedule_url_dict = {
-        '多天计划': '/get/map/multiDayScheduleData',
-        '有顺序计划': '/get/map/orderedScheduleData',
-        '无顺序计划': '/get/map/unorderedScheduleData'
-    }
 
-    var url = schedule_url_dict[schedule]
+function patrol_start(){
+//    var mss$ = $('#result_query_map_schedule_select')
+//    var schedule = mss$.val()
+
+    var person = $('#result_query_map_person_select').val()
+    var start_date = $('#result_query_map_start_date_input').val()
+    var end_date = $('#result_query_map_end_date_input').val()
+    var start_time = $('#result_query_map_start_time_input').val()
+    var end_time = $('#result_query_map_end_time_input').val()
+
+    var url = '/get/schedule/map/history'
     $.get(
         url,
-        null,
+        {
+            person: person,
+            start_date: start_date,
+            end_date: end_date,
+            start_time: start_time,
+            end_time: end_time
+        },
         function(data, status){
             data = JSON.parse(data)
-            var animate = PatrolAnimate('map_animation', data)
-            animate.draw()
-
+//            var animate = PatrolAnimate('map_animation', data)
+            var animate = $('#map_animation').PatrolAnimate({
+                render: 'div-editor-map',
+                data: data
+            })
+//            animate.draw()
             animate.start()
 
             $('#result_query_map_pause_btn').click(function(){
@@ -1464,39 +1498,11 @@ function show_result_query_map_history(){
                 })
             })
 
-            Ext.get('div-editor-left').createChild(
-                '<div id="div-editor-map">' + // style="background-image: url(/static/images/geograph.png)">' +
-                    '<img id="map_img" class="geograph" src="/static/images/geograph.png"/>' +
-                '</div>' +
-                '<div id="map_animation"></div>'
-            )
-
-//            auto_fit_img('map_img', 'div-editor-map')
             $("#map_img").img_auto_fit()
 
             $('#div-editor-left').width(parseInt(parseFloat($('#div-editor').width())*0.75))
             $('#div-editor-right').width(parseInt(parseFloat($('#div-editor').width())*0.24))
             $('#map_animation').width($('#div-editor-left').width())
-
-            $("#map_info_table").append(
-                "<tbody>" +
-                    "<tr>" +
-                        "<td>姓名：</td><td><input /></td>" +
-                    "</tr>" +
-                    "<tr>" +
-                        "<td>地点：</td><td><input /></td>" +
-                    "</tr>" +
-                    "<tr>" +
-                        "<td>时间：</td><td><input /></td>" +
-                    "</tr>" +
-                    "<tr>" +
-                        "<td>地点编号：</td><td><input /></td>" +
-                    "</tr>" +
-                    "<tr>" +
-                        "<td>状态：</td><td><input /></td>" +
-                    "</tr>" +
-                "</tbody>"
-            )
 
             $('#result_query_map_start_date_input').set_input_default('2013-11-02')
             $('#result_query_map_end_date_input').set_input_default('2013-11-02')
@@ -1505,20 +1511,9 @@ function show_result_query_map_history(){
 
             update_position_card_on_map('div-editor-left')
 
-//            show_mh()
             $('#result_query_map_start_btn').click(function(){
-//                animate.start()
                 patrol_start()
             })
-
-//            $('#result_query_map_pause_btn').click(function(){
-////                animate.pause()
-//            })
-//
-//            $('#result_query_map_continue_btn').click(function(){
-//                console.log('continue')
-////                animate.resume()
-//            })
         }
         catch(err){
             console.log(err)

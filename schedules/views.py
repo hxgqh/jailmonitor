@@ -1,12 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-import os
-import re
-import sys
 import math
-import tablib
-import time
 import json
 import datetime
 import traceback
@@ -14,12 +9,13 @@ import traceback
 from excel_response import ExcelResponse
 
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
 
+from schedules.calc_patrol_line import *
 from schedules.models import *
 from conf.confGlobal import *
+
+from backend.utils import *
 
 from query import *
 
@@ -36,7 +32,7 @@ def get_multi_day_schedule_excel(request):
                 schedule.line,
                 str(schedule.start_time),
                 str(schedule.end_time),
-                schedule.daily_start_time.strftime('%H:%M:%S')
+                schedule.daily_start_time.strftime(time_format)
             ])
             pass
         pass
@@ -56,7 +52,7 @@ def get_ordered_schedule_excel(request):
 
     try:
         for schedule in OrderedScheduleModel.objects.all():
-            data.append([schedule.line, schedule.start_time.strftime('%H:%M:%S')])
+            data.append([schedule.line, schedule.start_time.strftime(time_format)])
             pass
         pass
     except Exception as e:
@@ -77,8 +73,8 @@ def get_unordered_schedule_excel(request):
         for schedule in UnorderedScheduleModel.objects.all():
             data.append([
                 schedule.line,
-                schedule.start_time.strftime('%H:%M:%S'),
-                schedule.end_time.strftime('%H:%M:%S')
+                schedule.start_time.strftime(time_format),
+                schedule.end_time.strftime(time_format)
             ])
             pass
         pass
@@ -113,9 +109,9 @@ def update_one_multiDaySchedule(row_data):
             return -1
             pass
 
-        start_time = datetime.datetime.strptime(str(start_time), '%Y-%m-%d').date()
-        end_time = datetime.datetime.strptime(str(end_time), '%Y-%m-%d').date()
-        daily_start_time = datetime.datetime.strptime(str(daily_start_time), '%H:%M:%S').time()
+        start_time = datetime.datetime.strptime(str(start_time), date_format).date()
+        end_time = datetime.datetime.strptime(str(end_time), date_format).date()
+        daily_start_time = datetime.datetime.strptime(str(daily_start_time), time_format).time()
 
         old_schedule = None
         try:
@@ -193,7 +189,7 @@ def update_one_orderedSchedule(row_data):
             return -1
             pass
 
-        start_time = datetime.datetime.strptime(str(start_time), '%H:%M:%S').time()
+        start_time = datetime.datetime.strptime(str(start_time), time_format).time()
 
         print row_data
 
@@ -269,8 +265,8 @@ def update_one_unorderedSchedule(row_data):
             return -1
             pass
 
-        start_time = datetime.datetime.strptime(str(start_time), '%H:%M:%S').time()
-        end_time = datetime.datetime.strptime(str(end_time), '%H:%M:%S').time()
+        start_time = datetime.datetime.strptime(str(start_time), time_format).time()
+        end_time = datetime.datetime.strptime(str(end_time), time_format).time()
 
         print row_data
 
@@ -359,7 +355,7 @@ def create_multi_day_patrol_data(schedule):
                     arrive_time = PatrolActionHistoryModel.objects.filter(
                         arrive_time__range=(time_range_start_time, time_range_end_time)
                     ).order_by('arrive_time')[0].arrive_time
-                    arrive_time = arrive_time.strftime("%Y-%m-%d %H:%M:%S")
+                    arrive_time = arrive_time.strftime(date_time_format)
                     data.append({
                         'position': item.position,
                         'status': '已到',    #
@@ -374,7 +370,7 @@ def create_multi_day_patrol_data(schedule):
                         'status': '未到',    #
                         'arrive_time': '',
                         'person': '',
-                        'event': time_range_start_time.strftime("%Y-%m-%d")
+                        'event': time_range_start_time.strftime(date_format)
                     })
                     pass
                 pass
@@ -403,9 +399,9 @@ def get_query_multi_day_schedule(request):
         return HttpResponse(json.dumps(data))
 
     line = LinesModel.objects.get(name=line)
-    start_time = datetime.datetime.strptime(start_time, '%Y-%m-%d').date()
-    end_time = datetime.datetime.strptime(end_time, '%Y-%m-%d').date()
-    daily_start_time = datetime.datetime.strptime(daily_start_time, '%H:%M:%S').time()
+    start_time = datetime.datetime.strptime(start_time, date_format).date()
+    end_time = datetime.datetime.strptime(end_time, date_format).date()
+    daily_start_time = datetime.datetime.strptime(daily_start_time, time_format).time()
 
     schedule = MultiDayScheduleModel.objects.get(
         line=line,
@@ -447,7 +443,7 @@ def create_ordered_patrol_data(schedule):
                 arrive_time = PatrolActionHistoryModel.objects.filter(
                     arrive_time__range=(time_range_start_time, time_range_end_time)
                 ).order_by('arrive_time')[0].arrive_time
-                arrive_time = arrive_time.strftime("%Y-%m-%d %H:%M:%S")
+                arrive_time = arrive_time.strftime(date_time_format)
                 data.append({
                     'position': item.position,
                     'status': '已到',    #
@@ -462,7 +458,7 @@ def create_ordered_patrol_data(schedule):
                     'status': '未到',    #
                     'arrive_time': '',
                     'person': '',
-                    'event': time_range_start_time.strftime("%Y-%m-%d")
+                    'event': time_range_start_time.strftime(date_format)
                 })
                 pass
             pass
@@ -490,9 +486,9 @@ def get_query_ordered_schedule(request):
         return HttpResponse(json.dumps(data))
 
     line = LinesModel.objects.get(name=line)
-    start_time = datetime.datetime.strptime(start_time, '%H:%M:%S').time()
+    start_time = datetime.datetime.strptime(start_time, time_format).time()
 
-    print "line:%s, start_time:%s" % (line, start_time.strftime('%H:%M:%S'))
+    print "line:%s, start_time:%s" % (line, start_time.strftime(time_format))
 
     try:
         schedule = OrderedScheduleModel.objects.get(
@@ -532,7 +528,7 @@ def create_unordered_patrol_data(schedule):
                 arrive_time = PatrolActionHistoryModel.objects.filter(
                     arrive_time__range=(time_range_start_time, time_range_end_time)
                 ).order_by('arrive_time')[0].arrive_time
-                arrive_time = arrive_time.strftime("%Y-%m-%d %H:%M:%S")
+                arrive_time = arrive_time.strftime(date_time_format)
                 data.append({
                     'position': item.position,
                     'status': '已到',    #
@@ -547,7 +543,7 @@ def create_unordered_patrol_data(schedule):
                     'status': '未到',    #
                     'arrive_time': '',
                     'person': '',
-                    'event': time_range_start_time.strftime("%Y-%m-%d")
+                    'event': time_range_start_time.strftime(date_format)
                 })
                 pass
             pass
@@ -564,8 +560,6 @@ def create_unordered_patrol_data(schedule):
 def get_query_unordered_schedule(request):
     data = []
 
-    data = []
-
     print request.GET
 
     line = request.GET['line']
@@ -576,8 +570,8 @@ def get_query_unordered_schedule(request):
         return HttpResponse(json.dumps(data))
 
     line = LinesModel.objects.get(name=line)
-    start_time = datetime.datetime.strptime(start_time, '%H:%M:%S').time()
-    end_time = datetime.datetime.strptime(end_time, '%H:%M:%S').time()
+    start_time = datetime.datetime.strptime(start_time, time_format).time()
+    end_time = datetime.datetime.strptime(end_time, time_format).time()
 
     try:
         schedule = UnorderedScheduleModel.objects.get(
@@ -596,35 +590,114 @@ def get_query_unordered_schedule(request):
     pass
 
 
-@login_required(login_url="/login/")
-def get_map_multi_day_schedule(request):
-    print 'func get_map_multi_day_schedule'
+def get_patrol_history(filter_dict):
+    """
+    @param filter_dict: request.GET like this:
+        {
+            # schedule: ,
+            person: ,
+            start_date: ,
+            end_date: ,
+            start_time: ,
+            end_time:
+        }
+    @return: a dict like this:
+        {
+            'paths': [(x1, y1), (x2, y2), (x3, y3), (x4, y4), ...],
+            'points': {
+                'x,y':{
+                    'position_card': position_card,
+                    'position': position,
+                    'arrive_time': arrive_time,
+                    'x': x,
+                    'y': y,
+                    'person': person.name
+                }
+            }
+        }
+    """
     data = {
-        'line': [],
-        'patrol_history': {}
+        'paths': [],
+        'points': {}
     }
 
-    # Test data here
-    for i in range(0,10):
-        data['line'].append({
-            'name': 'line1',
-            'order': i+1,
-            'position': 'position'+str(i+1),
-            'position_card': '第'+str(i+1)+'张地点卡',
-            'x': (i+1)*50,
-            'y': math.sin(i+1)*50+200
-        })
+    # schedule_type = filter_dict.get('schedule', None)
+    person = filter_dict.get('person', None)
+    start_date = filter_dict.get('start_date', None)
+    end_date = filter_dict.get('end_date', None)
+    start_time = filter_dict.get('start_time', None)
+    end_time = filter_dict.get('end_time', None)
 
-    for i in range(0, 7):
-        data['patrol_history']['position'+str(i+1)] = ({
-            'position': 'position'+str(i+1),
-            'time': '2013-11-07 08:'+("%02d" % (i*8, ))+':00',
-            'person': 'person'+str(i+1)
-        })
+    if not (person and start_date and end_date and start_time and end_time):
+        return data
 
-    # @TODO: add real data here
+    try:
+        person = PersonsModel.objects.get(name=person)
+        start_date = datetime.datetime.strptime(start_date, date_format).date()
+        end_date = datetime.datetime.strptime(end_date, date_format).date()
+        start_time = datetime.datetime.strptime(start_time, time_format).time()
+        end_time = datetime.datetime.strptime(end_time, time_format).time()
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+        return data
 
-    # print json.dumps(data, indent=4)
+    day_num = (end_date-start_date).days + 1
+    for i in range(day_num):
+        tmp_date = start_date + datetime.timedelta(i, 0, 0)
+        tmp_start_time = combine_date_and_time(tmp_date, start_time)
+        tmp_end_time = combine_date_and_time(tmp_date, end_time)
+
+        cursor = PatrolActionHistoryModel.objects.filter(
+            arrive_time__gte=tmp_start_time,
+            arrive_time__lt=tmp_end_time,
+            person=person
+        ).order_by('arrive_time')
+
+        points = []
+        for item in cursor:
+            arrive_time = item.arrive_time.strftime(date_time_format)
+            position = item.position.position
+            position_card = item.position.position_card.name
+            x = item.position.position_card.x
+            y = item.position.position_card.y
+            p = {
+                'position_card': position_card,
+                'position': position,
+                'arrive_time': arrive_time,
+                'x': x,
+                'y': y,
+                'person': person.name
+            }
+            points[str(x)+','+str(y)] = p
+            data['points'].append(p)
+            pass
+
+        for i in range(len(points)-1):
+            start_point = (points[i]['x'], points[i]['y'])
+            end_point = (points[i+1]['x'], points[i+1]['y'])
+            plc = PatrolLineCalc(start_point=start_point, end_point=end_point)
+            path = plc.get_path()
+            data['paths'].append(path)
+            pass
+        pass
+
+    return data
+    pass
+
+
+@login_required(login_url="/login/")
+def get_schedule_map_history(request):
+    print 'func get_schedule_map_history'
+    data = []
+
+    try:
+        data = get_patrol_history(request.GET)
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
 
     return HttpResponse(json.dumps(data))
     pass

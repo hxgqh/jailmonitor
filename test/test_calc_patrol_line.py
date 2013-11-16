@@ -28,9 +28,20 @@ class tCalcPatrolLine(object):
         print path
         pass
 
+    @staticmethod
+    def test_get_path():
+        s_p = (700, 130)
+        e_p = (350, 620)
+        p = PatrolLineCalc(start_point=s_p, end_point=e_p)
+        path = p.get_path()
+
+        print path
+        pass
+
 
 if __name__ == '__main__':
     print 'start'
     # tCalcPatrolLine.test_choose_nearest_line()
-    tCalcPatrolLine.test_choose_shortest_path()
+    # tCalcPatrolLine.test_choose_shortest_path()
+    tCalcPatrolLine.test_get_path()
     print 'end'

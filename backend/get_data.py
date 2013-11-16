@@ -4,6 +4,8 @@
 __author__ = 'xiaoghu@cisco.com'
 
 import os
+import re
+import sys
 import time
 import socket
 import SocketServer
@@ -13,6 +15,10 @@ from binascii import hexlify, unhexlify
 from SocketServer import (TCPServer as TCP,
                           StreamRequestHandler as SRH,
                           ThreadingMixIn as TMI)
+
+currentPath = os.path.dirname(os.path.abspath(__file__))+'/'
+prjPath = re.sub(r'backend\/$', '', currentPath)
+sys.path.append(prjPath)
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "jailMonitor.settings")
 

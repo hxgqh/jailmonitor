@@ -1,25 +1,26 @@
-Array.prototype.min = function() {
-    var min = this[0];
-    var len = this.length;
-    for (var i = 1; i < len; i++){
-        if (this[i] < min){
-        min = this[i];
-        }
-    }
-    return min;
-}
+var query_map_history_html = '<select id="result_query_map_schedule_select" class="selectpicker" style="width:100px !important;margin:0px">' +
+                    '<option>多天计划</option>' +
+                    '<option>有顺序计划</option>' +
+                    '<option>无顺序计划</option>' +
+                '</select>' +
+                '<select id="result_query_map_person_select" class="selectpicker" style="width:100px !important;;margin:0px"></select>' +
+                '<input id="result_query_map_start_date_input" style="width:100px !important;" value="2013-11-02"/>' +
+                '<input id="result_query_map_end_date_input" style="width:100px !important;" value="2013-11-02"/>' +
+                '<input id="result_query_map_start_time_input" style="width:100px !important;" value="08:00:00"/>' +
+                '<input id="result_query_map_end_time_input" style="width:100px !important;" value="20:00:00"/>' +
+//                '<select id="result_query_map_line_select" class="selectpicker" style="width:300px !important"></select>' +
+                '<span id="result_query_map_start_btn" class="btn">开始演示</span>' +
+                '<span id="result_query_map_pause_btn" class="btn">暂停演示</span>' +
+                '<span id="result_query_map_continue_btn" class="btn">继续演示</span>' +
+                '<span id="result_query_map_prev_btn" class="btn">前一条</span>' +
+                '<span id="result_query_map_next_btn" class="btn">后一条</span>' +
+                '<div id="div-editor-left">' +
+                '</div>' +
+                '<div id="div-editor-right">' +
+                    '<span style="float:right;" id="upload_path_file_btn" class="btn">上传路径文件</span><br/>' +
+                    '<table id="map_info_table" class="table table-striped table-bordered"></table>' +
+                '</div>'
 
-//最大值
-Array.prototype.max = function() {
-    var max = this[0];
-    var len = this.length;
-    for (var i = 1; i < len; i++){
-    if (this[i] > max) {
-        max = this[i];
-        }
-    }
-    return max;
-}
 
 /**
  * A dict like this :
@@ -58,6 +59,23 @@ function upload_map(){
 			});
 
     $('.uploadify-button-text').html('上传地图')
+}
+
+
+function upload_path_file(){
+    $('#upload_path_file_btn').uploadify({
+                height        : 30,
+                swf           : '/static/flash/uploadify.swf',
+                width         : 120,
+				'uploader' : '/upload/pathfile/',
+                'onUploadSuccess' : function(file, data, response) {
+                    //Refresh page
+//                    location.reload()
+                    show_result_query_map_history()
+                }
+			});
+
+    $('.uploadify-button-text').html('上传文件')
 }
 
 
@@ -328,6 +346,25 @@ function export_orderedSchedule(){
 function export_unorderedSchedule(){
     var url = '/get/excel/unorderedschedule/'
     location.href = url;
+}
+
+function update_position_card_on_map(render_div_id){
+    $.get(
+        "/get/positioncard/",
+        null,
+        function(data, status){
+            position_card_dict = []
+            var data = eval(data)
+            for(var i=0;i<data.length;i++){
+                var item = data[i]
+                var render_div$ = $("#"+render_div_id)
+                var p_x = item.x
+                var p_y = item.y+28
+                var name = item.name
+                render_div$.append('<div class="position-div" style="left:'+p_x+'px;top:'+p_y+'px;" data="'+name+'"></div>')
+            }
+        }
+    )
 }
 
 /**
@@ -709,6 +746,22 @@ function update_unordered_schedule_line_select(){
 }
 
 
+function render_select_person(select_id){
+    $.get(
+        "/data/personData",
+        null,
+        function(data, status){
+            data = JSON.parse(data)
+            var select$ = $('#'+select_id)
+            select$.empty()
+            for(var i=0;i<data.length;i++){
+                select$.append('<option>'+data[i]['name']+'</option>')
+            }
+        }
+    )
+}
+
+
 function query_and_show_mds(){
     var select$ = $("#query_result_multi_day_schedule_line_select")
     if(! select$.val()){
@@ -932,33 +985,8 @@ function init_query_options(){
         )
     }
 
-    $('#query_result_schedule_start_time_input').each(function(){
-        $(this).blur(function(){
-            if($(this).val() == ''){
-                $(this).val('2013-11-02 01:01:01')
-            }
-        })
-
-        $(this).focus(function(){
-            if($(this).val() == '2013-11-02 01:01:01'){
-                $(this).val('')
-            }
-        })
-    })
-
-    $('#query_result_schedule_end_time_input').each(function(){
-        $(this).blur(function(){
-            if($(this).val() == ''){
-                $(this).val('2013-11-02 01:01:01')
-            }
-        })
-
-        $(this).focus(function(){
-            if($(this).val() == '2013-11-02 01:01:01'){
-                $(this).val('')
-            }
-        })
-    })
+    set_input_default('#query_result_schedule_start_time_input', '2013-11-02 01:01:01')
+    set_input_default('#query_result_schedule_end_time_input', '2013-11-02 01:01:01')
 
     $.get(
         "/data/positionData",
@@ -1282,19 +1310,7 @@ function show_result_query_alarm(){
         '</div>'
     )
 
-    $('#query_result input').each(function(){
-        $(this).blur(function(){
-            if($(this).val() == ''){
-                $(this).val('2013-11-02 01:01:01')
-            }
-        })
-
-        $(this).focus(function(){
-            if($(this).val() == '2013-11-02 01:01:01'){
-                $(this).val('')
-            }
-        })
-    })
+    $('#query_result input').set_input_default('2013-11-02 01:01:01')
 
     // Show query result table here
     $.get(
@@ -1388,84 +1404,38 @@ function query_and_show_mh(){
             }
         )
     }
-    else if(schedule == "有顺序计划"){
-        var line = line_data.split(',')[0]
-        var start_time = line_data.split(',')[1]
-    }
-    else{   //无顺序计划
-        var line = line_data.split(',')[0]
-        var start_time = line_data.split(',')[1]
-        var end_time = line_data.split(',')[2]
-    }
 }
 
-
-function show_mh(){
+function patrol_start(){
     var mss$ = $('#result_query_map_schedule_select')
-    var select$ = $("#result_query_map_line_select")
-    select$.empty()
-    if(mss$.val() == '多天计划'){
-        $.get(
-            "/data/multiDayScheduleData",
-            null,
-            function(data, status){
-                data = eval(data)
-                var select$ = $("#result_query_map_line_select")
-                for(var i=0;i<data.length;i++){
-                    select$.append(
-                        "<option>" +
-                            data[i].line+","+
-                            data[i].start_time+','+
-                            data[i].end_time +','+
-                            data[i].daily_start_time +
-                        "</option>"
-                    )
-                }
+    var schedule = mss$.val()
+    var schedule_url_dict = {
+        '多天计划': '/get/map/multiDayScheduleData',
+        '有顺序计划': '/get/map/orderedScheduleData',
+        '无顺序计划': '/get/map/unorderedScheduleData'
+    }
 
-                query_and_show_mh()
-            }
-        )
-    }
-    else if(mss$.val() == "有顺序计划"){
-        $.get(
-            "/data/orderedScheduleData",
-            null,
-            function(data, status){
-                data = eval(data)
-                var select$ = $("#result_query_map_line_select")
-                for(var i=0;i<data.length;i++){
-                    select$.append(
-                        "<option>" +
-                            data[i].line+","+
-                            data[i].start_time+
-                        "</option>"
-                    )
-                }
-                query_and_show_mh()
-            }
-        )
+    var url = schedule_url_dict[schedule]
+    $.get(
+        url,
+        null,
+        function(data, status){
+            data = JSON.parse(data)
+            var animate = PatrolAnimate('map_animation', data)
+            animate.draw()
 
-    }
-    else{
-        $.get(
-            "/data/unorderedScheduleData",
-            null,
-            function(data, status){
-                data = eval(data)
-                var select$ = $("#result_query_map_line_select")
-                for(var i=0;i<data.length;i++){
-                    select$.append(
-                        "<option>" +
-                            data[i].line+","+
-                            data[i].start_time+','+
-                            data[i].end_time +
-                        "</option>"
-                    )
-                }
-                query_and_show_mh()
-            }
-        )
-    }
+            animate.start()
+
+            $('#result_query_map_pause_btn').click(function(){
+                animate.pause()
+            })
+
+            $('#result_query_map_continue_btn').click(function(){
+                console.log('continue')
+                animate.resume()
+            })
+        }
+    )
 }
 
 /*
@@ -1479,27 +1449,13 @@ function show_result_query_map_history(){
         try{
             var divEditor = Ext.get('div-editor')
             divEditor.dom.innerHTML=""
-            divEditor.createChild(
-                '<select id="result_query_map_schedule_select" class="selectpicker" style="width:100px !important;">' +
-                    '<option>多天计划</option>' +
-                    '<option>有顺序计划</option>' +
-                    '<option>无顺序计划</option>' +
-                '</select>' +
-                '<select id="result_query_map_line_select" class="selectpicker" style="width:300px !important"></select>' +
-                '<span id="result_query_map_start_btn" class="btn">开始演示</span>' +
-                '<span id="result_query_map_pause_btn" class="btn">暂停演示</span>' +
-                '<span id="result_query_map_continue_btn" class="btn">继续演示</span>' +
-                '<span id="result_query_map_prev_btn" class="btn">前一条</span>' +
-                '<span id="result_query_map_next_btn" class="btn">后一条</span>' +
-                '<div id="div-editor-map">' +
-                    '<div id="div-editor-left"></div>' +
-                    '<div id="div-editor-right">' +
-                        '<div style="width:100%;height:100%;overflow-y:auto;">' +
-                            '<table id="map_info_table" class="table table-striped table-bordered"></table>' +
-                        '</div>' +
-                    '</div>' +
-                '</div>'
-            )
+            divEditor.createChild(query_map_history_html)
+
+            render_select_person('result_query_map_person_select')
+
+            $('#upload_path_file_btn').click(function(){
+                upload_path_file()
+            })
 
             $('#div-editor span.btn').each(function(){
                 $(this).click(function(){
@@ -1509,15 +1465,18 @@ function show_result_query_map_history(){
             })
 
             Ext.get('div-editor-left').createChild(
-                '<div id="map_container" style="background-image: url(/static/images/geograph.png)">' +
-////                    '<img id="map_img" class="geograph" src="/static/images/geograph.png"/>' +
+                '<div id="div-editor-map">' + // style="background-image: url(/static/images/geograph.png)">' +
+                    '<img id="map_img" class="geograph" src="/static/images/geograph.png"/>' +
                 '</div>' +
                 '<div id="map_animation"></div>'
             )
 
-            $('#div-editor-left').width(parseInt(parseFloat($('#div-editor-map').width())*0.59))
-            $('#map_container').width($('#div-editor-left').width())
-            $('#map_container').height($('#div-editor-left').height() - 30)
+//            auto_fit_img('map_img', 'div-editor-map')
+            $("#map_img").img_auto_fit()
+
+            $('#div-editor-left').width(parseInt(parseFloat($('#div-editor').width())*0.75))
+            $('#div-editor-right').width(parseInt(parseFloat($('#div-editor').width())*0.24))
+            $('#map_animation').width($('#div-editor-left').width())
 
             $("#map_info_table").append(
                 "<tbody>" +
@@ -1536,17 +1495,30 @@ function show_result_query_map_history(){
                     "<tr>" +
                         "<td>状态：</td><td><input /></td>" +
                     "</tr>" +
-                "</tbody>")
+                "</tbody>"
+            )
 
-            show_mh()
+            $('#result_query_map_start_date_input').set_input_default('2013-11-02')
+            $('#result_query_map_end_date_input').set_input_default('2013-11-02')
+            $('#result_query_map_start_time_input').set_input_default('08:00:00')
+            $('#result_query_map_end_time_input').set_input_default('20:00:00')
 
-            $('#result_query_map_schedule_select').change(function(){
-                show_mh()
+            update_position_card_on_map('div-editor-left')
+
+//            show_mh()
+            $('#result_query_map_start_btn').click(function(){
+//                animate.start()
+                patrol_start()
             })
 
-            $('#result_query_map_line_select').change(function(){
-                query_and_show_mh()
-            })
+//            $('#result_query_map_pause_btn').click(function(){
+////                animate.pause()
+//            })
+//
+//            $('#result_query_map_continue_btn').click(function(){
+//                console.log('continue')
+////                animate.resume()
+//            })
         }
         catch(err){
             console.log(err)
@@ -1642,7 +1614,9 @@ function show_result_query_temperature_humidity(){
                 })
             })
 
-            show_temperature_humidity('div-editor-left')
+            $('#temp_hum_device_select').change(function(){
+                show_temperature_humidity('div-editor-left')
+            })
 
             $.get(
                 "/data/temperatureHumidityDevice",
@@ -1653,6 +1627,8 @@ function show_result_query_temperature_humidity(){
                     for(var i=0;i<data.length;i++){
                         $('#temp_hum_device_select').append('<option>'+data[i].position+'</option>')
                     }
+
+                    show_temperature_humidity('div-editor-left')
                 }
             )
 
@@ -1747,35 +1723,6 @@ function show_realtime_temperature_humidity(div_id){
 }
 
 
-function auto_fit_map_img(img_id){
-    console.log('func auto_fit_map_img')
-    var parent_width = $('#div-editor-map').width()
-    var parent_height = $('#div-editor-map').height()
-    // auto-fit map_img to parent's width and height
-    var img$ = $('#'+img_id)
-
-    img$.on('load', function(){
-            var save_img_width = $(this)[0].naturalWidth
-            var save_img_height = $(this)[0].naturalHeight
-            console.log($(this))
-            var width_height_rate = parseFloat(save_img_width)/parseFloat(save_img_height)
-            console.log('width_height_rate:'+width_height_rate)
-
-            $(this).height(parent_width)
-            var target_width = parseInt($(this).height()*width_height_rate)
-
-            if(target_width > parent_width){
-                $(this).width(parent_width)
-                $(this).height(parseInt($(this).width()/width_height_rate))
-            }
-            else{
-                $(this).width(target_width)
-            }
-        }
-    )
-}
-
-
 function show_result_realtime_query_temperature_humidity(){
     var div_editor$ = $('#div-editor')
     div_editor$.empty()
@@ -1789,7 +1736,10 @@ function show_result_realtime_query_temperature_humidity(){
                     '<img id="map_img" src="/static/images/temp_hum_geograph.png"/>' +
                 '</div>'
             )
-            auto_fit_map_img('map_img')
+
+//            auto_fit_img('map_img', 'div-editor-map')
+            $("#map_img").img_auto_fit()
+
             show_realtime_temperature_humidity('div-editor-map')
         }
         catch(err){
@@ -1818,10 +1768,14 @@ function draw_temp_hum_chart(div_id, data){
         title: {
             text: '温湿度查询'
         },
-//        xAxis: [{
-//            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-//                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-//        }],
+        xAxis: [{
+            categories: data['x'],
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                day: '%y-%b-%e %H:%M'
+            },
+            tickInterval: 3600 * 1000
+        }],
         yAxis: [{ // Primary yAxis
             labels: {
                 format: '{value}°C',
@@ -1863,62 +1817,70 @@ function draw_temp_hum_chart(div_id, data){
             backgroundColor: '#FFFFFF'
         },
         series: [
-//            {
-//                name: '湿度',
-//                color: '#4572A7',
-//                type: 'spline',
-//                yAxis: 1,
-//                data: [4.99, 7.15, 10.64, 12.92, 14.40, 17.60, 13.56, 14.85, 21.64, 19.41, 9.56, 5.44],
-//                tooltip: {
-//                    valuePrefix: '% '
-//                }
-//            },
-//            {
-//                name: '温度',
-//                color: '#89A54E',
-//                type: 'spline',
-//                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
-//                tooltip: {
-//                    valueSuffix: '°C'
-//                }
-//            }
+            {
+                name: '湿度',
+                color: '#4572A7',
+                type: 'spline',
+                yAxis: 1,
+                data: data['y']['humidity'],
+                tooltip: {
+                    valuePrefix: '% '
+                }
+            },
+            {
+                name: '温度',
+                color: '#89A54E',
+                type: 'spline',
+                data: data['y']['temperature'],
+                tooltip: {
+                    valueSuffix: '°C'
+                }
+            }
         ]
     });
-
-    chart.series.push({
-        name: '湿度',
-        color: '#4572A7',
-        type: 'spline',
-        yAxis: 1,
-        data: data['temperature'],
-        tooltip: {
-            valuePrefix: '% '
-        }
-    })
-
-    chart.series.push({
-        name: '温度',
-        color: '#89A54E',
-        type: 'spline',
-        data: data['humidity'],
-        tooltip: {
-            valueSuffix: '°C'
-        }
-    })
-
     return chart
 }
 
-/* Show Temperaure and Humidity
+/* Show Temperaure and Humidity history chart
 * */
 function show_temperature_humidity(div_id){
-    var parentWidth = $('#'+div_id).width()
-    var parentHeight = $('#'+div_id).height()
+    var position = $('#temp_hum_device_select').val()
+
+    $('#div-editor-left').height(600);
 
     //@TODO: get temperature data and show
-//    $.get(
-//        "",
-//
-//    )
+    $.get(
+        "/data/oneDeviceTemperatureHumidity",
+        {
+            position: position
+        },
+        function(data, status){
+            try{
+                data = JSON.parse(data)
+                var chart_data = {
+                    x: [],
+                    y: {
+                        temperature: [],
+                        humidity: []
+                    }
+                }
+                for(var i=0;i<data.length;i++){
+                    try{
+                        chart_data.x.push(data[i]['time'])
+                        chart_data.y.temperature.push(data[i]['temperature'])
+                        chart_data.y.humidity.push(data[i]['humidity'])
+                    }
+                    catch(err){
+                        console.log(err)
+                    }
+                }
+
+                draw_temp_hum_chart('div-editor-left', chart_data)
+            }
+            catch(err){
+                console.log(err)
+            }
+        }
+    )
 }
 

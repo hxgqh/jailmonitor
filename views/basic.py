@@ -73,6 +73,9 @@ def data(request, type):
         if 'temperatureHumidityDevice' in type:
             template_data['data'] = getTemperatureHumidityDevice()
 
+        if 'oneDeviceTemperatureHumidity' in type:
+            template_data['data'] = get_one_position_temperature_humidity(request.GET)
+
         return HttpResponse(json.dumps(template_data['data']))
 
     if request_method == 'POST':
@@ -137,11 +140,38 @@ def upload_map(request):
         fp = open(file_path+file_name, 'wb+')
         for chunk in file_data.chunks():
             fp.write(chunk)
-            fp.close()
+        fp.close()
         pass
     except Exception as e:
         print e
         print traceback.format_exc()
 
     return HttpResponse(file_name)
+    pass
+
+
+@login_required(login_url="/login")
+@csrf_exempt
+def upload_path_file(request):
+    # print request
+    print request.POST
+    print request.FILES
+
+    file_data = request.FILES['Filedata']
+
+    upload_file_name = request.POST['Filename']
+
+    try:
+        file_path = os.path.join(base_dir, '../data/')
+        fp = open(file_path+'points_lines.txt', 'w+')
+        for chunk in file_data.chunks():
+            fp.write(chunk)
+        fp.close()
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+        pass
+
+    return HttpResponse('')
     pass

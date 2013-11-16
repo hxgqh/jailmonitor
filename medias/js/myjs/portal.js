@@ -63,7 +63,7 @@ var query_setting_html = '<span id="export_unorderedSchedule" class="btn btn-pri
 //                                '<span id="result_query_unordered_schedule" class="btn result_query">无顺序计划查询</span>' +
 //                                '<span id="result_query_alarm" class="btn result_query">报警信息查询</span>' +
                                 '<span id="result_query_map_history" class="btn result_query">巡检地图历史轨迹查询</span>' +
-                                '<span id="result_query_patrol_device_status" class="btn result_query">巡检设备状态查询</span>' +
+//                                '<span id="result_query_patrol_device_status" class="btn result_query">巡检设备状态查询</span>' +
                                 '<span id="result_query_realtime_temperature_humidity" class="btn result_query">实时温湿度查询</span>' +
                                 '<span id="result_query_temperature_humidity" class="btn result_query">历史温湿度查询</span>' +
                             '</div>'
@@ -290,7 +290,8 @@ function show_temp_hum_map(){
             Ext.get('div-editor-map').createChild('<img id="map_img" class="geograph" src="/static/images/temp_hum_geograph.png"/>')
             $("#map_info_table").append("<thead><td>地点</td><td>x坐标</td><td>y坐标</td></thead><tbody></tbody>")
 
-            auto_fit_map_img('map_img')
+//            auto_fit_img('map_img', 'div-editor-map')
+            $('#map_img').img_auto_fit()
 
             update_temp_hum_position_card_table()
 
@@ -370,13 +371,17 @@ function map_setting_expand(){
             Ext.get('div-editor-map').createChild('<img id="map_img" class="geograph" src="/static/images/geograph.png"/>')
             $("#map_info_table").append("<thead><td>地点</td><td>x坐标</td><td>y坐标</td></thead><tbody></tbody>")
 
-            auto_fit_map_img('map_img')
+//            auto_fit_img('map_img', 'div-editor-map')
+            $('#map_img').img_auto_fit()
 
             update_position_card_table()
 
             $('#change_map').click(function(){
                 show_temp_hum_map()
             })
+
+//            register_show_axis('div-editor-map')
+            $('#div-editor-map').show_mouse_axis()
 
             $('#add_position_card').click(function(){
                 $('#add_position_card').toggleClass('btn-primary')
@@ -480,15 +485,16 @@ function query_setting_expand(){
             show_result_query_schedule()
         })
 
-        $('#result_query_alarm').click(function(){
-            show_result_query_alarm()
-        })
+//        $('#result_query_alarm').click(function(){
+//            show_result_query_alarm()
+//        })
         $('#result_query_map_history').click(function(){
             show_result_query_map_history()
         })
-        $('#result_query_patrol_device_status').click(function(){
-            show_result_query_patrol_device_status()
-        })
+
+//        $('#result_query_patrol_device_status').click(function(){
+//            show_result_query_patrol_device_status()
+//        })
 
         $('#result_query_temperature_humidity').click(function(){
             show_result_query_temperature_humidity()

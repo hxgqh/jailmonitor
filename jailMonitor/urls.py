@@ -41,6 +41,7 @@ urlpatterns = patterns('',
     url(r"^get/map/multiDayScheduleData.*$", 'schedules.views.get_map_multi_day_schedule'),
 
     url(r'^upload/map/$', 'views.basic.upload_map'),
+    url(r'^upload/pathfile/$', 'views.basic.upload_path_file'),
 
     #login
     url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),

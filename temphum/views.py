@@ -5,6 +5,7 @@ import os
 import re
 import sys
 import json
+import datetime
 import tablib
 import traceback
 
@@ -53,6 +54,57 @@ def update_one_position_temperature_humidity(row_data):
     except Exception as e:
         print e
         print traceback.format_exc()
+    pass
+
+
+def get_one_position_temperature_humidity(request_GET):
+    """
+    time = models.DateTimeField(verbose_name="时间")  # , USE_TZ=False)
+    device = models.ForeignKey(TemperatureHumidityDeviceModel)
+    temperature = models.FloatField(verbose_name="温度")
+    humidity = models.FloatField(verbose_name="湿度")
+    """
+    print "func get_one_position_temperature_humidity"
+    data = []
+    try:
+        position = request_GET.get('position', None)
+
+        print position
+
+        if not position:
+            return ''
+
+        try:
+            device = TemperatureHumidityDeviceModel.objects.get(position=position)
+            for item in TemperatureHumidityModel.objects.filter(device=device).order_by('time'):
+                data.append({
+                    'time': item.time.strftime('%Y-%m-%d %H:%M:%S'),
+                    'device': position,
+                    'temperature': item.temperature,
+                    'humidity': item.humidity
+                })
+                pass
+        except PositionsModel.DoesNotExist:
+            return ''
+            pass
+        else:
+            pass
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+
+    # TODO: should be removed. Test data here
+    t = datetime.datetime.now()
+    for i in range(100):
+        data.append({
+            'time': int(1000.0*float((t+datetime.timedelta(0, 24*3600, 0)).strftime('%s.%f'))),
+            'device': '温湿度计地点1',
+            'temperature': 10+i/10,
+            'humidity': 20+i/10,
+        })
+
+    return data
     pass
 
 

@@ -297,17 +297,28 @@ $.fn.RealTimePatrolAnimate = function(data){
 
     this.start = function(){
         console.log('start')
+        console.log(this.old_data)
+        if(! this.old_data){
+            $('#map_info_table').update_realtime_patrol_table(this.new_data)
+            return 0
+        }
+
         if(this.new_data['arrive_time'] != this.old_data['arrive_time']){
+
+
             var start_x = parseInt(this.old_data['x'])
             var start_y = parseInt(this.old_data['y'])
             var end_x = parseInt(this.new_data['x'])
             var end_y = parseInt(this.new_data['y'])
 
+            var new_data = this.new_data
+
+
             var r_path = this.paper.path('m'+start_x+','+start_y)
             r_path.attr('stroke-width', '6px')
             r_path.attr('stroke', 'red')
 
-            var new_data = this.new_data
+
             var show_r_path = function(){
                 var path_string = 'm'+start_x+','+start_y+' L'+end_x+','+end_y
                 this.paper.path({path: path_string})

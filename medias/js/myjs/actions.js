@@ -1455,7 +1455,7 @@ function query_and_show_mh(){
 
 
 var color_array = ['#ffd700', '#ff1493', '#4b0082', '#7cfc00', '#ffa07a']
-var realtime_patrol_person_last_time = {}   // {person1: {'person':'person1', 'position':'', 'x':'', 'y':'','arrive_time':''}, person2: {}, ...}
+var realtime_patrol_person_last_time = null   // {person1: {'person':'person1', 'position':'', 'x':'', 'y':'','arrive_time':''}, person2: {}, ...}
 var person_color_dict = {}  // {'person1': i}
 function realtime_patrol_start(){
     window.setInterval(function(){
@@ -1579,6 +1579,8 @@ function show_result_query_map_realtime(){
             $('#table-editor').height($('#div-editor').height())
 
             update_position_card_on_map('div-editor-left')
+
+            realtime_paper = null
 
             realtime_patrol_start()
         }

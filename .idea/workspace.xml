@@ -4,10 +4,6 @@
     <list default="true" id="9e50273a-5501-4f64-8cc4-f4b467f973ba" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/actions.js" afterPath="$PROJECT_DIR$/medias/js/myjs/actions.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/patrol.animate.js" afterPath="$PROJECT_DIR$/medias/js/myjs/patrol.animate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/css/portal.css" afterPath="$PROJECT_DIR$/medias/css/portal.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/portal.js" afterPath="$PROJECT_DIR$/medias/js/myjs/portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jailMonitor/urls.py" afterPath="$PROJECT_DIR$/jailMonitor/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schedules/views.py" afterPath="$PROJECT_DIR$/schedules/views.py" />
     </list>
     <ignored path="jailMonitor.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -109,12 +105,12 @@
     <file path="/test_get_data.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384052651951" ignored="false" />
     <file path="/test_SocketServer.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383640073074" ignored="false" />
     <file path="/portal.defines.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383702093960" ignored="false" />
-    <file path="/actions.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384667135397" ignored="false" />
+    <file path="/actions.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384675049931" ignored="false" />
     <file path="/patrol_daemon.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383897457843" ignored="false" />
     <file path="/test_patrol.data.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383711465554" ignored="false" />
     <file path="/animate.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383881924978" ignored="false" />
     <file path="/test.patrol.animate.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383865597960" ignored="false" />
-    <file path="/patrol.animate.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384674287532" ignored="false" />
+    <file path="/patrol.animate.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384675113564" ignored="false" />
     <file path="/temp_hum_daemon.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383897282409" ignored="false" />
     <file path="/query.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384438894668" ignored="false" />
     <file path="/patrol_line.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384416949046" ignored="false" />
@@ -149,7 +145,16 @@
       <file leaf-file-name="portal.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/medias/js/myjs/portal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="495" column="31" selection-start="20758" selection-end="20758" vertical-scroll-proportion="0.0">
+            <state line="107" column="21" selection-start="8206" selection-end="8206" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="row-editing.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/medias/js/myjs/row-editing.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="12" selection-start="770" selection-end="770" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -158,7 +163,7 @@
       <file leaf-file-name="portal.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/medias/css/portal.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="309" column="28" selection-start="5186" selection-end="5186" vertical-scroll-proportion="0.0">
+            <state line="302" column="0" selection-start="5058" selection-end="5058" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -167,10 +172,19 @@
       <file leaf-file-name="actions.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/medias/js/myjs/actions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1553" column="12" selection-start="50947" selection-end="50947" vertical-scroll-proportion="0.0">
+            <state line="338" column="35" selection-start="11749" selection-end="11749" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!block;n#query_and_show_mh#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/persons/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="88" column="0" selection-start="2128" selection-end="2128" vertical-scroll-proportion="-7.16">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -187,11 +201,20 @@
       <file leaf-file-name="patrol.animate.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/medias/js/myjs/patrol.animate.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="306" column="46" selection-start="10015" selection-end="10015" vertical-scroll-proportion="0.0">
+            <state line="316" column="38" selection-start="10159" selection-end="10159" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#11567#12337#0" expanded="false" />
+                <element signature="e#11745#12515#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requirements.txt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="14" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -199,7 +222,7 @@
       <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/schedules/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="794" column="5" selection-start="23861" selection-end="23861" vertical-scroll-proportion="0.5618861">
+            <state line="752" column="33" selection-start="22795" selection-end="22795" vertical-scroll-proportion="-0.57258064">
               <folding>
                 <element signature="e#46#57#0" expanded="true" />
                 <element signature="e#17725#21061#0" expanded="false" />
@@ -211,16 +234,7 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lines/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="36" selection-start="629" selection-end="629" vertical-scroll-proportion="-10.8">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/positions/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="29" selection-start="258" selection-end="258" vertical-scroll-proportion="-4.8">
+            <state line="16" column="48" selection-start="499" selection-end="499" vertical-scroll-proportion="-7.8">
               <folding />
             </state>
           </provider>
@@ -336,79 +350,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="schedules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="medias" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="medias" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="medias" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myjs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="medias" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
+              <option name="myItemId" value="persons" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -859,7 +801,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20205921" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15208034" sideWeight="0.7528958" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20444763" sideWeight="0.7528958" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15781923" sideWeight="0.7528958" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2908623" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -955,27 +897,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/medias/js/myjs/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="14" selection-start="206" selection-end="207" vertical-scroll-proportion="-5.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medias/js/myjs/portal.defines.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/medias/js/myjs/row-editing.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="29" selection-start="272" selection-end="272" vertical-scroll-proportion="-7.4">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="52" column="14" selection-start="2223" selection-end="2223" vertical-scroll-proportion="-15.918367">
@@ -1011,23 +932,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lines/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="36" selection-start="629" selection-end="629" vertical-scroll-proportion="-10.8">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/positions/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="29" selection-start="258" selection-end="258" vertical-scroll-proportion="-4.8">
+        <state line="18" column="57" selection-start="684" selection-end="684" vertical-scroll-proportion="-10.2">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medias/css/portal.css">
+    <entry file="file://$PROJECT_DIR$/lines/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="309" column="28" selection-start="5186" selection-end="5186" vertical-scroll-proportion="0.0">
+        <state line="16" column="48" selection-start="499" selection-end="499" vertical-scroll-proportion="-7.8">
           <folding />
         </state>
       </provider>
@@ -1039,35 +953,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/medias/js/myjs/patrol.animate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="316" column="38" selection-start="10159" selection-end="10159" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#11745#12515#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="14" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medias/css/portal.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="302" column="0" selection-start="5058" selection-end="5058" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medias/js/myjs/row-editing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="12" selection-start="770" selection-end="770" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/medias/js/myjs/portal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="495" column="31" selection-start="20758" selection-end="20758" vertical-scroll-proportion="0.0">
+        <state line="107" column="21" selection-start="8206" selection-end="8206" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/medias/js/myjs/actions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1553" column="12" selection-start="50947" selection-end="50947" vertical-scroll-proportion="0.0">
+        <state line="338" column="35" selection-start="11749" selection-end="11749" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!block;n#query_and_show_mh#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/medias/js/myjs/patrol.animate.js">
+    <entry file="file://$PROJECT_DIR$/persons/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="306" column="46" selection-start="10015" selection-end="10015" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#11567#12337#0" expanded="false" />
-          </folding>
+        <state line="88" column="0" selection-start="2128" selection-end="2128" vertical-scroll-proportion="-7.16">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/schedules/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="794" column="5" selection-start="23861" selection-end="23861" vertical-scroll-proportion="0.5618861">
+        <state line="752" column="33" selection-start="22795" selection-end="22795" vertical-scroll-proportion="-0.57258064">
           <folding>
             <element signature="e#46#57#0" expanded="true" />
             <element signature="e#17725#21061#0" expanded="false" />

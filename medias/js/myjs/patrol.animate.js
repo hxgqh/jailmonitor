@@ -250,6 +250,82 @@
 //}
 
 
+$.fn.update_realtime_patrol_table = function(data){
+    var t_body$ = $(this.children().eq(1))
+    console.log(t_body$)
+    var bak_html = t_body$.html()
+    t_body$.html('')
+    t_body$.html(
+        '<tr>' +
+            '<td>'+data.arrive_time+'</td>' +
+            '<td>'+data.position+'</td>' +
+            '<td>'+data.person+'</td>' +
+        '</tr>' +
+        bak_html
+    )
+//    t_body$.before(
+//        '<tr>' +
+//            '<td>'+data.arrive_time+'</td>' +
+//            '<td>'+data.position+'</td>' +
+//            '<td>'+data.person+'</td>' +
+//        '</tr>'
+//    )
+}
+
+
+var realtime_paper = null
+$.fn.RealTimePatrolAnimate = function(data){
+    var ret = this
+    try{
+//        var render = data.render
+//        this.render$ = $('#'+data.render)
+        var width = this.clientWidth
+        var height = this.clientHeight
+        if(! realtime_paper){
+            realtime_paper = Raphael(this.attr('id'), width, height)
+        }
+        this.paper = realtime_paper
+
+        this.new_data = data.new_data
+        this.old_data = data.old_data
+        this.line_color = data.line_color
+        this.person = data.person
+    }
+    catch(err){
+        console.log(err)
+    }
+
+    this.start = function(){
+        console.log('start')
+        if(this.new_data['arrive_time'] != this.old_data['arrive_time']){
+            var start_x = parseInt(this.old_data['x'])
+            var start_y = parseInt(this.old_data['y'])
+            var end_x = parseInt(this.new_data['x'])
+            var end_y = parseInt(this.new_data['y'])
+
+            var r_path = this.paper.path('m'+start_x+','+start_y)
+            r_path.attr('stroke-width', '6px')
+            r_path.attr('stroke', 'red')
+
+            var new_data = this.new_data
+            var show_r_path = function(){
+                var path_string = 'm'+start_x+','+start_y+' L'+end_x+','+end_y
+                this.paper.path({path: path_string})
+                // Update real time data in table
+                $('#map_info_table').update_realtime_patrol_table(new_data)
+            }
+
+            var path_string = 'm'+start_x+','+start_y+' L'+end_x+','+end_y
+            console.log(path_string)
+            //Create animation here
+            var animation = Raphael.animation({path: path_string}, 3e3, show_r_path)
+            r_path.animate(animation)
+        }
+    }
+
+    return ret
+}
+
 /*
 * @param data: an Array like this {
 *       render: render_id,

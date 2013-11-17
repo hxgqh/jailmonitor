@@ -492,6 +492,10 @@ function query_setting_expand(){
 //        $('#result_query_alarm').click(function(){
 //            show_result_query_alarm()
 //        })
+        $('#result_query_map_realtime').click(function(){
+            show_result_query_map_realtime()
+        })
+
         $('#result_query_map_history').click(function(){
             show_result_query_map_history()
         })

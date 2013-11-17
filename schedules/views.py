@@ -692,6 +692,77 @@ def get_patrol_history(filter_dict):
     pass
 
 
+def get_patrol_realtime():
+    """
+    @return: a dict like this {
+        person1: {
+            'person':'person1',
+            'position':'',
+            'x':10,
+            'y':10,
+            'arrive_time':''
+        }
+    }
+    """
+    data = {}
+
+    try:
+        for person in PersonsModel.objects.all():
+            if PatrolActionHistoryModel.objects.filter(person=person).count() > 0:
+                latest_arrive_data = PatrolActionHistoryModel.objects.filter(person=person).order_by('-arrive_time')[0]
+                latest_arrive_time = latest_arrive_data.arrive_time.strftime(date_time_format)
+
+                position = ''
+                x = 0
+                y = 0
+                if not latest_arrive_data.position:
+                    continue
+
+                if latest_arrive_data.position.position_card:
+                    data[person.name] = {
+                        'person': person.name,
+                        'position': latest_arrive_data.position.position,
+                        'x': latest_arrive_data.position.position_card.x,
+                        'y': latest_arrive_data.position.position_card.y,
+                        'arrive_time': latest_arrive_time
+                    }
+                pass
+            pass
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+
+    return data
+    pass
+
+
+@login_required(login_url="/login/")
+def get_map_patrol_realtime(request):
+    print 'func get_map_patrol_realtime'
+    data = {}
+
+    try:
+        data = get_patrol_realtime()
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+
+    # # TODO: Test data here, should be removed
+    # t = datetime.datetime.now()
+    # data['person1'] = {
+    #     'person': 'person1',
+    #     'position': 'position1',
+    #     'x': t.second*10,
+    #     'y': t.minute*10,
+    #     'arrive_time': t.strftime(date_time_format)
+    # }
+
+    return HttpResponse(json.dumps(data))
+    pass
+
+
 @login_required(login_url="/login/")
 def get_schedule_map_history(request):
     print 'func get_schedule_map_history'
@@ -707,26 +778,26 @@ def get_schedule_map_history(request):
         print e
         print traceback.format_exc()
 
-    # Add test date here
-    t = datetime.datetime.now()
-    for i in range(4):
-        x = (i+1)*100
-        y = 200
-        data['points'][str(x)+','+str(y)] = {
-            'position_card': '第'+str(i+1)+'张地点卡',
-            'position': '位置'+str(i+1),
-            'arrive_time': (t+datetime.timedelta(i, 0, 0)).strftime(date_time_format),
-            'x': x,
-            'y': y,
-            'person': '人员1'
-        }
-        pass
-
-    for i in range(3):
-        data['paths'].append(
-            [((i+1)*100, 200), ((i+2)*100, 200)],
-        )
-        pass
+    # TODO: remove test date here
+    # t = datetime.datetime.now()
+    # for i in range(4):
+    #     x = (i+1)*100
+    #     y = 200
+    #     data['points'][str(x)+','+str(y)] = {
+    #         'position_card': '第'+str(i+1)+'张地点卡',
+    #         'position': '位置'+str(i+1),
+    #         'arrive_time': (t+datetime.timedelta(i, 0, 0)).strftime(date_time_format),
+    #         'x': x,
+    #         'y': y,
+    #         'person': '人员1'
+    #     }
+    #     pass
+    #
+    # for i in range(3):
+    #     data['paths'].append(
+    #         [((i+1)*100, 200), ((i+2)*100, 200)],
+    #     )
+    #     pass
 
     print json.dumps(data, indent=4)
     return HttpResponse(json.dumps(data))

@@ -39,6 +39,7 @@ urlpatterns = patterns('',
     # url(r"^get/query/multidayschedule/$", 'schedules.views.get_query_multi_day_schedule'),
     # url(r"^get/query/multidayschedule/$", 'schedules.views.get_query_multi_day_schedule'),
     url(r"^get/schedule/map/history.*$", 'schedules.views.get_schedule_map_history'),
+    url(r"^get/map/patrol/realtime.*$", 'schedules.views.get_map_patrol_realtime'),
     # url(r"^get/map/orderedScheduleData.*$", 'schedules.views.get_schedule_map_history'),
     # url(r"^get/map/unorderedScheduleData.*$", 'schedules.views.get_schedule_map_history'),
 

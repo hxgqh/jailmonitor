@@ -38,9 +38,25 @@ var query_map_history_html =
                                         "<tr>" +
                                             "<td>地点编号：</td><td><input id='patrol_history_point_position_card'/></td>" +
                                         "</tr>" +
-//                                        "<tr>" +
-//                                            "<td>状态：</td><td><input id='status'/></td>" +
-//                                        "</tr>" +
+                                    "</tbody>"
+                                '</table>' +
+                            '</div>'
+
+
+var query_map_realtime_html =
+                            '<div id="div-editor-left">' +
+                                    '<img id="map_img" class="geograph" src="/static/images/geograph.png"/>' +
+                                '</div>' +
+                                '<div id="map_animation"></div>' +
+                            '</div>' +
+                            '<div id="div-editor-bottom">' +
+                                '<table id="map_info_table" class="table table-striped table-bordered">' +
+                                    '<thead>' +
+                                        '<th>时间</th>' +
+                                        '<th>地点</th>' +
+                                        '<th>人员</th>' +
+                                    '</thead>' +
+                                    "<tbody>" +
                                     "</tbody>"
                                 '</table>' +
                             '</div>'
@@ -1438,6 +1454,55 @@ function query_and_show_mh(){
 }
 
 
+var color_array = ['#ffd700', '#ff1493', '#4b0082', '#7cfc00', '#ffa07a']
+var realtime_patrol_person_last_time = {}   // {person1: {'person':'person1', 'position':'', 'x':'', 'y':'','arrive_time':''}, person2: {}, ...}
+var person_color_dict = {}  // {'person1': i}
+function realtime_patrol_start(){
+    window.setInterval(function(){
+        console.log('Refresh real time patrol data')
+        $.get(
+            "/get/map/patrol/realtime",
+            realtime_patrol_person_last_time,
+            function(data, status){
+                var new_data = JSON.parse(data)
+                var old_data = realtime_patrol_person_last_time
+
+                var count = 0
+                for(var person in new_data){
+                    if(count > 4){
+                        count = 0
+                    }
+                    else{
+                        count += 1
+                    }
+                    if(old_data[person]){
+                        var line_color = color_array[person_color_dict[person]]
+                        // Show animate
+                        console.log('show animate')
+                        var animate_data = {
+                            old_data: old_data[person],
+                            new_data: new_data[person],
+                            person: person,
+                            line_color:line_color
+                        }
+                        console.log(animate_data)
+                        var animate = $('#map_animation').RealTimePatrolAnimate(animate_data)
+                        animate.start()
+                    }
+                    else{   // New appear person, assign color
+                        person_color_dict[person] = count
+                    }
+
+//                    // Update real time data in table
+//                    update_realtime_patrol_table()
+                }
+
+                realtime_patrol_person_last_time = new_data
+            }
+        )
+    }, 5000)
+}
+
 function patrol_start(){
 //    var mss$ = $('#result_query_map_schedule_select')
 //    var schedule = mss$.val()
@@ -1478,6 +1543,52 @@ function patrol_start(){
             })
         }
     )
+}
+
+
+function show_result_query_map_realtime(){
+    var div_editor$ = $('#div-editor')
+    div_editor$.empty()
+
+    try{
+        try{
+            var divEditor = Ext.get('div-editor')
+            divEditor.dom.innerHTML=""
+            divEditor.createChild(query_map_realtime_html)
+
+            render_select_person('result_query_map_person_select')
+
+            $('#upload_path_file_btn').click(function(){
+                upload_path_file()
+            })
+
+            $('#div-editor span.btn').each(function(){
+                $(this).click(function(){
+                    $('#div-editor span.btn').removeClass('btn-primary')
+                    $(this).toggleClass('btn-primary')
+                })
+            })
+
+            $('#div-editor-left').width(parseInt(parseFloat($('#div-editor').width())*1.0))
+            $("#map_img").img_auto_fit()
+            $('#div-editor-left').height($("#map_img").height())
+            $('#map_animation').width($('#map_img').width())
+            $('#map_animation').height($('#map_img').height())
+
+            $('#div-editor').height($('#map_img').height()+$('#div-editor-bottom').height())
+            $('#table-editor').height($('#div-editor').height())
+
+            update_position_card_on_map('div-editor-left')
+
+            realtime_patrol_start()
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+    catch(err){
+        console.log(err)
+    }
 }
 
 /*

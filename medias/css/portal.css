@@ -165,6 +165,15 @@ img.geograph {
     background-color: #f0f0f0;
 }
 
+#div-editor-bottom {
+    float:left;
+    width: 100%;
+    height: 200px;
+    background-color: #f0f0f0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 #div-editor-right {
     float:right;
     width:25%;
@@ -272,7 +281,7 @@ span.result_query {
 }
 
 #table-editor {
-    height: 750px !important;
+    height: 750px;
 }
 
 #table-editor-body {
@@ -310,4 +319,9 @@ span.result_query {
     width: 100px;
     background-color: rgba(255,255,255,0.8);
     border: 1px solid rgba(200,200,200,0.8);
+}
+
+.table tbody {
+    overflow-y: auto !important;
+    overflow-x: hidden;
 }

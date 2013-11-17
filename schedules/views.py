@@ -616,6 +616,8 @@ def get_patrol_history(filter_dict):
             }
         }
     """
+    print 'func get_patrol_history'
+
     data = {
         'paths': [],
         'points': {}
@@ -629,6 +631,9 @@ def get_patrol_history(filter_dict):
     end_time = filter_dict.get('end_time', None)
 
     if not (person and start_date and end_date and start_time and end_time):
+        print "error!"
+        print "person:%s; start_date:%s; end_date:%s; start_time:%s; end_time:%s" \
+              % (person, start_date, end_date, start_time, end_time)
         return data
 
     try:
@@ -690,7 +695,10 @@ def get_patrol_history(filter_dict):
 @login_required(login_url="/login/")
 def get_schedule_map_history(request):
     print 'func get_schedule_map_history'
-    data = []
+    data = {
+        'paths': [],
+        'points': {}
+    }
 
     try:
         data = get_patrol_history(request.GET)
@@ -699,6 +707,28 @@ def get_schedule_map_history(request):
         print e
         print traceback.format_exc()
 
+    # Add test date here
+    t = datetime.datetime.now()
+    for i in range(4):
+        x = (i+1)*100
+        y = 200
+        data['points'][str(x)+','+str(y)] = {
+            'position_card': '第'+str(i+1)+'张地点卡',
+            'position': '位置'+str(i+1),
+            'arrive_time': (t+datetime.timedelta(i, 0, 0)).strftime(date_time_format),
+            'x': x,
+            'y': y,
+            'person': '人员1'
+        }
+        pass
+
+    for i in range(3):
+        data['paths'].append(
+            [((i+1)*100, 200), ((i+2)*100, 200)],
+        )
+        pass
+
+    print json.dumps(data, indent=4)
     return HttpResponse(json.dumps(data))
     pass
 

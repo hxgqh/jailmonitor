@@ -25,30 +25,66 @@ Array.prototype.max = function() {
 
 
 /*
+* 在目标上显示其属性data的内容
+* */
+$.fn.show_data_tooltip = function(){
+    var ret = this
+
+    var tooltip_id = 'position_div_tooltip'
+    ret.each(function(){
+        $(this).mouseenter(
+            function(e){  //鼠标移上事件
+                var tooltipHtml = "<div class='mouse_move_tooltip' id='"+tooltip_id+"'>"+$(this).attr('data')+"</div>"; //创建提示框
+
+                $(this).parent().append(tooltipHtml); //添加到页面中
+
+                var top = parseInt($(this).css('top').replace('px',''))
+                var left = parseInt($(this).css('left').replace('px',''))
+
+                $("#"+tooltip_id).css({
+                    "top": top-20+'px',
+                    "left": left+20+'px'
+                }).show(500); //设置提示框的坐标，并显示
+            }
+        ).mouseleave(
+            function(e){  //鼠标移出事件
+                console.log('mouse leave')
+                $("#"+tooltip_id).empty();
+                $("#"+tooltip_id).remove();  //移除弹出框
+            }
+    )
+    })
+    return ret
+}
+
+
+/*
 * 在目标上显示鼠标的坐标
 * */
 $.fn.show_mouse_axis = function(){
     var ret = this
 
     var tooltip_id = ret.attr('id')+'_tooltip'
-    ret.hover(function(e){  //鼠标移上事件
-        var tooltipHtml = "<div class='mouse_move_tooltip' id='"+tooltip_id+"'></div>"; //创建提示框
+    ret.hover(
+        function(e){  //鼠标移上事件
+            var tooltipHtml = "<div class='mouse_move_tooltip' id='"+tooltip_id+"'></div>"; //创建提示框
 
-        $(this).parent().append(tooltipHtml); //添加到页面中
+            $(this).parent().append(tooltipHtml); //添加到页面中
 
-        $("#"+tooltip_id).css({
-            "top": e.offsetY+ "px",
-            "left": e.offsetX + "px"
-        }).show("fast"); //设置提示框的坐标，并显示
-    }, function(){  //鼠标移出事件
-        $("#"+tooltip_id).remove();  //移除弹出框
-    }).mousemove(function(e){   //跟随鼠标移动事件
-            console.log(e.offsetX+','+ e.offsetY)
             $("#"+tooltip_id).css({
-                "top": e.offsetY + 10 + "px",
-                "left": e.offsetX + 10 + "px"
-            }).html("").html('x:'+ e.offsetX+'; y:'+ e.offsetY)
-    });
+                "top": e.offsetY+ "px",
+                "left": e.offsetX + "px"
+            }).show("fast"); //设置提示框的坐标，并显示
+        },
+        function(){  //鼠标移出事件
+            $("#"+tooltip_id).remove();  //移除弹出框
+        }).mousemove(
+            function(e){   //跟随鼠标移动事件
+                $("#"+tooltip_id).css({
+                    "top": e.offsetY + 10 + "px",
+                    "left": e.offsetX + 10 + "px"
+                }).html("").html('x:'+ e.offsetX+'; y:'+ e.offsetY)
+            });
 
     return ret
 }
@@ -82,6 +118,9 @@ $.fn.img_auto_fit = function(){
     var ret = this
     console.log('func auto_fit_map_img')
     var parent_width = ret.parent().width()
+
+    //Set img's parent width:height = 5:4
+    ret.parent().height(parseInt(parseFloat(parent_width)*0.8))
 
     // auto-fit map_img to parent's width and height
 
@@ -142,26 +181,26 @@ function auto_fit_img(img_id, parent_id){
 $.fn.set_input_default = function(default_value){
     var ret = this
 
-    console.log('func set_input_default')
-    console.log(ret)
+//    console.log('func set_input_default')
+//    console.log(ret)
 
     ret.each(function(){
         $(this).val(default_value)
     })
 
-    ret.each(function(){
-        $(this).blur(function(){
-            if($(this).val() == ''){
-                $(this).val(default_value)
-            }
-        })
-
-        $(this).focus(function(){
-            if($(this).val() == default_value){
-                $(this).val('')
-            }
-        })
-    })
+//    ret.each(function(){
+//        $(this).blur(function(){
+//            if($(this).val() == ''){
+//                $(this).val(default_value)
+//            }
+//        })
+//
+//        $(this).focus(function(){
+//            if($(this).val() == default_value){
+//                $(this).val('')
+//            }
+//        })
+//    })
 
     return ret
 }

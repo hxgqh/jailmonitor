@@ -50,6 +50,6 @@ class tGetData(object):
 if __name__ == '__main__':
     print 'start'
     # tGetData.test_parse_patrol_data()
-    tGetData.test_send_temperature_humidity_data()
-    # tGetData.test_send_patrol_data()
+    # tGetData.test_send_temperature_humidity_data()
+    tGetData.test_send_patrol_data()
     print 'end'

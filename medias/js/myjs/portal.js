@@ -52,6 +52,27 @@ var unordered_schedule_setting_html = '<span id="export_unorderedSchedule" class
                                         '<select id="unordered_schedule_line_select" class="selectpicker" style="width:80% !important;"></select>' +
                                     '</div>'
 
+var map_setting_html = '<div id="div-editor-left">' +
+                            '<div id="div-editor-map">' +
+                                '<img id="map_img" class="geograph" src="/static/images/geograph.png"/>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div id="div-editor-right">' +
+                            '<span id="change_map" class="btn">选择温湿度地图</span>' +
+                            '<span style="float:right;" id="upload_map" class="btn">上传地图</span><br/>' +
+                            '<span id="add_position_mapping" class="btn">添加地点映射</span>' +
+                            '<span id="add_position_card" class="btn" style="float:left">添加地点</span>' +
+                            '<div style="width:100%;height:380px;overflow-y:auto;">' +
+                            '<div id="mapping_div" style="width:100%;display:none">' +
+                                '<select id="mapping_position" class="selectpicker"></select>' +
+                                '<select id="mapping_position_card" class="selectpicker"></select>' +
+                            '<span id="mapping_confirm" class="btn">确定</span>' +
+                            '</div>' +
+                            '<table id="map_info_table" class="table table-striped table-bordered">' +
+                                "<thead><td>地点</td><td>x坐标</td><td>y坐标</td></thead><tbody></tbody>" +
+                            '</table>' +
+                        '</div>'
+
 var temp_hum_setting_html = '<span id="export_positions" class="btn btn-primary" style="float:left;">导出表格</span>' +
                             '<span id="print_positions" class="btn btn-primary" style="float:right">打印</span>'
 
@@ -62,10 +83,13 @@ var query_setting_html = '<span id="export_unorderedSchedule" class="btn btn-pri
 //                                '<span id="result_query_ordered_schedule" class="btn result_query">有顺序计划查询</span>' +
 //                                '<span id="result_query_unordered_schedule" class="btn result_query">无顺序计划查询</span>' +
 //                                '<span id="result_query_alarm" class="btn result_query">报警信息查询</span>' +
+                                '<span id="result_query_map_realtime" class="btn result_query">实时巡检</span>' +
                                 '<span id="result_query_map_history" class="btn result_query">巡检地图历史轨迹查询</span>' +
 //                                '<span id="result_query_patrol_device_status" class="btn result_query">巡检设备状态查询</span>' +
-                                '<span id="result_query_realtime_temperature_humidity" class="btn result_query">实时温湿度查询</span>' +
+                                '<span id="result_query_realtime_temperature_humidity" class="btn result_query">实时温湿度地图</span>' +
+                                '<span id="result_query_realtime_temperature_humidity_table" class="btn result_query">实时温度表格</span>' +
                                 '<span id="result_query_temperature_humidity" class="btn result_query">历史温湿度查询</span>' +
+
                             '</div>'
 
 
@@ -349,29 +373,9 @@ function map_setting_expand(){
     try{
         try{
             var divEditor = Ext.get('div-editor')
-//                                            divEditor.dom.innerHTML=""
             divEditor.dom.innerHTML=""
-            divEditor.createChild('<div id="div-editor-left">' +
-                                    '<div id="div-editor-map"></div>' +
-                                '</div>' +
-                                '<div id="div-editor-right">' +
-                                    '<span id="change_map" class="btn">选择温湿度地图</span>' +
-                                    '<span style="float:right;" id="upload_map" class="btn">上传地图</span><br/>' +
-                                    '<span id="add_position_mapping" class="btn">添加地点映射</span>' +
-                                    '<span id="add_position_card" class="btn" style="float:left">添加地点</span>' +
-                                    '<div style="width:100%;height:380px;overflow-y:auto;">' +
-                                    '<div id="mapping_div" style="width:100%;display:none">' +
-                                        '<select id="mapping_position" class="selectpicker"></select>' +
-                                        '<select id="mapping_position_card" class="selectpicker"></select>' +
-                                    '<span id="mapping_confirm" class="btn">确定</span>' +
-                                    '</div>' +
-                                    '<table id="map_info_table" class="table table-striped table-bordered"></table>' +
-                                '</div>'
-                )
-            Ext.get('div-editor-map').createChild('<img id="map_img" class="geograph" src="/static/images/geograph.png"/>')
-            $("#map_info_table").append("<thead><td>地点</td><td>x坐标</td><td>y坐标</td></thead><tbody></tbody>")
+            divEditor.createChild(map_setting_html)
 
-//            auto_fit_img('map_img', 'div-editor-map')
             $('#map_img').img_auto_fit()
 
             update_position_card_table()
@@ -557,8 +561,8 @@ Ext.define('Ext.app.Portal', {
                 xtype: 'box',
                 region: 'north',
                 height: 80,
-//                html: "智能监狱管理系统",
-                html: '<img class="logo" src="/static/images/jinhui.png"/>'+'<div class="system-name">智能监狱管理系统</div><div id="logout"><a href="/logout">退出</a></div>'
+//                html: "实时在线巡逻系统",
+                html: '<img class="logo" src="/static/images/jinhui.png"/>'+'<div class="system-name">实时在线巡逻系统</div><div id="logout"><a href="/logout">退出</a></div>'
             },{
                 xtype: 'container',
                 region: 'center',

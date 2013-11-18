@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e50273a-5501-4f64-8cc4-f4b467f973ba" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/store.js" afterPath="$PROJECT_DIR$/medias/js/myjs/store.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/positions/models.py" afterPath="$PROJECT_DIR$/positions/models.py" />
     </list>
     <ignored path="jailMonitor.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -169,10 +168,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="store.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="store.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/medias/js/myjs/store.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="309" column="27" selection-start="6510" selection-end="6510" vertical-scroll-proportion="0.36090225">
+            <state line="317" column="0" selection-start="6605" selection-end="6605" vertical-scroll-proportion="-12.48">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/positions/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="0" selection-start="874" selection-end="874" vertical-scroll-proportion="0.59210527">
               <folding />
             </state>
           </provider>
@@ -196,7 +204,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/backend/utils.py" />
         <option value="$PROJECT_DIR$/conf/confGlobal.py" />
         <option value="$PROJECT_DIR$/test/test_calc_patrol_line.py" />
         <option value="$PROJECT_DIR$/schedules/calc_patrol_line.py" />
@@ -212,6 +219,7 @@
         <option value="$PROJECT_DIR$/medias/js/myjs/patrol.animate.js" />
         <option value="$PROJECT_DIR$/schedules/views.py" />
         <option value="$PROJECT_DIR$/medias/js/myjs/store.js" />
+        <option value="$PROJECT_DIR$/positions/models.py" />
       </list>
     </option>
   </component>
@@ -289,47 +297,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="medias" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="medias" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="medias" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myjs" />
+              <option name="myItemId" value="positions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -819,13 +787,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/positions/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="57" selection-start="684" selection-end="684" vertical-scroll-proportion="-10.2">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lines/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="48" selection-start="499" selection-end="499" vertical-scroll-proportion="-7.8">
@@ -926,7 +887,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/medias/js/myjs/store.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="309" column="27" selection-start="6510" selection-end="6510" vertical-scroll-proportion="0.36090225">
+        <state line="317" column="0" selection-start="6605" selection-end="6605" vertical-scroll-proportion="-12.48">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/positions/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="874" selection-end="874" vertical-scroll-proportion="0.59210527">
           <folding />
         </state>
       </provider>

@@ -26,7 +26,7 @@ var lineStore = Ext.create('Ext.data.Store', {
 
         writer: {
             type             : 'json',
-            writeAllFields    : false,
+            writeAllFields    : true,
             allowSingle         : true,
             encode             : true,
             root             : 'row'
@@ -80,7 +80,7 @@ var personStore = Ext.create('Ext.data.Store', {
 
         writer: {
             type             : 'json',
-            writeAllFields    : false,
+            writeAllFields    : true,
             allowSingle         : true,
             encode             : true,
             root             : 'row'
@@ -134,7 +134,7 @@ var positionStore = Ext.create('Ext.data.Store', {
 
         writer: {
             type             : 'json',
-            writeAllFields    : false,
+            writeAllFields    : true,
             allowSingle         : true,
             encode             : true,
             root             : 'row'
@@ -189,8 +189,8 @@ var multiDayScheduleStore = Ext.create('Ext.data.Store', {
 
         writer: {
             type             : 'json',
-            writeAllFields    : false,
-            allowSingle         : false,
+            writeAllFields    : true,
+            allowSingle         : true,
             encode             : true,
             root             : 'row'
         },
@@ -243,7 +243,7 @@ var orderedScheduleStore = Ext.create('Ext.data.Store', {
 
         writer: {
             type             : 'json',
-            writeAllFields    : false,
+            writeAllFields    : true,
             allowSingle         : true,
             encode             : true,
             root             : 'row'
@@ -297,7 +297,7 @@ var unorderedScheduleStore = Ext.create('Ext.data.Store', {
 
         writer: {
             type             : 'json',
-            writeAllFields    : false,
+            writeAllFields    : true,
             allowSingle         : true,
             encode             : true,
             root             : 'row'
@@ -349,7 +349,7 @@ var temperatureHumidityDeviceStore = Ext.create('Ext.data.Store', {
 
         writer: {
             type             : 'json',
-            writeAllFields    : false,
+            writeAllFields    : true,
             allowSingle         : true,
             encode             : true,
             root             : 'row'

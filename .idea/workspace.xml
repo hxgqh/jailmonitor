@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e50273a-5501-4f64-8cc4-f4b467f973ba" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/actions.js" afterPath="$PROJECT_DIR$/medias/js/myjs/actions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/patrol.animate.js" afterPath="$PROJECT_DIR$/medias/js/myjs/patrol.animate.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/medias/js/myjs/store.js" afterPath="$PROJECT_DIR$/medias/js/myjs/store.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jailMonitor.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384603993847" ignored="false" />
+    <file path="/Dummy.txt" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384752596592" ignored="false" />
     <file path="/urls.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384661329374" ignored="false" />
     <file path="/basic.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384511586024" ignored="false" />
     <file path="/settings.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384422440809" ignored="false" />
@@ -101,7 +101,7 @@
     <file path="/views.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384674549599" ignored="false" />
     <file path="/confGlobal.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384591735392" ignored="false" />
     <file path="/test_daemon.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383459638719" ignored="false" />
-    <file path="/store.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383736751043" ignored="false" />
+    <file path="/store.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384754986578" ignored="false" />
     <file path="/test_get_data.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384052651951" ignored="false" />
     <file path="/test_SocketServer.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383640073074" ignored="false" />
     <file path="/portal.defines.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383702093960" ignored="false" />
@@ -142,99 +142,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="portal.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medias/js/myjs/portal.js">
+      <file leaf-file-name="get_data.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/get_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="21" selection-start="8206" selection-end="8206" vertical-scroll-proportion="0.0">
+            <state line="278" column="57" selection-start="7597" selection-end="7597" vertical-scroll-proportion="-3.6">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="row-editing.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medias/js/myjs/row-editing.js">
+      <file leaf-file-name="patrol_daemon.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/patrol_daemon.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="12" selection-start="770" selection-end="770" vertical-scroll-proportion="0.0">
+            <state line="13" column="21" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="portal.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medias/css/portal.css">
+      <file leaf-file-name="test_get_data.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/test_get_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="302" column="0" selection-start="5058" selection-end="5058" vertical-scroll-proportion="0.0">
+            <state line="36" column="9" selection-start="963" selection-end="963" vertical-scroll-proportion="-5.76">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="actions.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medias/js/myjs/actions.js">
+      <file leaf-file-name="store.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/medias/js/myjs/store.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="338" column="35" selection-start="11749" selection-end="11749" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!block;n#query_and_show_mh#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/persons/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="0" selection-start="2128" selection-end="2128" vertical-scroll-proportion="-7.16">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utils.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medias/js/myjs/utils.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="140" column="43" selection-start="4108" selection-end="4108" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="patrol.animate.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/medias/js/myjs/patrol.animate.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="316" column="38" selection-start="10159" selection-end="10159" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#11745#12515#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="requirements.txt" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="14" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/schedules/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="752" column="33" selection-start="22795" selection-end="22795" vertical-scroll-proportion="-0.57258064">
-              <folding>
-                <element signature="e#46#57#0" expanded="true" />
-                <element signature="e#17725#21061#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lines/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="48" selection-start="499" selection-end="499" vertical-scroll-proportion="-7.8">
+            <state line="309" column="27" selection-start="6510" selection-end="6510" vertical-scroll-proportion="0.36090225">
               <folding />
             </state>
           </provider>
@@ -258,7 +196,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/temphum/views.py" />
         <option value="$PROJECT_DIR$/backend/utils.py" />
         <option value="$PROJECT_DIR$/conf/confGlobal.py" />
         <option value="$PROJECT_DIR$/test/test_calc_patrol_line.py" />
@@ -274,6 +211,7 @@
         <option value="$PROJECT_DIR$/medias/js/myjs/actions.js" />
         <option value="$PROJECT_DIR$/medias/js/myjs/patrol.animate.js" />
         <option value="$PROJECT_DIR$/schedules/views.py" />
+        <option value="$PROJECT_DIR$/medias/js/myjs/store.js" />
       </list>
     </option>
   </component>
@@ -308,6 +246,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -350,7 +289,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="persons" />
+              <option name="myItemId" value="medias" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -364,7 +303,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lines" />
+              <option name="myItemId" value="medias" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -378,54 +321,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
+              <option name="myItemId" value="medias" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jailMonitor" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="conf" />
+              <option name="myItemId" value="myjs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="File.Encoding" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../finished/masterspix" />
+    <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../finished/masterspix" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PublishConfig">
     <servers>
@@ -551,7 +473,7 @@
       <recent name="$PROJECT_DIR$/views" />
     </key>
   </component>
-  <component name="RunManager" selected="Django server.jailMonitor">
+  <component name="RunManager" selected="Python.test_get_data">
     <configuration default="false" name="calc_patrol_line" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -799,11 +721,10 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20205921" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20444763" sideWeight="0.7528958" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15781923" sideWeight="0.7528958" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15997131" sideWeight="0.7528958" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2908623" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -812,6 +733,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20205921" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -897,41 +819,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="14" selection-start="2223" selection-end="2223" vertical-scroll-proportion="-15.918367">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lines/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="7" selection-start="454" selection-end="454" vertical-scroll-proportion="0.18518518">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/schedules/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="39" selection-start="336" selection-end="336" vertical-scroll-proportion="0.26455027">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jailMonitor/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="67" selection-start="2789" selection-end="2789" vertical-scroll-proportion="-7.8">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="77" selection-start="2007" selection-end="2007" vertical-scroll-proportion="-8.125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/positions/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="57" selection-start="684" selection-end="684" vertical-scroll-proportion="-10.2">
@@ -956,10 +843,7 @@
     <entry file="file://$PROJECT_DIR$/medias/js/myjs/patrol.animate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="316" column="38" selection-start="10159" selection-end="10159" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#11745#12515#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -994,26 +878,56 @@
     <entry file="file://$PROJECT_DIR$/medias/js/myjs/actions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="338" column="35" selection-start="11749" selection-end="11749" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!block;n#query_and_show_mh#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/persons/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="0" selection-start="2128" selection-end="2128" vertical-scroll-proportion="-7.16">
+        <state line="88" column="0" selection-start="2128" selection-end="2128" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/schedules/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="752" column="33" selection-start="22795" selection-end="22795" vertical-scroll-proportion="-0.57258064">
-          <folding>
-            <element signature="e#46#57#0" expanded="true" />
-            <element signature="e#17725#21061#0" expanded="false" />
-          </folding>
+        <state line="796" column="17" selection-start="23904" selection-end="23904" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/refresh.db.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="3" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/get_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="278" column="57" selection-start="7597" selection-end="7597" vertical-scroll-proportion="-3.6">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/patrol_daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="21" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_get_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="9" selection-start="963" selection-end="963" vertical-scroll-proportion="-5.76">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/medias/js/myjs/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="309" column="27" selection-start="6510" selection-end="6510" vertical-scroll-proportion="0.36090225">
+          <folding />
         </state>
       </provider>
     </entry>

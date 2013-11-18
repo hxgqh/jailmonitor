@@ -283,20 +283,20 @@ class PatrolServer(TMI, TCP):
 
 class PatrolTCPHandler(SRH):
     def handle(self):
-        while True:
-            try:
-                # self.request is the TCP socket connected to the client
-                self.data = self.request.recv(1024).strip()
-                client_ip = self.client_address[0]
+        # while True:
+        try:
+            # self.request is the TCP socket connected to the client
+            self.data = self.request.recv(1024).strip()
+            client_ip = self.client_address[0]
 
-                # self.data = hexlify(self.data)
+            # self.data = hexlify(self.data)
 
-                # print "data:"+self.data
-                insert_patrol_data(client_ip, self.data)
-                pass
-            except Exception as e:
-                print e
-                print traceback.format_exc()
+            # print "data:"+self.data
+            insert_patrol_data(client_ip, self.data)
+            pass
+        except Exception as e:
+            print e
+            print traceback.format_exc()
 
 
 # class PatrolTCPHandler(SocketServer.BaseRequestHandler):

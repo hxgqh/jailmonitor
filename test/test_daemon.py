@@ -62,7 +62,7 @@ class tDaemon(object):
         pass
 
     @staticmethod
-    def test_get_temp_hum_query_1():
+    def test_send_temp_hum_query_1():
         addr = ('0.0.0.0', 8888)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # s = socket.socket()

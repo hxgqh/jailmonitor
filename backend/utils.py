@@ -28,14 +28,14 @@ def my_crc16(x):
     aa = '0'*(6-len(hex(a)))+hex(a)[2:]
     ll, hh = int(aa[:2], 16), int(aa[2:], 16)
 
-    print '%x%x'%(hh,ll)
+    print '%02x%02x'%(hh,ll)
 
     return [hh, ll]
 
 
 if __name__ == '__main__':
-    a = '010400000002'
-    # a = '010300000002'
+    # a = '010400000002'
+    a = '010300000002'
 
     print my_crc16(unhexlify(a))
 

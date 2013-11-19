@@ -40,6 +40,7 @@ class tDaemon(object):
         sock.listen(5)
 
         cmd = unhexlify('01040000000271CB')
+        cmd1 = unhexlify('010300000002c40b') # 昆仑工控温湿度计
         while True:
             con, address = sock.accept()
             try:
@@ -51,6 +52,12 @@ class tDaemon(object):
 
                 print "send cmd"
                 con.send(cmd)
+
+                print "wait feedback"
+                time.sleep(1)
+
+                print "send cmd1"
+                con.send(cmd1)
 
                 print "wait feedback"
                 time.sleep(1)

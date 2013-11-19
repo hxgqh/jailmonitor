@@ -43,6 +43,7 @@ class tDaemon(object):
 
 if __name__ == '__main__':
     print 'start'
-    tDaemon.test_parse_temperature()
-    tDaemon.test_parse_humidity()
+    # tDaemon.test_parse_temperature()
+    # tDaemon.test_parse_humidity()
+    tDaemon.test_send_temp_hum_query()
     print 'end'

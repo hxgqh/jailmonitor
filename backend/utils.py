@@ -27,6 +27,9 @@ def my_crc16(x):
                 a ^= b
     aa = '0'*(6-len(hex(a)))+hex(a)[2:]
     ll, hh = int(aa[:2], 16), int(aa[2:], 16)
+
+    print '%x%x'%(hh,ll)
+
     return [hh, ll]
 
 

@@ -16,3 +16,6 @@ prjPath = re.sub(r'conf\/$', '', currentPath)
 date_time_format = '%Y-%m-%d %H:%M:%S'
 date_format = '%Y-%m-%d'
 time_format = '%H:%M:%S'
+
+# In minutes
+query_temp_hum_interval = 5

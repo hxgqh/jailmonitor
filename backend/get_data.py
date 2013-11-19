@@ -28,6 +28,60 @@ from positions.models import *
 from lines.models import *
 from schedules.models import *
 from temphum.models import *
+from backend.utils import *
+
+
+def build_query_temp_hum_cmd(device_no):
+    """
+    cmd = '01040000000271CB'
+
+    start
+    got connected from ('192.168.1.52', 57525)
+    01040400dc01977a40
+    end
+
+    cmd = '01040000000131CA'
+    start
+    got connected from ('192.168.1.52', 32075)
+    01040200de3968
+    end
+    """
+    cmd = device_no+'0400000002'
+    crc = my_crc16(cmd)
+    return cmd+crc
+    pass
+
+
+def get_temp_hum_dict():
+    devices = {}
+    # 获得所有温湿度计
+    try:
+        for item in TemperatureHumidityDeviceModel.objects.all():
+            cmd = build_query_temp_hum_cmd(str(item.device_no))
+            devices[item.ip+','+str(item.device_no)] = {
+                'ip': item.ip,
+                'device_no': item.device_no,
+                'cmd': cmd
+            }
+            pass
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+
+    return devices
+    pass
+
+#
+# def send_temp_hum_query():
+#     """
+#     给温湿度计发送数据查询请求
+#     """
+#     devices = get_temp_hum_dict()
+#
+#     # 对所有温湿度计发送命令
+#
+#     pass
 
 
 def parse_temperature(data):
@@ -36,12 +90,15 @@ def parse_temperature(data):
     @return: temperature in float
     """
     temperature = -300
+    start_index = 6
 
     try:
-        read_value_hex = data[4]+data[5]+data[2]+data[3]
+        read_value_hex = data[start_index]+data[start_index+1]+data[start_index+2]+data[start_index+3]
         read_value_int = int(read_value_hex, 16)
 
-        temperature = float(read_value_int)/100.0
+        print read_value_hex
+        print read_value_int
+        temperature = float(read_value_int)*120/1024-40
         pass
     except Exception as e:
         print e
@@ -58,11 +115,13 @@ def parse_humidity(data):
     """
     humidity = -1
 
+    start_index = 10
+
     try:
-        read_value_hex = data[8]+data[9]+data[6]+data[7]
+        read_value_hex = data[start_index]+data[start_index+1]+data[start_index+2]+data[start_index+3]
         read_value_int = int(read_value_hex, 16)
 
-        humidity = float(read_value_int)/1000.0
+        humidity = float(read_value_int)*100.0/1024
         pass
     except Exception as e:
         print e
@@ -113,18 +172,17 @@ class TemperatureHumidityServer(TMI, TCP):
 
 class TemperatureHumidityTCPHandler(SRH):
     def handle(self):
-        while True:
-            try:
-                # self.request is the TCP socket connected to the client
-                self.data = self.request.recv(1024).strip()
-                client_ip = self.client_address[0]
+        try:
+            # self.request is the TCP socket connected to the client
+            self.data = self.request.recv(1024).strip()
+            client_ip = self.client_address[0]
 
-                print self.data
-                insert_temperature_and_humidity(client_ip, self.data)
-                pass
-            except Exception as e:
-                print e
-                print traceback.format_exc()
+            # print self.data
+            insert_temperature_and_humidity(client_ip, self.data)
+            pass
+        except Exception as e:
+            print e
+            print traceback.format_exc()
 
 
 # class TemperatureTCPHandler(SocketServer.BaseRequestHandler):
@@ -188,7 +246,7 @@ def parse_patrol_data(data):
     @param data: a hex string like this aa3300fb000000a00f00000f17d60c0000790d0000 8fa61a00008d1500 eda32800008d1500 00000000000000000000000000000000c64a086d03
     @return:
     """
-    print "func parse_patrol_data:" + data
+    # print "func parse_patrol_data:" + data
 
     patrol = 0
 
@@ -212,14 +270,14 @@ def insert_patrol_data(client_ip, data):
     """
     @param data: raw internet data
     """
-    person_mac, position_mac = parse_patrol_data(hexlify(data))
-
-    print "time:%s, client_ip:%s, person_mac:%s, position_mac:%s" % (
-        str(time.time()),
-        client_ip,
-        person_mac,
-        position_mac,
-    )
+    # person_mac, position_mac = parse_patrol_data(hexlify(data))
+    #
+    # print "time:%s, client_ip:%s, person_mac:%s, position_mac:%s" % (
+    #     str(time.time()),
+    #     client_ip,
+    #     person_mac,
+    #     position_mac,
+    # )
 
     position = None
     person = None

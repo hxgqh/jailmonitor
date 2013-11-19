@@ -24,7 +24,8 @@ class tDaemon(object):
         pass
 
     @staticmethod
-    def test_parse_patrl_data():
+    def test_send_temp_hum_query():
+        send_temp_hum_query()
         pass
 
 

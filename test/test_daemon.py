@@ -4,6 +4,13 @@
 __author__ = 'xiaoghu@cisco.com'
 
 import socket
+
+currentPath = os.path.dirname(os.path.abspath(__file__))+'/'
+prjPath = re.sub(r'test\/$', '', currentPath)
+sys.path.append(prjPath)
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "jailMonitor.settings")
+
 from backend.get_data import *
 from backend.utils import *
 from jailMonitor import *

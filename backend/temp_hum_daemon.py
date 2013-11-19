@@ -8,5 +8,5 @@ from get_data import *
 
 if __name__ == "__main__":
     print 'start'
-    get_temperature_humidity(host='0.0.0.0', port=8889)
+    get_temperature_humidity(host='0.0.0.0', port=8888)
     print 'end'

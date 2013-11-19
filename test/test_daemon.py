@@ -44,7 +44,7 @@ class tDaemon(object):
                 # connection.settimeout(5)
                 # buf = connection.recv(1024)
                 # print "buf:"+hexlify(buf)
-                print str(con)
+                # print str(con)
                 print str(address)
 
                 con.send('01040000000271CB')
@@ -60,6 +60,33 @@ class tDaemon(object):
                 print 'time out'
             con.close()
         pass
+
+    @staticmethod
+    def test_get_temp_hum_1():
+        addr = ('0.0.0.0', 8888)
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # s = socket.socket()
+        s.bind(addr)
+        s.listen(3)
+
+        # ss, addr = s.accept()
+        # print 'got connected from', addr
+        cmd = '01040000000271CB'
+        print cmd
+
+        # while True:
+        try:
+            s.send(unhexlify(cmd))
+            time.sleep(1)
+            data = s.recv(512)
+            print data
+            data = s.recv(4096)
+            pass
+        except Exception as e:
+            print e
+            print traceback.format_exc()
+            pass
+        s.close()
 
 
 if __name__ == '__main__':

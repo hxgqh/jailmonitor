@@ -99,7 +99,7 @@
     <file path="/major.json" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383230493012" ignored="false" />
     <file path="/views.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384674549599" ignored="false" />
     <file path="/confGlobal.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384822540834" ignored="false" />
-    <file path="/test_daemon.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384840762028" ignored="false" />
+    <file path="/test_daemon.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384841780222" ignored="false" />
     <file path="/store.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384754986578" ignored="false" />
     <file path="/test_get_data.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384052651951" ignored="false" />
     <file path="/test_SocketServer.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383640073074" ignored="false" />
@@ -141,10 +141,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="patrol_daemon.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/patrol_daemon.py">
+      <file leaf-file-name="test_daemon.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/test_daemon.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="8" selection-start="158" selection-end="158" vertical-scroll-proportion="-6.0">
+            <state line="76" column="21" selection-start="1942" selection-end="1942" vertical-scroll-proportion="0.6892265">
+              <folding>
+                <element signature="e#80#89#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="temp_hum_daemon.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/temp_hum_daemon.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="20" selection-start="170" selection-end="170" vertical-scroll-proportion="-6.0">
               <folding />
             </state>
           </provider>
@@ -153,66 +164,8 @@
       <file leaf-file-name="get_data.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/get_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="379" selection-end="586" vertical-scroll-proportion="-4.2">
+            <state line="399" column="0" selection-start="10908" selection-end="11542" vertical-scroll-proportion="-6.24">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="temp_hum_daemon.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/temp_hum_daemon.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="17" selection-start="167" selection-end="167" vertical-scroll-proportion="-6.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_daemon.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/test_daemon.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="29" selection-start="1283" selection-end="1283" vertical-scroll-proportion="0.55064195">
-              <folding>
-                <element signature="e#80#89#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_patrol.data.txt" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_patrol.data.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="3" selection-start="104" selection-end="104" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_networkx.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_networkx.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_get_data_patrol1.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_get_data_patrol1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="20" selection-start="1054" selection-end="1054" vertical-scroll-proportion="-22.2">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_get_data.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_get_data.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="23" selection-start="162" selection-end="162" vertical-scroll-proportion="-5.92">
-              <folding>
-                <element signature="e#80#91#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -919,13 +872,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/temp_hum_daemon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="17" selection-start="167" selection-end="167" vertical-scroll-proportion="-6.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/patrol_daemon.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="8" selection-start="158" selection-end="158" vertical-scroll-proportion="-6.0">
@@ -933,16 +879,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/temp_hum_daemon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="20" selection-start="170" selection-end="170" vertical-scroll-proportion="-6.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/get_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="379" selection-end="586" vertical-scroll-proportion="-4.2">
+        <state line="399" column="0" selection-start="10908" selection-end="11542" vertical-scroll-proportion="-6.24">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test_daemon.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="29" selection-start="1283" selection-end="1283" vertical-scroll-proportion="0.55064195">
+        <state line="76" column="21" selection-start="1942" selection-end="1942" vertical-scroll-proportion="0.6892265">
           <folding>
             <element signature="e#80#89#0" expanded="true" />
           </folding>

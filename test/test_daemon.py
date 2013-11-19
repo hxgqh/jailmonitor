@@ -38,17 +38,21 @@ class tDaemon(object):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.bind(('0.0.0.0', 8888))
         sock.listen(5)
+
+        cmd = unhexlify('01040000000271CB')
         while True:
             con, address = sock.accept()
             try:
-                # connection.settimeout(5)
+                connection.settimeout(5)
                 # buf = connection.recv(1024)
                 # print "buf:"+hexlify(buf)
                 # print str(con)
                 print str(address)
 
-                con.send(unhexlify('01040000000271CB'))
+                print "send cmd"
+                con.send(cmd)
 
+                print "wait feedback"
                 time.sleep(1)
 
                 buf = con.recv(1024)

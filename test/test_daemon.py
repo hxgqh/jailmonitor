@@ -39,18 +39,21 @@ class tDaemon(object):
         sock.bind(('0.0.0.0', 8888))
         sock.listen(5)
         while True:
-            connection, address = sock.accept()
+            con, address = sock.accept()
             try:
                 # connection.settimeout(5)
                 # buf = connection.recv(1024)
                 # print "buf:"+hexlify(buf)
-                connection.send('01040000000271CB')
+                print str(con)
+                print str(address)
 
-                buf = connection.recv(1024)
+                con.send('01040000000271CB')
+
+                buf = sock.recv(1024)
                 print "buf:"+hexlify(buf)
             except socket.timeout:
                 print 'time out'
-            connection.close()
+            con.close()
         pass
 
 

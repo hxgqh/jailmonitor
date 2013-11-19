@@ -72,7 +72,6 @@ class tDaemon(object):
         ss, addr = s.accept()
         print 'got connected from', addr
         cmd = '01040000000271CB'
-        print cmd
 
         # while True:
         try:
@@ -93,5 +92,6 @@ if __name__ == '__main__':
     # tDaemon.test_parse_temperature()
     # tDaemon.test_parse_humidity()
     # tDaemon.test_send_temp_hum_query()
-    tDaemon.test_send_temp_hum_query_1()
+    # tDaemon.test_send_temp_hum_query_1()
+    getTemperature1()
     print 'end'

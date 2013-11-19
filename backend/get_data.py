@@ -270,7 +270,7 @@ def insert_patrol_data(client_ip, data):
     """
     @param data: raw internet data
     """
-    # person_mac, position_mac = parse_patrol_data(hexlify(data))
+    person_mac, position_mac = parse_patrol_data(hexlify(data))
     #
     # print "time:%s, client_ip:%s, person_mac:%s, position_mac:%s" % (
     #     str(time.time()),
@@ -395,46 +395,45 @@ def get_patrol_data(host='0.0.0.0', port=8889):
     pass
 #
 #
-# def getTemperature1():
-#
-#     addr = ('0.0.0.0', 8888)
-#     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#     # s = socket.socket()
-#     s.bind(addr)
-#     s.listen(3)
-#
-#     # ss, addr = s.accept()
-#     # print 'got connected from', addr
-#     cmd = '01040000000271CB'
-#     print cmd
-#
-#     while True:
-#         try:
-#             ss.send(unhexlify(cmd))
-#             time.sleep(1)
-#             data = ss.recv(512)
-#             print data
-#             data = ss.recv(4096)
-#             pass
-#         except Exception as e:
-#             print e
-#             print traceback.format_exc()
-#             pass
-#         pass
-#     ss.close()
-#     s.close()
-#
-#
-#     """
-#     # s.connect(addr)
-#     time.sleep(1)
-#     s.send('0x01040000000271cb')
-#     time.sleep(1)
-#     data = s.recv(512)
-#     print data
-#     s.close()
-#     """
-#     pass
+def getTemperature1():
+
+    addr = ('0.0.0.0', 8888)
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # s = socket.socket()
+    s.bind(addr)
+    s.listen(3)
+
+    # ss, addr = s.accept()
+    # print 'got connected from', addr
+    cmd = '01040000000271CB'
+    print cmd
+
+    while True:
+        try:
+            s.send(unhexlify(cmd))
+            time.sleep(1)
+            data = s.recv(512)
+            print data
+            data = s.recv(4096)
+            pass
+        except Exception as e:
+            print e
+            print traceback.format_exc()
+            pass
+        pass
+    s.close()
+
+
+    """
+    # s.connect(addr)
+    time.sleep(1)
+    s.send('0x01040000000271cb')
+    time.sleep(1)
+    data = s.recv(512)
+    print data
+    s.close()
+    """
+    pass
 
 
 if __name__ == "__main__":

@@ -410,17 +410,18 @@ def get_patrol_data(host='0.0.0.0', port=8889):
 #
 #     while True:
 #         try:
-#             s.send(unhexlify(cmd))
+#             ss.send(unhexlify(cmd))
 #             time.sleep(1)
-#             data = s.recv(512)
+#             data = ss.recv(512)
 #             print data
-#             data = s.recv(4096)
+#             data = ss.recv(4096)
 #             pass
 #         except Exception as e:
 #             print e
 #             print traceback.format_exc()
 #             pass
 #         pass
+#     ss.close()
 #     s.close()
 #
 #

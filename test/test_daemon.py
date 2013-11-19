@@ -69,18 +69,17 @@ class tDaemon(object):
         s.bind(addr)
         s.listen(3)
 
-        # ss, addr = s.accept()
-        # print 'got connected from', addr
+        ss, addr = s.accept()
+        print 'got connected from', addr
         cmd = '01040000000271CB'
         print cmd
 
         # while True:
         try:
-            s.send(unhexlify(cmd))
+            ss.send(unhexlify(cmd))
             time.sleep(1)
-            data = s.recv(512)
+            data = ss.recv(512)
             print data
-            data = s.recv(4096)
             pass
         except Exception as e:
             print e

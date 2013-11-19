@@ -5,3 +5,4 @@ xlwt
 networkx
 netaddr
 python-mysqldb
+ping

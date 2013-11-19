@@ -42,9 +42,12 @@ class tDaemon(object):
             connection, address = sock.accept()
             try:
                 # connection.settimeout(5)
+                # buf = connection.recv(1024)
+                # print "buf:"+hexlify(buf)
+                connection.send('01040000000271CB')
+
                 buf = connection.recv(1024)
                 print "buf:"+hexlify(buf)
-                connection.send('01040000000271CB')
             except socket.timeout:
                 print 'time out'
             connection.close()

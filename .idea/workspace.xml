@@ -171,7 +171,7 @@
       <file leaf-file-name="test_daemon.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/test_daemon.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="40" selection-start="1055" selection-end="1055" vertical-scroll-proportion="0.55064195">
+            <state line="46" column="51" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.614836">
               <folding>
                 <element signature="e#80#89#0" expanded="true" />
               </folding>
@@ -942,7 +942,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test_daemon.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="40" selection-start="1055" selection-end="1055" vertical-scroll-proportion="0.55064195">
+        <state line="46" column="51" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.614836">
           <folding>
             <element signature="e#80#89#0" expanded="true" />
           </folding>

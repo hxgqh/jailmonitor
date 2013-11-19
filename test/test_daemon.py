@@ -41,7 +41,7 @@ class tDaemon(object):
         while True:
             connection, address = sock.accept()
             try:
-                connection.settimeout(5)
+                # connection.settimeout(5)
                 buf = connection.recv(1024)
                 print "buf:"+hexlify(buf)
                 connection.send('01040000000271CB')

@@ -36,7 +36,7 @@ class tDaemon(object):
     @staticmethod
     def test_send_temp_hum_query():
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.bind(('localhost', 8008))
+        sock.bind(('localhost', 8888))
         sock.listen(5)
         while True:
             connection, address = sock.accept()

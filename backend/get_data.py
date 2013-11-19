@@ -175,6 +175,7 @@ class TemperatureHumidityTCPHandler(SRH):
         try:
             # self.request is the TCP socket connected to the client
             self.data = self.request.recv(1024).strip()
+
             client_ip = self.client_address[0]
 
             print self.data
@@ -403,7 +404,7 @@ def getTemperature1():
     s.bind(addr)
     s.listen(3)
 
-    # ss, addr = s.accept()
+    ss, addr = s.accept()
     # print 'got connected from', addr
     cmd = '01040000000271CB'
     print cmd

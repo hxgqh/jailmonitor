@@ -47,7 +47,7 @@ class tDaemon(object):
                 # print str(con)
                 print str(address)
 
-                con.send('01040000000271CB')
+                con.send(unhexlify('01040000000271CB'))
 
                 time.sleep(1)
 
@@ -91,7 +91,7 @@ if __name__ == '__main__':
     print 'start'
     # tDaemon.test_parse_temperature()
     # tDaemon.test_parse_humidity()
-    # tDaemon.test_send_temp_hum_query()
+    tDaemon.test_send_temp_hum_query()
     # tDaemon.test_send_temp_hum_query_1()
-    getTemperature1()
+    # getTemperature1()
     print 'end'

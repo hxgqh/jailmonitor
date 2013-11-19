@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e50273a-5501-4f64-8cc4-f4b467f973ba" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/temp_hum_daemon.py" afterPath="$PROJECT_DIR$/backend/temp_hum_daemon.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/get_data.py" afterPath="$PROJECT_DIR$/backend/get_data.py" />
     </list>
     <ignored path="jailMonitor.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -141,91 +141,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="patrol_daemon.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/patrol_daemon.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="8" selection-start="158" selection-end="158" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="temp_hum_daemon.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/backend/temp_hum_daemon.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="54" selection-start="204" selection-end="204" vertical-scroll-proportion="0.21398003">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utils.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="0" selection-start="658" selection-end="658" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="get_data.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="get_data.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/get_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="149" column="33" selection-start="3691" selection-end="3691" vertical-scroll-proportion="-16.2">
+            <state line="179" column="27" selection-start="4386" selection-end="4386" vertical-scroll-proportion="0.48101267">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/temphum/models.py">
+      <file leaf-file-name="temp_hum_daemon.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/temp_hum_daemon.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="6" selection-start="466" selection-end="466" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="confGlobal.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/conf/confGlobal.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="27" selection-start="353" selection-end="353" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_get_data.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_get_data.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="46" selection-start="227" selection-end="227" vertical-scroll-proportion="1.88">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_get_data_patrol1.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_get_data_patrol1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="20" selection-start="1054" selection-end="1054" vertical-scroll-proportion="-15.32">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_patrol.data.txt" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_patrol.data.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="3" selection-start="104" selection-end="104" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_daemon.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_daemon.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="12" selection-start="498" selection-end="498" vertical-scroll-proportion="-12.0">
+            <state line="10" column="17" selection-start="167" selection-end="167" vertical-scroll-proportion="-6.0">
               <folding />
             </state>
           </provider>
@@ -262,9 +190,9 @@
         <option value="$PROJECT_DIR$/positions/models.py" />
         <option value="$PROJECT_DIR$/conf/confGlobal.py" />
         <option value="$PROJECT_DIR$/backend/utils.py" />
-        <option value="$PROJECT_DIR$/backend/get_data.py" />
         <option value="$PROJECT_DIR$/test/test_daemon.py" />
         <option value="$PROJECT_DIR$/backend/temp_hum_daemon.py" />
+        <option value="$PROJECT_DIR$/backend/get_data.py" />
       </list>
     </option>
   </component>
@@ -915,13 +843,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/get_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="149" column="33" selection-start="3691" selection-end="3691" vertical-scroll-proportion="-16.2">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_get_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="46" selection-start="227" selection-end="227" vertical-scroll-proportion="1.88">
@@ -952,7 +873,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/temp_hum_daemon.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="54" selection-start="204" selection-end="204" vertical-scroll-proportion="0.21398003">
+        <state line="10" column="17" selection-start="167" selection-end="167" vertical-scroll-proportion="-6.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/get_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="179" column="27" selection-start="4386" selection-end="4386" vertical-scroll-proportion="0.48101267">
           <folding />
         </state>
       </provider>

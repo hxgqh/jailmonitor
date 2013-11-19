@@ -177,7 +177,7 @@ class TemperatureHumidityTCPHandler(SRH):
             self.data = self.request.recv(1024).strip()
             client_ip = self.client_address[0]
 
-            # print self.data
+            print self.data
             insert_temperature_and_humidity(client_ip, self.data)
             pass
         except Exception as e:

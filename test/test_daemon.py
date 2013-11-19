@@ -49,8 +49,13 @@ class tDaemon(object):
 
                 con.send('01040000000271CB')
 
-                buf = sock.recv(1024)
+                time.sleep(1)
+
+                buf = con.recv(1024)
                 print "buf:"+hexlify(buf)
+
+                print parse_temperature(hexlify(buf))
+                print parse_humidity(hexlify(buf))
             except socket.timeout:
                 print 'time out'
             con.close()

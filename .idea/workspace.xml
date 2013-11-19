@@ -99,7 +99,7 @@
     <file path="/major.json" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383230493012" ignored="false" />
     <file path="/views.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384674549599" ignored="false" />
     <file path="/confGlobal.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384822540834" ignored="false" />
-    <file path="/test_daemon.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384839619512" ignored="false" />
+    <file path="/test_daemon.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384839743084" ignored="false" />
     <file path="/store.js" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384754986578" ignored="false" />
     <file path="/test_get_data.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1384052651951" ignored="false" />
     <file path="/test_SocketServer.py" changelist="9e50273a-5501-4f64-8cc4-f4b467f973ba" time="1383640073074" ignored="false" />
@@ -171,7 +171,7 @@
       <file leaf-file-name="test_daemon.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/test_daemon.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="35" selection-start="905" selection-end="905" vertical-scroll-proportion="0.4436519">
+            <state line="38" column="36" selection-start="906" selection-end="906" vertical-scroll-proportion="0.4436519">
               <folding>
                 <element signature="e#80#89#0" expanded="true" />
               </folding>
@@ -942,7 +942,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test_daemon.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="35" selection-start="905" selection-end="905" vertical-scroll-proportion="0.4436519">
+        <state line="38" column="36" selection-start="906" selection-end="906" vertical-scroll-proportion="0.4436519">
           <folding>
             <element signature="e#80#89#0" expanded="true" />
           </folding>

@@ -169,6 +169,50 @@ def update_multiDaySchedule(data):
     pass
 
 
+def delete_one_multiDaySchedule(row_data):
+    try:
+        no = row_data.get('no', '-1')
+
+        try:
+            old_schedule = MultiDayScheduleModel.objects.get(id=no)
+            old_schedule.delete()
+        except MultiDayScheduleModel.DoesNotExist:
+            pass
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+    pass
+
+
+def delete_multiDaySchedule(data):
+    """
+    @param data: data could be single row(a dict) or multiple rows(a list of dict).
+    """
+    print "func delete_multiDaySchedule"
+    if isinstance(data, dict):
+        try:
+            delete_one_multiDaySchedule(data)
+            pass
+        except Exception as e:
+            print e
+            print traceback.format_exc()
+            pass
+    elif isinstance(data, list):
+        for row_data in data:
+            try:
+                delete_one_multiDaySchedule(row_data)
+                pass
+            except Exception as e:
+                print e
+                print traceback.format_exc()
+            pass
+        pass
+    else:
+        pass
+    pass
+
+
 def update_one_orderedSchedule(row_data):
     try:
         no = row_data.get('no', '-1')
@@ -233,6 +277,49 @@ def update_orderedSchedule(data):
         for row_data in data:
             try:
                 update_one_orderedSchedule(row_data)
+                pass
+            except Exception as e:
+                print e
+                print traceback.format_exc()
+            pass
+        pass
+    else:
+        pass
+    pass
+
+
+def delete_one_orderedSchedule(row_data):
+    try:
+        no = row_data.get('no', '-1')
+
+        try:
+            old_schedule = OrderedScheduleModel.objects.get(id=no)
+            old_schedule.delete()
+        except OrderedScheduleModel.DoesNotExist:
+            pass
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+    pass
+
+
+def delete_orderedSchedule(data):
+    """
+    @param data: data could be single row(a dict) or multiple rows(a list of dict).
+    """
+    if isinstance(data, dict):
+        try:
+            delete_one_orderedSchedule(data)
+            pass
+        except Exception as e:
+            print e
+            print traceback.format_exc()
+            pass
+    elif isinstance(data, list):
+        for row_data in data:
+            try:
+                delete_one_orderedSchedule(row_data)
                 pass
             except Exception as e:
                 print e
@@ -313,6 +400,48 @@ def update_unorderedSchedule(data):
         for row_data in data:
             try:
                 update_one_unorderedSchedule(row_data)
+                pass
+            except Exception as e:
+                print e
+                print traceback.format_exc()
+            pass
+        pass
+    else:
+        pass
+    pass
+
+
+def delete_one_unorderedSchedule(row_data):
+    try:
+        no = row_data.get('no', '-1')
+        try:
+            old_schedule = UnorderedScheduleModel.objects.get(id=no)
+            old_schedule.delete()
+        except UnorderedScheduleModel.DoesNotExist:
+            pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+    pass
+
+
+def delete_unorderedSchedule(data):
+    """
+    @param data: data could be single row(a dict) or multiple rows(a list of dict).
+    """
+    print "func update_multiDaySchedule"
+    if isinstance(data, dict):
+        try:
+            delete_one_unorderedSchedule(data)
+            pass
+        except Exception as e:
+            print e
+            print traceback.format_exc()
+            pass
+    elif isinstance(data, list):
+        for row_data in data:
+            try:
+                delete_one_unorderedSchedule(row_data)
                 pass
             except Exception as e:
                 print e

@@ -214,6 +214,48 @@ def update_temp_hum_devices(data):
     pass
 
 
+def delete_one_temp_hum_device(row_data):
+    try:
+        id = row_data.get('id', '')
+
+        try:
+            old_device = TemperatureHumidityDeviceModel.objects.get(id=id)
+            old_device.delete()
+        except TemperatureHumidityDeviceModel.DoesNotExist:
+            pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+    pass
+
+
+def delete_temp_hum_devices(data):
+    """
+    @param data: data could be single row(a dict) or multiple rows(a list of dict).
+    """
+    if isinstance(data, dict):
+        try:
+            delete_one_temp_hum_device(data)
+            pass
+        except Exception as e:
+            print e
+            print traceback.format_exc()
+            pass
+    elif isinstance(data, list):
+        for row_data in data:
+            try:
+                delete_one_temp_hum_device(row_data)
+                pass
+            except Exception as e:
+                print e
+                print traceback.format_exc()
+            pass
+        pass
+    else:
+        pass
+    pass
+
+
 @login_required(login_url="/login")
 @csrf_exempt
 def get_temp_hum_position_card(request):

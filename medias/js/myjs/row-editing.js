@@ -306,26 +306,18 @@ function lineEditor(){
         }, {
             header: '地点名称',
             dataIndex: 'position',
-            width: '35%',
+            width: '45%',
             editor: {
                 allowBlank: true
             }
         }, {
             header: '下次到达时间(/min)',
             dataIndex: 'next_time_arrival',
-            width: '15%',
+            width: '20%',
             editor: {
                 allowBlank: true
             }
         }, {
-            header: '允许时间误差(/min)',
-            dataIndex: 'time_error',
-            width: '15%',
-            editor: {
-                allowBlank: true
-            }
-        },
-            {
             header: '顺序',
             dataIndex: 'order',
             width: '15%',
@@ -337,7 +329,20 @@ function lineEditor(){
         width: '100%',
         height: 400,
         frame: true,
-//        tbar: [],
+        tbar: [{
+            itemId: 'removeLine',
+            text: '删除线路位置',
+            iconCls: 'line-remove',
+            handler: function() {
+                var sm = grid.getSelectionModel();
+                rowEditing.cancelEdit();
+                lineStore.remove(sm.getSelection());
+                if (lineStore.getCount() > 0) {
+                    sm.select(0);
+                }
+            },
+            disabled: true
+        }],
         plugins: [rowEditing],
         listeners: {
             'selectionchange': function(view, records) {

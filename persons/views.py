@@ -78,12 +78,46 @@ def update_person(data):
     pass
 
 
-def delete_person(row_data):
+def delete_one_person(row_data):
     try:
+        person_no = row_data.get('person_no', '')
+
+        try:
+            old_person = PersonsModel.objects.get(person_no=person_no)
+            old_person.delete()
+        except PersonsModel.DoesNotExist:
+            pass
         pass
     except Exception as e:
         print e
         print traceback.format_exc()
+    pass
+
+
+def delete_person(data):
+    """
+    @param data: data could be single row(a dict) or multiple rows(a list of dict).
+    """
+    if isinstance(data, dict):
+        try:
+            delete_one_person(data)
+            pass
+        except Exception as e:
+            print e
+            print traceback.format_exc()
+            pass
+    elif isinstance(data, list):
+        for row_data in data:
+            try:
+                delete_one_person(row_data)
+                pass
+            except Exception as e:
+                print e
+                print traceback.format_exc()
+            pass
+        pass
+    else:
+        pass
     pass
 
 

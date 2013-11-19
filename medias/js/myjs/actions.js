@@ -731,7 +731,6 @@ function add_line_position_card(){
         line: line,
         position: position,
         next_time_arrival: next_time_arrival,
-//        time_error: time_error,
         order: order
     }))
 }

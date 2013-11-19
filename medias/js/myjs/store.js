@@ -37,6 +37,9 @@ var lineStore = Ext.create('Ext.data.Store', {
             write: 'POST',
             update: 'POST',
             destroy: 'POST'
+        },
+        api: {
+            destroy: '/data/linePositionData/delete'
         }
     },
 
@@ -91,6 +94,9 @@ var personStore = Ext.create('Ext.data.Store', {
             write: 'POST',
             update: 'POST',
             destroy: 'POST'
+        },
+        api: {
+            destroy: '/data/personData/delete'
         }
     },
 
@@ -145,6 +151,9 @@ var positionStore = Ext.create('Ext.data.Store', {
             write: 'POST',
             update: 'POST',
             destroy: 'POST'
+        },
+        api: {
+            destroy: '/data/positionData/delete'
         }
     },
 
@@ -200,6 +209,9 @@ var multiDayScheduleStore = Ext.create('Ext.data.Store', {
             write: 'POST',
             update: 'POST',
             destroy: 'POST'
+        },
+        api: {
+            destroy: '/data/multiDayScheduleData/delete'
         }
     },
 
@@ -254,6 +266,9 @@ var orderedScheduleStore = Ext.create('Ext.data.Store', {
             write: 'POST',
             update: 'POST',
             destroy: 'POST'
+        },
+        api: {
+            destroy: '/data/orderedScheduleData/delete'
         }
     },
 
@@ -308,6 +323,9 @@ var unorderedScheduleStore = Ext.create('Ext.data.Store', {
             write: 'POST',
             update: 'POST',
             destroy: 'POST'
+        },
+        api: {
+            destroy: '/data/unorderedScheduleData/delete'
         }
     },
 
@@ -360,6 +378,9 @@ var temperatureHumidityDeviceStore = Ext.create('Ext.data.Store', {
             write: 'POST',
             update: 'POST',
             destroy: 'POST'
+        },
+        api: {
+            destroy: '/data/temperatureHumidityDevice/delete'
         }
     },
 

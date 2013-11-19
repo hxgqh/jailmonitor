@@ -85,6 +85,57 @@ def update_position(data):
     pass
 
 
+def delete_one_position(row_data):
+    try:
+        print "row_data:"+str(row_data)
+
+        ip = row_data.get('ip', '')
+        mac = row_data.get('mac', '')
+
+        if not ip:
+            return -1
+
+        old_position = None
+        try:
+            old_position = PositionsModel.objects.get(ip=ip, mac=mac)
+            old_position.delete()
+        except PositionsModel.DoesNotExist:
+            pass
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+    pass
+
+
+def delete_position(data):
+    """
+    @param data: data could be single row(a dict) or multiple rows(a list of dict).
+    """
+    print "func update_position"
+    if isinstance(data, dict):
+        try:
+            delete_one_position(data)
+            pass
+        except Exception as e:
+            print e
+            print traceback.format_exc()
+            pass
+    elif isinstance(data, list):
+        for row_data in data:
+            try:
+                delete_one_position(row_data)
+                pass
+            except Exception as e:
+                print e
+                print traceback.format_exc()
+            pass
+        pass
+    else:
+        pass
+    pass
+
+
 @login_required(login_url="/login")
 @csrf_exempt
 def get_positions_excel(request):

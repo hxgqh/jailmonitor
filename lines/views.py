@@ -112,6 +112,81 @@ def update_line_position(data):
     pass
 
 
+def delete_one_line_position(row_data):
+    print 'func delete_one_line_position'
+    try:
+        print row_data
+
+        line = row_data.get('line', '')
+        position = row_data.get('position', '')
+        next_time_arrival = int(row_data.get('next_time_arrival', -1))
+        order = int(row_data.get('order', -1))
+
+        if not line:
+            return -1
+
+        print row_data
+
+        try:
+            line = LinesModel.objects.get(name=line)
+            pass
+        except LinesModel.DoesNotExist:
+            pass
+
+        try:
+            position = PositionsModel.objects.get(position=position)
+            pass
+        except PositionsModel.DoesNotExist:
+            print "position not exist!"
+            return -1
+            pass
+
+        print position
+
+        try:
+            old_line_position = LinePositionsModel.objects.get(
+                line=line,
+                position=position,
+                next_time_arrival=next_time_arrival,
+                order=order
+            )
+            old_line_position.delete()
+        except LinePositionsModel.DoesNotExist:
+            pass
+        else:
+            pass
+        pass
+    except Exception as e:
+        print e
+        print traceback.format_exc()
+    pass
+
+
+def delete_line_position(data):
+    print "func delete_line_position"
+    if isinstance(data, dict):
+        try:
+            delete_one_line_position(data)
+            pass
+        except Exception as e:
+            print e
+            print traceback.format_exc()
+            pass
+    elif isinstance(data, list):
+        for row_data in data:
+            try:
+                delete_one_line_position(row_data)
+                pass
+            except Exception as e:
+                print e
+                print traceback.format_exc()
+            pass
+        pass
+    else:
+        pass
+    pass
+
+
 @login_required(login_url="/login/")
 def get_lines_excel(request):
     excel_name = '线路信息'

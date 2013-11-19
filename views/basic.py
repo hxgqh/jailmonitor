@@ -79,39 +79,77 @@ def data(request, type):
         return HttpResponse(json.dumps(template_data['data']))
 
     if request_method == 'POST':
-        data = {}
-        try:
-            data = json.loads(request.POST['row'])
-            if not data:
-                return HttpResponse('')
-            pass
-        except Exception as e:
-            print e
-            print traceback.format_exc()
-            pass
+        if not 'delete' in request.META['PATH_INFO']:
+            data = {}
+            try:
+                data = json.loads(request.POST['row'])
+                if not data:
+                    return HttpResponse('')
+                pass
+            except Exception as e:
+                print e
+                print traceback.format_exc()
+                pass
 
-        if 'personData' in type:
-            update_person(data)
+            if 'personData' in type:
+                update_person(data)
 
-        if 'positionData' in type:
-            update_position(data)
+            if 'positionData' in type:
+                update_position(data)
 
-        if 'linePositionData' in type:
-            update_line_position(data)
+            if 'linePositionData' in type:
+                update_line_position(data)
 
-        if 'multiDayScheduleData' in type:
-            update_multiDaySchedule(data)
+            if 'multiDayScheduleData' in type:
+                update_multiDaySchedule(data)
 
-        if 'orderedScheduleData' in type:
-            update_orderedSchedule(data)
+            if 'orderedScheduleData' in type:
+                update_orderedSchedule(data)
 
-        if 'unorderedScheduleData' in type:
-            update_unorderedSchedule(data)
+            if 'unorderedScheduleData' in type:
+                update_unorderedSchedule(data)
 
-        if 'temperatureHumidityDevice' in type:
-            update_temp_hum_devices(data)
+            if 'temperatureHumidityDevice' in type:
+                update_temp_hum_devices(data)
 
-        return HttpResponse('')
+            return HttpResponse('')
+        else:
+            data = {}
+            try:
+                data = json.loads(request.POST['row'])
+                if not data:
+                    return HttpResponse('')
+                pass
+            except Exception as e:
+                print e
+                print traceback.format_exc()
+                pass
+
+            if 'personData' in type:
+                delete_person(data)
+            #
+            if 'positionData' in type:
+                delete_position(data)
+
+            if 'linePositionData' in type:
+                delete_line_position(data)
+
+            if 'multiDayScheduleData' in type:
+                delete_multiDaySchedule(data)
+            #
+            if 'orderedScheduleData' in type:
+                delete_orderedSchedule(data)
+            #
+            if 'unorderedScheduleData' in type:
+                delete_unorderedSchedule(data)
+            #
+            if 'temperatureHumidityDevice' in type:
+                delete_temp_hum_devices(data)
+
+            return HttpResponse('')
+
+
+    return HttpResponse('')
     pass
 
 

@@ -25,7 +25,7 @@ class tDaemon(object):
 
     @staticmethod
     def test_send_temp_hum_query():
-        send_temp_hum_query()
+
         pass
 
 

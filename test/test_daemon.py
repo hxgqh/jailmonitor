@@ -3,6 +3,9 @@
 
 __author__ = 'xiaoghu@cisco.com'
 
+import os
+import re
+import sys
 import socket
 
 currentPath = os.path.dirname(os.path.abspath(__file__))+'/'
